@@ -6,21 +6,18 @@ class Admin_model extends CI_Model {
 		parent::__construct();
 	}
 
-	function updateCategory($category){
+	function insertCategory($category){
 		$data = array(
 			'category' => $category,
 			'status' => 1
 		);
 		$this->db->insert('category', $data);
-		$this->db->select('id');
-		$this->db->from('category');
-		$this->db->where('category', $category);
-		$this->db->limit(1);
-		$query = $this->db->get();
-		return $query->result();
+
+		$id = $this->db->insert_id(): //assign the last inserted id to variable $id
+    	return $id;
 	}
 
-	function updateSubcategory($category_id, $subcategory){
+	function insertSubcategory($category_id, $subcategory){
 		$data = array(
 			'category_id' => $category_id,
 			'subcategory' => $subcategory,

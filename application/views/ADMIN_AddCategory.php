@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/ADMINsidenav.css'); ?>">
 		<script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
 		<script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-		<script src ="<?php echo base_url('assets/js/populate_dropdown.js'); ?>"></script>
+		<script src ="<?php echo base_url('assets/js/admin.js'); ?>"></script>
 	</head>
 	<body>
 		<!-- WHOLE NAVBAR -->
@@ -114,7 +114,7 @@
 									    <li> Submit your new category and add subcategory and items</li>
 									  </ul>
 									  <br />
-									<form class="form" pb-autologin="true" autocomplete="off" action="<?php echo base_url('Admin_controller/updateCategory'); ?>" method="POST" enctype="multipart/form-data">
+									<form class="form" pb-autologin="true" autocomplete="off" action="<?php //echo base_url("Admin_controller/insertCategory"); ?>" method="POST" enctype="multipart/form-data">
 										<div class="container">
 											<div class="col-md-12">	
 												<div class="form-group">    
@@ -131,7 +131,7 @@
 									            </div>
 										        <div class="col-md-12 col-sm-offset-4">
 										        	<div class="btn-group" id="categButton">
-														<button type="submit" class="btn btn-default btn-md" name = "action">Submit this</button>	
+														<button type="submit" class="btn btn-default btn-md" id="submit" name="submit">Submit this</button>	
 													</div>
 												</div>	     
 								            </div> 

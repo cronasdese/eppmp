@@ -1,9 +1,10 @@
 $(document).ready(function() {
+    alert('asdas');
 	$.ajax({
 		url: "Supplies_controller/getCategory",
 		dataType: 'json',
 		success: function(data) {
-			//alert(data);
+			alert(data);
 			$(data).each(function(){
                 $("#category").append($('<option>', {
                     value: this.id,
@@ -13,28 +14,28 @@ $(document).ready(function() {
 		}
     });
 
-	$('#category').change(function () {
-        var category = $('#category :selected').val(); // <-- change this line
-        $("#subcategory > option").remove(); // to clear items
-        console.log(category);
+	// $('#category').change(function () {
+ //        var category = $('#category :selected').val(); // <-- change this line
+ //        $("#subcategory > option").remove(); // to clear items
+ //        console.log(category);
 
-        $.ajax({
-        	type: "POST",
-			url: "Supplies_controller/getSubCategory",
-			data: {	category:category },
-			dataType: 'json',
-			success: function(data) {
-				//console.log(data);
-				//alert(data);
-				$(data).each(function(){
-                    $("#subcategory").append($('<option>', {
-                        value: this.id,
-                        text: this.subcategory,
-                    }));
-                })
-			}
-        });
-    });
+ //        $.ajax({
+ //        	type: "POST",
+	// 		url: "Supplies_controller/getSubCategory",
+	// 		data: {	category:category },
+	// 		dataType: 'json',
+	// 		success: function(data) {
+	// 			//console.log(data);
+	// 			//alert(data);
+	// 			$(data).each(function(){
+ //                    $("#subcategory").append($('<option>', {
+ //                        value: this.id,
+ //                        text: this.subcategory,
+ //                    }));
+ //                })
+	// 		}
+ //        });
+ //    });
 
     $('#subcategory').change(function () {
         var subcategory = $('#subcategory :selected').val(); // <-- change this line
@@ -56,6 +57,29 @@ $(document).ready(function() {
                     }));
                 })
 			}
+        });
+    });
+
+    $('#category').change(function () {
+        var subcategory = $('#subcategory :selected').val(); // <-- change this line
+        $("#supply > option").remove(); // to clear items
+        //console.log(category);
+
+        $.ajax({
+            type: "POST",
+            url: "Supplies_controller/getSuppliesWithSubcategory",
+            data: { category:category },
+            dataType: 'json',
+            success: function(data) {
+                //console.log(data);
+                //alert(data);
+                $(data).each(function(){
+                    $("#subcategory-item").append($('<option>', {
+                        value: this.id,
+                        text: this.item_description,
+                    }));
+                })
+            }
         });
     });
 });

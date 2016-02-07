@@ -9,7 +9,7 @@ class Admin_controller extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 
-	public function updateCategory(){
+	public function insertCategory(){
 		$category = $this->input->post('category');
 		$subcategory = $this->input->post('subcategory');
 
@@ -17,11 +17,11 @@ class Admin_controller extends CI_Controller {
 		$this->form_validation->set_rules('subcategory', 'Subcategory', 'required');
 
 		if($this->form_validation->run() == FALSE){
-			$this->load->view('ADMIN_AddCategory');
+			$this->load->view('ADMIN_ADDCategory');
 		}
 		else{
-			$category_id = $this->admin_model->updateCategory($category);
-      		//$this->admin_model->updateSubcategory($category_id, $subcategory);
+			$category_id = $this->admin_model->insertCategory($category);
+      		$this->admin_model->insertSubcategory($category_id, $subcategory);
       	}
 	}
 }
