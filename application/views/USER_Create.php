@@ -4,15 +4,57 @@
             <title>Create Project</title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
-            <link rel="stylesheet" href="'assets/css/bootstrap.min.css" >
-            <link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
-            <link rel="stylesheet" type="text/css" href="assets/css/select2.css">
-            <link rel="stylesheet" type="text/css" href="assets/css/select2-bootstrap.css"/>
-            <script src ="assets/js/jquery-2.1.4.min.js"></script>
-            <script src ="assets/js/bootstrap.min.js"></script>
-            <script src="assets/js/select2.js"></script>
+            <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
+            <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
+            <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+            <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
+            <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $.ajax({
+                        url: "<?php echo base_url('Supplies_controller/getCategory'); ?>",
+                        dataType: 'json',
+                        success: function(data) {
+                            $(data).each(function(){
+                                $("#category").append($('<option>', {
+                                    value: this.id,
+                                    text: this.category,
+                                }));
+                            })
+                        },
+                        error: function(errorw) {
+                            alert("hi");
+                        }
+                    });
 
+                    $('#category').change(function () {
+                        var category = $('#category :selected').val(); // <-- change this line
+                        $("#items > option").remove(); // to clear items
+                        //alert(category);
+                        //console.log(category);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo base_url('Supplies_controller/getSuppliesWithSubcategory'); ?>",
+                            data: { category:category },
+                            dataType: 'json',
+                            success: function(data) {
+                                //console.log(data);
+                                //alert(data);
+                                $(data).each(function(){
+                                    $("#items").append($('<option>', {
+                                        value: this.item_id,
+                                        text: this.item_description,
+                                    }));
+                                })
+                            },
+                            error: function(errorw) {
+                                alert("hi");
+                            }
+                        });
+                    });
+                });
+            </script>
       </head>
       <body class="createstyle">
             <!-- WHOLE NAVBAR -->
@@ -77,25 +119,8 @@
                         $("#menu-toggle").click(function(e) {
                           e.preventDefault();
                           $("#wrapper").toggleClass("active");
-                              });
                         });
-                  $(document).ready(function() {
-                    aler('asdas');
-                    $.ajax({
-                      url: "<?php echo base_url('Supplies_controller/getCategory');?>",
-                      dataType: 'json',
-                      success: function(data) {
-                        alert(data);
-                        $(data).each(function(){
-                          $("#category").append($('<option>', {
-                            value: this.id,
-                            text: this.category,
-                          }));
-                        })
-                      }
-                    });
-                  });
-                </script>
+                  </script>
                 
             <!-- Page content -->
                   <div id="page-content-wrapper">
@@ -156,7 +181,8 @@
                                                                             	<form id="make_checkbox_select">
 						                                                      		<div class="control-group">
 																				        <div class="controls">
-																				          <select class="select2 input-default" name="Select Category" id="category">
+																				          <select name="category" id="category">
+                                                                                            <option value="0">Select Category</option>
 																				          </select>
 																				        </div>
 																			      	</div>
@@ -166,7 +192,8 @@
                                                                             <td>
                                                                                 <div class="control-group">
                                                                                     <div class="controls">
-                                                                                        <select id="span_large" class="select2 input-large"style="width:300px;" id="subcategory-item">
+                                                                                        <select  name="items" id="items">
+                                                                                            <option value="0">Select Item</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
