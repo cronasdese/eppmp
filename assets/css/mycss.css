@@ -7209,3 +7209,15 @@ font-size: 20px;
 .homeJumbotron{
   padding: 50px;
 }
+
+/*Consolidat page*/
+
+.milestone-table {
+  table-layout: fixed;
+  width: 390px;
+}
+
+.milestone-table td {
+  width: 30px;
+  display: inline-block;
+}
