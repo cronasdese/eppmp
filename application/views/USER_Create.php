@@ -11,7 +11,6 @@
             <link rel="stylesheet" type="text/css" href="assets/css/select2-bootstrap.css"/>
             <script src ="assets/js/jquery-2.1.4.min.js"></script>
             <script src ="assets/js/bootstrap.min.js"></script>
-            <script src ="assets/js/populate_dropdown.js"></script>
             <script src="assets/js/select2.js"></script>
 
       </head>
@@ -80,7 +79,23 @@
                           $("#wrapper").toggleClass("active");
                               });
                         });
-                  </script>
+                  $(document).ready(function() {
+                    aler('asdas');
+                    $.ajax({
+                      url: "<?php echo base_url('Supplies_controller/getCategory');?>",
+                      dataType: 'json',
+                      success: function(data) {
+                        alert(data);
+                        $(data).each(function(){
+                          $("#category").append($('<option>', {
+                            value: this.id,
+                            text: this.category,
+                          }));
+                        })
+                      }
+                    });
+                  });
+                </script>
                 
             <!-- Page content -->
                   <div id="page-content-wrapper">
@@ -142,10 +157,6 @@
 						                                                      		<div class="control-group">
 																				        <div class="controls">
 																				          <select class="select2 input-default" name="Select Category" id="category">
-																				            <option></option>
-																				            <option value="Services">Services</option>
-																				            <option value="Supplies & Materials">Supplies & Materials</option>
-																				            <option value="Equipment">Equipment</option>
 																				          </select>
 																				        </div>
 																			      	</div>
@@ -155,12 +166,7 @@
                                                                             <td>
                                                                                 <div class="control-group">
                                                                                     <div class="controls">
-                                                                                        <select id="span_large" class="select2 input-large"style="width:300px;">
-                                                                                            <option></option>
-                                                                                            <option class="dropdown-header">A</li>
-                                                                                            <option value="A">A</option>
-                                                                                            <option value="B">B</option>
-                                                                                            <option value="C">C</option>
+                                                                                        <select id="span_large" class="select2 input-large"style="width:300px;" id="subcategory-item">
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>

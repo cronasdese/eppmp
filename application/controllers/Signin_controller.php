@@ -12,7 +12,7 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('ADMIN_AddCategory');
+		$this->load->view('USER_Create');
 	}	
 
 	public function validateAccount(){
