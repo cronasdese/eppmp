@@ -23,7 +23,7 @@
 				<hr/>
 				<div class="container-fluid" id="loginBGC2">
 					<fieldset>	
-						<form class="form-inline" pb-autologin="true" autocomplete="off" action="<?php echo base_url('Signin_controller/validateAccount'); ?>" method="POST" enctype="multipart/form-data">
+						<form class="form-inline" pb-autologin="true" autocomplete="off" action="<?php echo base_url("Signin_controller/validateAccount"); ?>" method="POST" enctype="multipart/form-data">
 						    <div class="form-group">
 						      <label for="inputUserID" class="col-sm-1 control-label">ID</label>
 						      	<div class="col-sm-6">
