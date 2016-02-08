@@ -137,21 +137,21 @@
                                           </div>
                                           <!--OFFICE/UNIT & DATE ROW-->
                                           <div class="container" id="createspace">
-                                                <label for="select" class="col-md-2 control-label">Office/Unit: </label>
+                                                <label for="select" class="col-md-2 control-label text-nowrap">Office/Unit: </label>
                                                       <div class="col-sm-3">
                                                                   <input type="text" class="form-control input-sm" placeholder="User's office from db">
                                                       </div>
                                           </div>
                                           <!--OFFICE/UNIT & DATE ROW-->
                                           <div class="container" id="createspace">
-                                                <label for="select" class="col-md-2 control-label">Date of Implementation: </label>
+                                                <label for="select" class="col-md-2 control-label text-nowrap">Date of Implementation: </label>
                                                       <div class="col-sm-3">
                                                                   <input type="text" class="form-control input-sm" placeholder="Enter date of implememtation">
                                                       </div>
                                           </div>
                                           <!--PRJECT TITLE ROW--> 
                                           <div class="container">
-                                                <label for="select" class="col-md-2 control-label">Project Name/Title: </label>
+                                                <label for="select" class="col-md-2 control-label text-nowrap">Project Name/Title: </label>
                                                       <div class="col-sm-6">
                                                                   <input type="text" class="form-control input-sm" placeholder="Enter project name/title">
                                                       </div>
@@ -165,7 +165,7 @@
                                           <br />
                                           <div class="container">     
                                                 <div class="tab-pane active in" id="services">
-                                                        <div class="row">       
+                                                        <div class="row ">       
                                                             <div id="table" class="table-editable tablesize">
                                                                 <span class="table-add glyphicon glyphicon-plus"></span>
                                                                     <table class="table">
@@ -174,6 +174,24 @@
                                                                             <th>Item/Specification</th>
                                                                             <th>Unit</th>
                                                                             <th>Quantity</th>
+                                                                            <th>Schedule/Milestone
+                                                                                <table class="milestone-table"> 
+                                                                                    <tr>
+                                                                                        <td>Jan</td>
+                                                                                        <td>Feb</td>
+                                                                                        <td>Mar</td>
+                                                                                        <td>Apr</td>
+                                                                                        <td>May</td>
+                                                                                        <td>Jun</td>
+                                                                                        <td>Jul</td>
+                                                                                        <td>Aug</td>
+                                                                                        <td>Sep</td>
+                                                                                        <td>Oct</td>
+                                                                                        <td>Nov</td>
+                                                                                        <td>Dec</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </th>
                                                                             <th>Unit Price</th>
                                                                             <th>Subtotal</th>
                                                                             <th> </th>
@@ -190,7 +208,6 @@
 																				        </div>
 																			      	</div>
 																			    </form> 	
-					                                                      </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="control-group">
@@ -202,7 +219,25 @@
                                                                                 </div>
                                                                             </td>
                                                                             <td contenteditable="false">Empty</td>
-                                                                            <td contenteditable="true">Empty</td>
+                                                                            <td contenteditable="true">0</td>
+                                                                            <td>
+                                                                                <table class="milestone-table">
+                                                                                    <tr>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                    </tr>
+                                                                                </table>    
+                                                                            </td>
                                                                             <td contenteditable="false">Empty</td>
                                                                             <td contenteditable="false">Empty</td>
                                                                             <td>
@@ -215,17 +250,32 @@
                                                                             <td>
                                                                                 <div class="control-group">
                                                                                     <div class="controls">
-                                                                                        <select id="span_large" class="select2 input-large" style="width:300px;">
-                                                                                            <option></option>
-                                                                                            <option value="A">A</option>
-                                                                                            <option value="B">B</option>
-                                                                                            <option value="C">C</option>
+                                                                                        <select  name="items" id="items">
+                                                                                            <option value="0">Select Item</option>
                                                                                         </select>
                                                                                     </div>
-                                                                                </div>      
+                                                                                </div>     
                                                                             </td>
                                                                             <td contenteditable="false">Empty</td>
-                                                                            <td contenteditable="true">Empty</td>
+                                                                            <td contenteditable="true">0</td>
+                                                                            <td>
+                                                                                <table class="milestone-table">
+                                                                                    <tr>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                        <td contenteditable="true">0</td>
+                                                                                    </tr>
+                                                                                </table>    
+                                                                            </td>
                                                                             <td contenteditable="false">Empty</td>
                                                                             <td contenteditable="false">Empty</td>
                                                                             <td>
@@ -261,11 +311,7 @@
                               </div>
                         </div>
                   </div> 
-          </div>
-
-
-                                                            
-                                                                     
+          </div>                                                              
 
                                                               
 

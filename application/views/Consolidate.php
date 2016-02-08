@@ -128,7 +128,6 @@
                                                     <td>Empty</td>
                                                     <td>Empty</td>
                                                     <td>
-                                                        <!-- THIS IS WHERE I CAN'T GET IT RIGHT -->
                                                         <table class="milestone-table">
                                                             <tr>
                                                             <td>1</td>
