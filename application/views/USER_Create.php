@@ -42,6 +42,9 @@
                                 //console.log(data);
                                 //alert(data);
                                 $(data).each(function(){
+                                    $('#items').append($('<option class="dropdown-header"', {
+                                        text:this.subcategory,
+                                    }));
                                     $("#items").append($('<option>', {
                                         value: this.item_id,
                                         text: this.item_description,

@@ -34,7 +34,7 @@ class Supplies_model extends CI_Model {
 	}
 
 	function getSuppliesWithSubcategory($category_id){
-		$this->db->select('subcategory.id subcategory_id, subcategory.subcategory subcategory, supply.id item_id, supply.supply_description item_description');
+		$this->db->select('subcategory.subcategory subcategory, supply.id item_id, supply.supply_description item_description');
 		$this->db->from('supply');
 		$this->db->join('subcategory', 'supply.subcategory_id = subcategory.id');
 		$this->db->where('category_id', $category_id);
