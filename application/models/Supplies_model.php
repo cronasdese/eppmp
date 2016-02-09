@@ -33,6 +33,15 @@ class Supplies_model extends CI_Model {
 		return $query->result();
 	}
 
+	function getSupplyDetails($supply_id){
+		$this->db->select('unit, price');
+		$this->db->from('supply');
+		$this->db->where('id', $supply_id);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function getSuppliesWithSubcategory($category_id){
 		$this->db->select('subcategory.subcategory subcategory, supply.id item_id, supply.supply_description item_description');
 		$this->db->from('supply');

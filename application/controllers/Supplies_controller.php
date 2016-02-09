@@ -20,9 +20,15 @@ class Supplies_controller extends CI_Controller {
 	}
 
 	public function getSupply(){
-		$subcategory_id = $this->input->post('category');
+		$subcategory_id = $this->input->post('subcategory');
 		$supplies = $this->supplies_model->getSubCategory($subcategory_id);
 		echo json_encode($supplies);	
+	}
+
+	public function getSupplyDetails(){
+		$supply_id = $this->input->post('supply');
+		$supply_details = $this->supplies_model->getSupplyDetails($supply_id);
+		echo json_encode($supply_details);
 	}
 
 	public function getSuppliesWithSubcategory(){
