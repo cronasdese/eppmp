@@ -286,6 +286,27 @@
                 else{
                     //insert to database
                     alert(JSON.stringify(data_array));
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url('Supplies_controller/getSuppliesWithSubcategory'); ?>",
+                        data: { data_array : data_array },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#items_' + numberId).append($('<option>', {
+                                value: 0,
+                                text: 'Select Item',
+                            }));
+                            $(data).each(function(){
+                                $('#items_' + numberId).append($('<option>', {
+                                    value: this.item_id,
+                                    text: this.item_description,
+                                }));
+                            });
+                        },
+                        error: function(errorw) {
+                            alert("error");
+                        }
+                    });         
                 }
             });
         }); 
