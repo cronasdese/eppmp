@@ -113,8 +113,9 @@
                                                 <!--field3--> <th class="project"><a ng-click="sort_by('project')">Project/Program(Link) <span class="fa fa-sort"></span></a></th>
                                                 <!--name--> <th class="office"><a ng-click="sort_by('office')">Office(Name)<span class="fa fa-sort"></span></a></th>
                                                 <!--field4--> <th class="date"><a ng-click="sort_by('date')">Date Submitted(Field 4) <span class="fa fa-sort"></span></a></th>
-                                                <!--field5--> <th class="field5"><a ng-click="sort_by('field5')">Field 5 <span class="fa fa-sort"></span></a></th>    
-                                                <!--description--> <th class="status" title="non-sortable">Status</th>
+                                                <!--field5--> <th class="field5"><a ng-click="sort_by('field5')">Status<span class="fa fa-sort"></span></a></th>    
+                                                <!--description--> <th class="status" title="non-sortable">Edit</th>
+                                                                   <th class="status" title="non-sortable">View</th>
                                                 <!----> <th></th>
                                                     </tr>
                                                 </tbody>

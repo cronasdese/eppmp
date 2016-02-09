@@ -11,164 +11,96 @@
             <script src ="assets/js/bootstrap.min.js"></script>
 
       </head>
-      <body class="createstyle">
-            <!-- WHOLE NAVBAR -->
-            <div>
-                  <nav class="navbar  navbar-default">
-                        <div class="container">
-
-                              <!-- NAVBAR HEADER LEFT -->
-                        <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    </button>
-                                    <a class="navbar-brand" href="#">E-PPMP</a>
-                        </div>
-
-                        <!-- NAVBAR HEADER RIGHT -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul class="nav navbar-nav navbar-right">
-                                    <li class="dropdown">
-                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>
-                                          <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                          </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sammera Alim <span class="caret"></span></a>
-                                          <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Profile</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Logout</a></li>
-                                          </ul>
-                                    </li>
-                                    </ul>
-                            </div>
-                        </div>
-                  </nav>
-            </div>
-            <!-- Sidebar -->
-            <div id="wrapper" class="active">
-     
-            <!-- Sidebar -->
-                <div id="sidebar-wrapper">
-                      <ul id="sidebar_menu" class="sidebar-nav">
-                          <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-                      </ul>
-                      <ul class="sidebar-nav" id="sidebar">     
-                          <li><a href="#">Home<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                          <li><a href="#">Create <span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                          <li><a href="#">Projects<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                          <li><a href="#">Drafts<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                          <li><a href="#">History<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                        <!--SPACE DAPAT TO OR DIVIDER-->
-                          <li><a href="#">Approve PPMP<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-                      </ul>
+      <body>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <br />
+                    <p class="text-center">Technological Univesity of the Philippines</p>
+                    <h6 class="text-center">Ayala blvd., Ermita, Manila</h6>
+                    <br />
+                    <h4 class="text-center"><b>Annual Procurement Plan (APP)</b></h4>
                 </div>
-                <script type="text/javascript">
-                        $("#menu-toggle").click(function(e) {
-                          e.preventDefault();
-                          $("#wrapper").toggleClass("active");
-                              });
-                        });
-                  </script>
-                
-            <!-- Page content -->
-                    <div id="page-content-wrapper">
-                    <!-- Keep all page content within the page-content inset div! -->
-                        <div class="page-content inset">
-                            <div class="row">
-                                <div class="container">
-                                    <div class="col-md-12">
-                                        <h3>Consolidation</h3>
-                                        <hr/>
-                                    </div>
-                                    <!--CONTENT x TABLE-->
-                                    <div class="container">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th class="col-xs-1">ProjectID</th>
-                                                    <th>Program/Project</th>
-                                                    <th class="col-xs-1">Office/Unit</th>
-                                                    <th class="col-xs-1">General Description</th>
-                                                    <th class="col-xs-1">Methods</th>
-                                                    <th> Schedule/Milestone
-                                                        <table class="milestone-table"> 
-                                                            <tr>
-                                                                <td>Jan</td>
-                                                                <td>Feb</td>
-                                                                <td>Mar</td>
-                                                                <td>Apr</td>
-                                                                <td>May</td>
-                                                                <td>Jun</td>
-                                                                <td>Jul</td>
-                                                                <td>Aug</td>
-                                                                <td>Sep</td>
-                                                                <td>Oct</td>
-                                                                <td>Nov</td>
-                                                                <td>Dec</td>
-                                                            </tr>
-                                                        </table>
-                                                    </th>
-                                                    <th class="col-xs-1">Source of funds</th>
-                                                    <th class="col-xs-1">Approved Budget Ceiling (ABC)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Empty</td>
-                                                    <td>Empty</td>
-                                                    <td>Empty</td>
-                                                    <td>Empty</td>
-                                                    <td>Empty</td>
-                                                    <td>
-                                                        <table class="milestone-table">
-                                                            <tr>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td> 3</td>
-                                                            <td> 4</td>
-                                                            <td> 5</td>
-                                                            <td> 6</td>
-                                                            <td> 7</td>
-                                                            <td> 8</td>
-                                                            <td> 9</td>
-                                                            <td> 10</td>
-                                                            <td> 11</td>
-                                                            <td> 12</td>
-                                                            </tr>
-                                                        </table>    
-                                                    </td>
-                                                    <td>Empty</td>
-                                                    <td>Empty</td>
-                                                </tr> 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <div class="container">
-                                        <div class="form-group">    
-                                            <label class="control-label col-md-2">Prepared by: </label>
-                                            <p> Insert</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Recommending Approved: </label>
-                                            <p> Insert</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Approved by: </label>
-                                            <p> Insert</p>
-                                        </div>   
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
+                <br />
+                <form enctype="multipart/form-data">
+                    <table class="table table-bordered" id="myTable">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap text-center" rowspan="2">ProjCode</th>
+                                <th class="text-nowrap text-center" rowspan="2">Program/Project</th>
+                                <th class="text-nowrap text-center" rowspan="2">Office/Unit</th>
+                                <th class="text-nowrap text-center" rowspan="2">General Description</th>
+                                <th class="text-nowrap text-center" rowspan="2">Methods</th>
+                                <th class="text-center" colspan="12">Schedule/Milestones of Activity</th>
+                                <th class="text-nowrap text-center" colspan="2">Source of funds</th>
+                                <th class="text-center" rowspan="2">Aproved Budget Ceiling(ABC)</th>
+                            </tr>
+                            <tr>
+                                <th class="th-size text-center">Jan</th>
+                                <th class="th-size text-center">Feb</th>
+                                <th class="th-size text-center">Mar</th>
+                                <th class="th-size text-center">Apr</th>
+                                <th class="th-size text-center">May</th>
+                                <th class="th-size text-center">Jun</th>
+                                <th class="th-size text-center">Jul</th>
+                                <th class="th-size text-center">Aug</th>
+                                <th class="th-size text-center">Sep</th>
+                                <th class="th-size text-center">Oct</th>
+                                <th class="th-size text-center">Nov</th>
+                                <th class="th-size text-center">Dec</th>
+                                <th class="thh-size text-center">F-000</th>
+                                <th class="thh-size text-center">F-000</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-nowrap">0</td>
+                                <td class="text-nowrap col-sm-6">Empty</td>
+                                <td class="text-nowrap text-center col-sm-1">Empty</td>
+                                <td class="text-nowrap text-center col-sm-2">Empty</td>
+                                <td class="text-nowrap text-center">Methods</td>
+                                <td class="text-nowrap th-size" id="jan_1">0</td>
+                                <td class="text-nowrap th-size" id="feb_1">0</td>
+                                <td class="text-nowrap th-size" id="mar_1">0</td>
+                                <td class="text-nowrap th-size" id="apr_1">0</td>
+                                <td class="text-nowrap th-size" id="may_1">0</td>
+                                <td class="text-nowrap th-size" id="jun_1">0</td>
+                                <td class="text-nowrap th-size" id="jul_1">0</td>
+                                <td class="text-nowrap th-size" id="aug_1">0</td>
+                                <td class="text-nowrap th-size" id="sep_1">0</td>
+                                <td class="text-nowrap th-size" id="oct_1">0</td>
+                                <td class="text-nowrap th-size" id="nov_1">0</td>
+                                <td class="text-nowrap th-size" id="dec_1">0</td>
+                                <td class="text-center">0</td>
+                                <td class="text-center">0</td>
+                                <td class="text-center col-sm-1">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <br />
+             <div class="container-fluid">
+                <table class="col-sm-12">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3">Prepared by:</th>
+                            <th class="col-md-5">Recommending Approved:</th>
+                            <th class="col-md-4">Approved by:</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="text-center">Empty</th>
+                            <th class="text-center">Empty</th>
+                            <th class="text-center">Empty</th>
+                        </tr>
+                         <tr>
+                            <th class="text-center">Position</th>
+                            <th class="text-center">Position</th>
+                            <th class="text-center">Position</th>
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
       </body>
 </html>

@@ -13,7 +13,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: Helvetica;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -6940,22 +6940,36 @@ a.list-group-item-danger.active:focus {
 
 /*LOG IN */
 #loginFONT{
- font-family: monospace;
+ font-family: Helvetica;
 }
 #loginBGC1{
   margin-top: 100px;
   background-color: #0f0f0a;
 }
 #loginBGC2{
+  max-width: 400px;
   background-color: #eee;
-  padding-top: 25px;
+  padding-top: 10px;
   padding-bottom: 25px;
-  padding-left: 15px;
+  padding-left: 10px;/
 }
 #loginLOGO{
-  font-family: monospace;
+  font-family: Helvetica;
   font-size: 180% ;
   font-weight: bolder;
+}
+.text-pos{
+  margin-top: 10px;
+}
+/*#drp-width{
+  width: 400px;
+}*/
+.btn{
+  cursor: pointer;
+  background-color: #BD2031;
+  margin:0px;
+  border: 0px;
+  margin-top: 10px;
 }
 
 /*TEST*/
@@ -7259,3 +7273,17 @@ font-size: 20px;
 #th-item{
   width: 416px;
 }
+.th-size{
+  width: 25px;
+  padding: 0px;
+  margin: 0px;
+}
+.td-size{
+  width: 55px;
+}
+
+.thh-size{
+  width: 10px;
+  font-size: 14px;
+}
+
