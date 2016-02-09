@@ -56,8 +56,10 @@
                     }
                 });
             });
+
         });
     </script>
+
 </head>
 <body>
     <div class="container">
@@ -119,7 +121,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-nowrap text-center"> 
+                    <td class="text-nowrap"> 
                         <form id="make_checkbox_select">
                             <div class="control-group">
                                 <div class="controls">
@@ -195,92 +197,21 @@
                     <td> </td>
                     <td>
                         <a id="table-add"><span class="table-add glyphicon glyphicon-plus" ></span></a>
-                    </td>
-                </tr>
-                <!--Second row-->
-                <tr>
-                    <td class="text-nowrap text-center"> 
-                    </td>
-                    <td class="text-nowrap text-center"> 
-                        <div class="control-group">
-                            <div class="controls">
-                                <select  name="items" id="items" class="col-sm-11">
-                                    <option value="0">Select Item</option>
-                                </select>
-                            </div>
-                        </div>
-                    </td>
-                    <td> </td>
-                    <td class="text-nowrap text-center">    
-                        <input type="number" placeholder="0" min="0" class="td-width1" />
-                    </td>
-                    <td class="td-pad"> 
-                        <table class="milestone-table"> 
-                            <tr class="text-nowrap text-center">
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                            </tr>
-                        </table>    
-                    </td>
-                    <td> </td>
-                    <td> </td>
-                    <td>
-                        <a href="#" id="table-add"><span class="table-add glyphicon glyphicon-plus" ></span></a>
                         <!--span class="table-add1 glyphicon glyphicon-plus"></span-->
                     </td>
                 </tr>
-                <!--hidden row-->
-                <tr class="hide" id="hide">
-                    <td class="text-nowrap text-center"> 
-                    <form id="make_checkbox_select">
-                    <div class="control-group">
-                    <div class="controls">
-                    <select name="category" id="category">
-                    <option value="0">Select Category</option>
-                    </select>
-                    </div>
-                    </div>
-                    </form>
+                <!--hidden row  class="hide" id="hide"-->  
+                 <tr id="table-hide">
+                    <td class="text-nowrap"> 
+                        <form id="make_checkbox_select">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <select name="category" id="category" class="col-sm-12">
+                                        <option value="0">Select Category</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
                     </td>
                     <td class="text-nowrap text-center"> 
                         <div class="control-group">
@@ -346,27 +277,53 @@
                     <td> </td>
                     <td> </td>
                     <td>
-                        <span class="table-add glyphicon glyphicon-plus"></span>
+                        <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove" ></span></a>
+                        <!--span class="table-add1 glyphicon glyphicon-plus"></span-->
                     </td>
-                </tr>        
+                </tr> 
             </tbody>
         </table>
     </form>
 </div>
-    <script type="text/javascript">
-            $('#myTable').on('click','a[id="table-add"]', function(){
-            var $curRow = $(this).closest('tr'),
+<script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#table-hide').hide();
+
+        });
+
+        $('#myTable').on('click','a[id="table-add"]', function(){
+            var $curRow = $('#table-hide'),
                 $newRow = $curRow.clone(true);
             console.log($newRow);
-            $curRow.after($newRow);
-            console.log('added');
-          });
-    </script>
-    
-    
-});
+            $curRow.after($newRow).show();
+            console.log('added'); 
+            $.ajax({
+                url: "<?php echo base_url('Supplies_controller/getCategory'); ?>",
+                dataType: 'json',
+                success: function(data) {
+                    $(data).each(function(){
+                        $("#category1").append($('<option>', {
+                            value: this.id,
+                            text: this.category,
+                        }));
+                    })
+                },
+                error: function(errorw) {
+                    alert("hi");
+                }
+            });
+        });
+
+        $('#myTable').on('click', 'a[id="table-remove"]', function() {
+        $(this).parents("tr").remove();
+
+        });                                         
+</script>
+
 </body>
 </html>
+
 
 
                                                      

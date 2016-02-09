@@ -7026,8 +7026,6 @@ font-size: 20px;
 .table-add {
   color: #070;
   cursor: pointer;
-  position: absolute;
-  top: 8px;
   right: 0;
   
   &:hover {
@@ -7212,12 +7210,56 @@ font-size: 20px;
 
 /*Consolidat page*/
 
-.milestone-table {
+/*.milestone-table {
   table-layout: fixed;
-  width: 390px;
+  width: 421px;
+  margin-left: -9px;
+}
+.milestone-table th {
+  width: 35px;
+  display: inline-block;
 }
 
 .milestone-table td {
   width: 30px;
   display: inline-block;
+  margin: 0px;
+  margin-top: 0px;
+}
+
+/*Create*/
+/*.td-width{
+  width:30px;
+}
+.td-width1{
+  width:40px;
+}
+#th-item{
+  width: 416px;
+}*/
+
+.milestone-table {
+  table-layout: fixed;
+  width: 421px;
+  margin-left: -9px;
+}
+.milestone-table th {
+  width: 35px;
+  display: inline-block;
+}
+
+.milestone-table td {
+  width: 30px;
+  display: inline-block;
+  margin: 0px;
+  margin-top: 0px;
+}
+.td-width{
+  width:30px;
+}
+.td-width1{
+  width:40px;
+}
+#th-item{
+  width: 416px;
 }
