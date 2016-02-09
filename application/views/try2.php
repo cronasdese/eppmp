@@ -16,7 +16,7 @@
                 dataType: 'json',
                 success: function(data) {
                     $(data).each(function(){
-                        $("#category").append($('<option>', {
+                        $("#category_1").append($('<option>', {
                             value: this.id,
                             text: this.category,
                         }));
@@ -27,9 +27,9 @@
                 }
             });
 
-            $('#category').change(function () {
-                var category = $('#category :selected').val(); // <-- change this line
-                $("#items > option").remove(); // to clear items
+            $('#category_1').change(function () {
+                var category = $('#category_1 :selected').val(); // <-- change this line
+                $("#items_1 > option").remove(); // to clear items
                 //alert(category);
                 //console.log(category);
 
@@ -42,10 +42,7 @@
                         //console.log(data);
                         //alert(data);
                         $(data).each(function(){
-                            $('#items').append($('<option class="dropdown-header"', {
-                                text:this.subcategory,
-                            }));
-                            $("#items").append($('<option>', {
+                            $("#items_1").append($('<option>', {
                                 value: this.item_id,
                                 text: this.item_description,
                             }));
@@ -56,8 +53,48 @@
                     }
                 });
             });
+            
+            //for cloning row
+            $("#table-add").click(function () {
+                addAnotherRow();
+            });
 
-        });
+            function addAnotherRow() {
+                var row = $("#myTable tr").last().clone();
+                //row.id = row.id.slice(-1);
+                var oldId = Number(row.attr('id').slice(-1));
+                var id = 1 + oldId;
+                
+                
+                row.attr('id', 'row_' + id );
+                row.find('#category_' + oldId).attr('id', 'category_' + id);
+                row.find('#items_' + oldId).attr('id', 'items_' + id);
+                row.find('#unit_' + oldId).attr('id', 'unit_' + id);
+                row.find('#qty_' + oldId).attr('id', 'qty_' + id);
+                row.find('#jan_' + oldId).attr('id', 'jan_' + id);
+                row.find('#feb_' + oldId).attr('id', 'feb_' + id);
+                row.find('#mar_' + oldId).attr('id', 'mar_' + id);
+                row.find('#apr_' + oldId).attr('id', 'apr_' + id);
+                row.find('#may_' + oldId).attr('id', 'may_' + id);
+                row.find('#jun_' + oldId).attr('id', 'jun_' + id);
+                row.find('#jul_' + oldId).attr('id', 'jul_' + id);
+                row.find('#aug_' + oldId).attr('id', 'aug_' + id);
+                row.find('#sep_' + oldId).attr('id', 'sep_' + id);
+                row.find('#oct_' + oldId).attr('id', 'oct_' + id);
+                row.find('#nov_' + oldId).attr('id', 'nov_' + id);
+                row.find('#dec_' + oldId).attr('id', 'dec_' + id);
+                row.find('#unitprice_' + oldId).attr('id', 'unitprice_' + id);
+                row.find('#subtotal_' + oldId).attr('id', 'subtotal_' + id);
+                $('#myTable').append(row);
+            }
+
+            //delete row
+
+            $("#table-remove").click(function () {
+                $(this).parents("#myTable tr").remove();    
+            }
+            
+        }); 
     </script>
 
 </head>
@@ -89,43 +126,40 @@
     <br />
 <div  class="container table-responsive col-sm-12">
     <form enctype="multipart/form-data" data-parsley-validate="">
-        <table class="table table-striped" id="myTable">
+        <table class="table table-bordered" id="myTable">
             <thead>
                 <tr>
-                    <th class="text-nowrap text-center">Category</th>
-                    <th class="text-nowrap text-center col-sm-5">Item/Specification</th>
-                    <th class="text-nowrap text-center col-sm-1">Unit</th>
-                    <th class="text-nowrap text-center">Qty</th>
-                    <th class="text-nowrap text-center" id="th-item">Schedule/Milestone
-                        <table class="milestone-table text-nowrap"> 
-                        <tr>
-                        <th>Jan</th>
-                        <th>Feb</th>
-                        <th>Mar</th>
-                        <th>Apr</th>
-                        <th>May</th>
-                        <th>Jun</th>
-                        <th>Jul</th>
-                        <th>Aug</th>
-                        <th>Sep</th>
-                        <th>Oct</th>
-                        <th>Nov</th>
-                        <th>Dec</th>
-                        </tr>
-                        </table>
-                    </th>
-                    <th class="text-nowrap text-center col-sm-1">Unit Price</th>
-                    <th class="text-nowrap text-center col-sm-1">Subtotal</th>
-                    <th></th>
+                    <th class="text-nowrap text-center" rowspan="2">Category</th>
+                    <th class="text-nowrap text-center col-sm-5" rowspan="2">Item/Specification</th>
+                    <th class="text-nowrap text-center col-sm-1" rowspan="2">Unit</th>
+                    <th class="text-nowrap text-center" rowspan="2">Qty</th>
+                    <th class="text-nowrap text-center" colspan="12">Schedule/Milestone</th>
+                    <th class="text-nowrap text-center col-sm-1"rowspan="2">Unit Price</th>
+                    <th class="text-nowrap text-center col-sm-1" rowspan="2">Subtotal</th>
+                    <th rowspan="2"> </th>
+                </tr>
+                <tr>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr id="row_1">
                     <td class="text-nowrap"> 
-                        <form id="">
+                        <form>
                             <div class="control-group">
                                 <div class="controls">
-                                    <select name="category" id="category">
+                                    <select name="category" id="category_1">
                                         <option value="0">Select Category</option>
                                     </select>
                                 </div>
@@ -135,176 +169,262 @@
                     <td class="text-nowrap text-center"> 
                         <div class="control-group">
                             <div class="controls">
-                                <select  name="items" id="items" class="col-sm-11">
+                                <select name="items" id="items_1" class="col-sm-11">
                                     <option value="0">Select Item</option>
                                 </select>
                             </div>
                         </div>
                     </td>
-                    <td> </td>
+                    <td class="text-nowrap text-center" id="unit_1">
+                    </td>
                     <td class="text-nowrap text-center">    
-                        <input type="number" placeholder="0" min="0" class="td-width1" />
+                        <input type="number" id="qty_1" placeholder="0" min="0" class="td-width2" />
                     </td>
-                    <td class="td-pad"> 
-                        <table class="milestone-table"> 
-                            <tr class="text-nowrap text-center">
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                                <td class="text-nowrap text-center">    
-                                    <input type="number" placeholder="0" min="0" class="td-width" />
-                                </td>
-                            </tr>
-                        </table>    
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="jan_1" placeholder="0" min="0" class="td-width" />
                     </td>
-                    <td> </td>
-                    <td> </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="feb_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="mar_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="apr_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="may_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="jun_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="jul_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="aug_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="sep_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table">    
+                        <input type="number" id="oct_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="milestone-table milestone-table">    
+                        <input type="number" id="nov_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="milestone-table milestone-table">    
+                        <input type="number" id="dec_1" placeholder="0" min="0" class="td-width" />
+                    </td>
+                    <td class="text-center milestone-table" id="unitprice_1"> </td>
+                    <td class="text-center milestone-table" id="subtotal_1"> </td>
                     <td>
-                        <a id="table-add"><span class="table-add glyphicon glyphicon-plus" ></span></a>
-                        <!--span class="table-add1 glyphicon glyphicon-plus"></span-->
+                        <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove" ></span></a>
                     </td>
                 </tr>
-                <!--hidden row  class="hide" id="hide"-->  
             </tbody>
         </table>
+        <div class="container-fluid">
+            <a id="table-add"><span class="table-add glyphicon glyphicon-plus col-md-offset-12"></span></a>
+        </div>
     </form>
 </div>
 <script type="text/javascript">
-    var $table = $('table');
-    var rowCount = 0;
+    // var counter = 1;
 
-    var generateRow = function(indx){
+    // $("#table-add").click(function() {
+    //      counter++
+    //     $('table').find("tr:eq(1)").clone().appendTo("table").find('select')
+    //                .attr({
+    //                    'name': 'category' + counter,
+    //                    'id'   : 'category' + counter
+    //                })
+    //                .closest('td').next('td').find('select')
+    //                .attr({
+    //                    'name': 'supply' + counter,
+    //                    'id'   : 'supply' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'unit' + counter,
+    //                    'id'   : 'unit' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'qty' + counter,
+    //                    'id'   : 'qty' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'jan' + counter,
+    //                    'id'   : 'jan' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'feb' + counter,
+    //                    'id'   : 'feb' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'mar' + counter,
+    //                    'id'   : 'mar' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'apr' + counter,
+    //                    'id'   : 'apr' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'may' + counter,
+    //                    'id'   : 'may' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'jun' + counter,
+    //                    'id'   : 'jun' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'jul' + counter,
+    //                    'id'   : 'jul' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'aug' + counter,
+    //                    'id'   : 'aug' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'sep' + counter,
+    //                    'id'   : 'sep' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'oct' + counter,
+    //                    'id'   : 'oct' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'nov' + counter,
+    //                    'id'   : 'nov' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'dec' + counter,
+    //                    'id'   : 'dec' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'unit_price' + counter,
+    //                    'id'   : 'unit_price' + counter
+    //                })
+    //                .closest('td').next('td').find('input')
+    //                .attr({
+    //                    'name': 'subtotal' + counter,
+    //                    'id'   : 'subtotal' + counter
+    //                })
+    // });
+    //other
+    // var $table = $('table');
+    // var rowCount = 0;
+
+    // var generateRow = function(indx){
         
-        $table.append('
-            <tr>
-                <td class="text-nowrap">\
-                    <form id="make_checkbox_select '+indx+'">\
-                        <div class="control-group">\
-                            <div class="controls">\
-                                <select name="category '+indx+'" id="category '+indx+'" class="col-sm-12">\
-                                    <option value="0">Select Category</option>\
-                                </select>\
-                            </div>\
-                        </div>\
-                    </form>\
-                </td>\
+    //     $table.append('
+    //         <tr>
+    //             <td class="text-nowrap">\
+    //                 <form id="make_checkbox_select '+indx+'">\
+    //                     <div class="control-group">\
+    //                         <div class="controls">\
+    //                             <select name="category '+indx+'" id="category '+indx+'" class="col-sm-12">\
+    //                                 <option value="0">Select Category</option>\
+    //                             </select>\
+    //                         </div>\
+    //                     </div>\
+    //                 </form>\
+    //             </td>\
                 
-                <td class="text-nowrap text-center">\
-                    <div class="control-group">\
-                        <div class="controls">\
-                            <select  name="items '+indx+'" id="items '+indx+'" class="col-sm-11">\
-                                <option value="0">Select Item</option>\
-                            </select>\
-                        </div>\
-                    </div>\
-                </td>\
+    //             <td class="text-nowrap text-center">\
+    //                 <div class="control-group">\
+    //                     <div class="controls">\
+    //                         <select  name="items '+indx+'" id="items '+indx+'" class="col-sm-11">\
+    //                             <option value="0">Select Item</option>\
+    //                         </select>\
+    //                     </div>\
+    //                 </div>\
+    //             </td>\
                 
-                <td>'+indx+'</td>\
+    //             <td>'+indx+'</td>\
 
-                <td class="text-nowrap text-center">\    
-                    <input type="number" placeholder="0" min="0" class="td-width1" id="'+indx+'"/>\
-                </td>\
+    //             <td class="text-nowrap text-center">\    
+    //                 <input type="number" placeholder="0" min="0" class="td-width1" id="'+indx+'"/>\
+    //             </td>\
 
-                <td class="td-pad">\
-                    <table class="milestone-table">\
-                        <tr class="text-nowrap text-center">\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                            <td class="text-nowrap text-center">\
-                                <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
-                            </td>\
-                        </tr>\
-                    </table>\
-                </td>\
+    //             <td class="td-pad">\
+    //                 <table class="milestone-table">\
+    //                     <tr class="text-nowrap text-center">\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                         <td class="text-nowrap text-center">\
+    //                             <input id="'+indx+'" type="number" placeholder="0" min="0" class="td-width" />\
+    //                         </td>\
+    //                     </tr>\
+    //                 </table>\
+    //             </td>\
 
-                <td> '+indx+'</td>\
-                <td> '+indx+'</td>\
-                <td>\
-                    <a id="table-remove '+indx+'"><span class="table-remove glyphicon glyphicon-remove" ></span></a>\
-                </td>\
-            /</tr> ');
-        }
+    //             <td> '+indx+'</td>\
+    //             <td> '+indx+'</td>\
+    //             <td>\
+    //                 <a id="table-remove '+indx+'"><span class="table-remove glyphicon glyphicon-remove" ></span></a>\
+    //             </td>\
+    //         /</tr> ');
+    //     }
 
-        var addRow = function(){
-            generateRow(++rowCount);
-        }
+    //     var addRow = function(){
+    //         generateRow(++rowCount);
+    //     }
 
-        addRow();
+    //     addRow();
 
-        $('#table-add').click(addRow);
+    //     $('#table-add').click(addRow);
         // $('#myTable').on('click','a[id="table-add"]', function(){
         //     addRow();
         // };

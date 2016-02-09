@@ -7238,27 +7238,23 @@ font-size: 20px;
   width: 416px;
 }*/
 
-.milestone-table {
-  table-layout: fixed;
-  width: 421px;
-  margin-left: -9px;
-}
-.milestone-table th {
-  width: 35px;
-  display: inline-block;
-}
 
-.milestone-table td {
+.milestone-table td{
   width: 30px;
-  display: inline-block;
+  white-space: nowrap;
   margin: 0px;
-  margin-top: 0px;
+  padding: 0px;
 }
 .td-width{
   width:30px;
+  margin: 0px;
+  padding: 0px;
+}
+.td-width2{
+  width:30px;
 }
 .td-width1{
-  width:40px;
+  width:50px;
 }
 #th-item{
   width: 416px;
