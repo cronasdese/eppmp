@@ -12,6 +12,9 @@ class PPMP_controller extends CI_Controller{
 	}
 
 	public function submitPPMP(){
-		
+		$data_array = $this->input->post('data_array');
+		$data = json_decode($data_array);
+		$values = $this->PPMP_model->submitPPMP($data_array);
+		echo json_encode($values);
 	}
 }

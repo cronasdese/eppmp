@@ -13,7 +13,7 @@ class Admin_model extends CI_Model {
 		);
 		$this->db->insert('category', $data);
 
-		$id = $this->db->insert_id(): //assign the last inserted id to variable $id
+		$id = $this->db->insert_id(); //assign the last inserted id to variable $id
     	return $id;
 	}
 

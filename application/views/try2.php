@@ -285,23 +285,27 @@
                 }
                 else{
                     //insert to database
+
+                    //SOMETHING NEEDS TO BE FUCKING DONE OR JUST BRUTE PHP THIS FUCKING SHIT
+
+                    // SSSSSS  HH  HH  II  TTTTTTTT
+                    // SS      HH  HH  II     TT
+                    // SSSSSS  HHHHHH  II     TT
+                    //     SS  HH  HH  II     TT
+                    // SSSSSS  HH  HH  II     TT
+
                     alert(JSON.stringify(data_array));
+
+                    //to stringify the somethings
+                    data_array = JSON.stringify(data_array);
+
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo base_url('Supplies_controller/getSuppliesWithSubcategory'); ?>",
+                        url: "<?php echo base_url('PPMP_controller/submitPPMP'); ?>",
                         data: { data_array : data_array },
                         dataType: 'json',
                         success: function(data) {
-                            $('#items_' + numberId).append($('<option>', {
-                                value: 0,
-                                text: 'Select Item',
-                            }));
-                            $(data).each(function(){
-                                $('#items_' + numberId).append($('<option>', {
-                                    value: this.item_id,
-                                    text: this.item_description,
-                                }));
-                            });
+                            alert('PPMP submission success!');
                         },
                         error: function(errorw) {
                             alert("error");
@@ -314,42 +318,30 @@
 
 </head>
 <body>
-    <div class="container">
-        <div class="col-md-12">
-            <h3>Project Procurement Management Plan</h3>
-            <hr />  
-        </div>
-        <div>
-            <label class="col-md-2">Office/Unit:</label>
-            <div class="col-md-10 text-nowrap">
-                <input type="text" class="form-control input-sm" placeholder="User's office from db">
+    <!--form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/submitPPMP'); ?>" enctype="multipart/form-data" data-parsley-validate=""-->
+        <div class="container">
+            <div class="col-md-12">
+                <h3>Project Procurement Management Plan</h3>
+                <hr />  
+            </div>
+            <div>
+                <label class="col-md-2">End-User/Unit:</label>
+                <div class="col-md-10 text-nowrap">
+                    <input type="text" class="form-control input-sm" placeholder="User's office from db">
+                </div>
             </div>
         </div>
-        <div>
-            <label class="col-md-2 text-nowrap">Date of Implementation:</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control input-sm" placeholder="Enter date of implementation">
-            </div>
-        </div>
-        <div>
-            <label class="col-md-2 text-nowrap">Project Name/Title:</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control input-sm" placeholder="Enter project name">
-            </div>
-        </div>
-    </div>
-    <br />
-    <div  class="container table-responsive col-sm-12">
-        <!--form enctype="multipart/form-data" method="POST" enctype="multipart/form-data" data-parsley-validate=""-->
+        <br />
+        <div  class="container table-responsive col-sm-12">
             <table class="table table-bordered" id="myTable">
                 <thead>
                     <tr>
                         <th class="text-nowrap text-center" rowspan="2">Category</th>
                         <th class="text-nowrap text-center col-sm-5" rowspan="2">Item/Specification</th>
-                        <th class="text-nowrap text-center col-sm-1" rowspan="2">Unit</th>
                         <th class="text-nowrap text-center" rowspan="2">Qty</th>
-                        <th class="text-nowrap text-center" colspan="12">Schedule/Milestone</th>
+                        <th class="text-nowrap text-center col-sm-1" rowspan="2">Unit</th>
                         <th class="text-nowrap text-center col-sm-1"rowspan="2">Unit Price</th>
+                        <th class="text-nowrap text-center" colspan="12">Schedule/Milestone</th>
                         <th class="text-nowrap text-center col-sm-1" rowspan="2">Subtotal</th>
                         <th rowspan="2"> </th>
                     </tr>
@@ -388,11 +380,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="text-nowrap text-center" id="unit_1">
-                        </td>
                         <td class="text-nowrap text-center">    
                             <input type="number" id="qty_1" placeholder="0" min="0" class="td-width2" />
                         </td>
+                        <td class="text-nowrap text-center" id="unit_1"></td>   
+                        <td class="text-center milestone-table" id="unitprice_1"> </td>                     
                         <td class="text-center milestone-table">    
                             <input type="number" id="jan_1" placeholder="0" min="0" class="td-width" />
                         </td>
@@ -429,7 +421,6 @@
                         <td class="milestone-table milestone-table">    
                             <input type="number" id="dec_1" placeholder="0" min="0" class="td-width" />
                         </td>
-                        <td class="text-center milestone-table" id="unitprice_1"> </td>
                         <td class="text-center milestone-table" id="subtotal_1"> </td>
                         <td>
                             <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove" ></span></a>
@@ -441,8 +432,8 @@
                 <a id="table-add"><span class="table-add glyphicon glyphicon-plus col-md-offset-12"></span></a>
             </div>
             <button type="submit" id="submit_button" name="action">Submit</button>
-        <!--/form-->
-    </div>
+        </div>
+    <!--/form-->
 </body>
 </html>
 
