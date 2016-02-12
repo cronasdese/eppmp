@@ -76,6 +76,16 @@
                             $(data).each(function(){
                                 document.getElementById('unit_' + numberId).innerHTML = this.unit;
                                 document.getElementById('unitprice_' + numberId).innerHTML = this.price;
+
+                                //update subtotal when quantity is not empty
+                                var quantity = $('#qty_' + numberId).val(),
+                                price = document.getElementById('unitprice_' + numberId).innerText,
+                                subtotal = 0;
+
+                                if(quantity != ""){
+                                    subtotal = quantity*price;
+                                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toFixed(2);
+                                }
                             });
                         },
                         error: function(errorw) {
@@ -112,24 +122,24 @@
                 var oldId = Number(row.attr('id').slice(-1));
                 var id = 1 + oldId;
                 
-                row.attr('id', 'row_' + id );
-                row.find('#category_' + oldId).attr('id', 'category_' + id);
-                row.find('#items_' + oldId).attr('id', 'items_' + id);
+                row.attr('id', 'row_' + id);
+                row.find('#category_' + oldId).attr('id', 'category_' + id).attr('name', 'items[' + id + '][category]');
+                row.find('#items_' + oldId).attr('id', 'items_' + id).attr('name', 'items[' + id + '][items]');
                 row.find('#unit_' + oldId).attr('id', 'unit_' + id);
-                row.find('#qty_' + oldId).attr('id', 'qty_' + id);
-                row.find('#jan_' + oldId).attr('id', 'jan_' + id);
-                row.find('#feb_' + oldId).attr('id', 'feb_' + id);
-                row.find('#mar_' + oldId).attr('id', 'mar_' + id);
-                row.find('#apr_' + oldId).attr('id', 'apr_' + id);
-                row.find('#may_' + oldId).attr('id', 'may_' + id);
-                row.find('#jun_' + oldId).attr('id', 'jun_' + id);
-                row.find('#jul_' + oldId).attr('id', 'jul_' + id);
-                row.find('#aug_' + oldId).attr('id', 'aug_' + id);
-                row.find('#sep_' + oldId).attr('id', 'sep_' + id);
-                row.find('#oct_' + oldId).attr('id', 'oct_' + id);
-                row.find('#nov_' + oldId).attr('id', 'nov_' + id);
-                row.find('#dec_' + oldId).attr('id', 'dec_' + id);
-                row.find('#unitprice_' + oldId).attr('id', 'unitprice_' + id);
+                row.find('#qty_' + oldId).attr('id', 'qty_' + id).attr('name', 'items[' + id + '][qty]');
+                row.find('#jan_' + oldId).attr('id', 'jan_' + id).attr('name', 'items[' + id + '][jan]');
+                row.find('#feb_' + oldId).attr('id', 'feb_' + id).attr('name', 'items[' + id + '][feb]');
+                row.find('#mar_' + oldId).attr('id', 'mar_' + id).attr('name', 'items[' + id + '][mar]');
+                row.find('#apr_' + oldId).attr('id', 'apr_' + id).attr('name', 'items[' + id + '][apr]');
+                row.find('#may_' + oldId).attr('id', 'may_' + id).attr('name', 'items[' + id + '][may]');
+                row.find('#jun_' + oldId).attr('id', 'jun_' + id).attr('name', 'items[' + id + '][jun]');
+                row.find('#jul_' + oldId).attr('id', 'jul_' + id).attr('name', 'items[' + id + '][jul]');
+                row.find('#aug_' + oldId).attr('id', 'aug_' + id).attr('name', 'items[' + id + '][aug]');
+                row.find('#sep_' + oldId).attr('id', 'sep_' + id).attr('name', 'items[' + id + '][sep]');
+                row.find('#oct_' + oldId).attr('id', 'oct_' + id).attr('name', 'items[' + id + '][oct]');
+                row.find('#nov_' + oldId).attr('id', 'nov_' + id).attr('name', 'items[' + id + '][nov]');
+                row.find('#dec_' + oldId).attr('id', 'dec_' + id).attr('name', 'items[' + id + '][dec]');
+                row.find('#unitprice_' + oldId).attr('id', 'unitprice_' + id).attr('name', 'items[' + id + '][unitprice]');
                 row.find('#subtotal_' + oldId).attr('id', 'subtotal_' + id);
                 $('#myTable').append(row);
 
@@ -158,167 +168,168 @@
             }
 
             //submit the PPMP
-            $('#submit_button').click(function(){
-                var table = $("table tbody"),
-                    data_array = [],
-                    counter = 1,
-                    counter_error = 0;
+        //     $('#submit_button').click(function(){
+        //         var table = $("table tbody"),
+        //             data_array = [],
+        //             counter = 1,
+        //             counter_error = 0;
 
-                table.find('tr').each(function (i) {
-                    var $tds = $(this).find('td'),
-                        category_dropdown = document.getElementById('category_' +counter),
-                        category_id = category_dropdown.value;
+        //         table.find('tr').each(function (i) {
+        //             var $tds = $(this).find('td'),
+        //                 category_dropdown = document.getElementById('category_' +counter),
+        //                 category_id = category_dropdown.value;
 
-                    //alert(counter_error);
-                    if(category_id == "0"){
-                        alert('All categories should be filled');
-                        counter_error++;
-                        counter++;
-                    }
-                    else if(category_id == "1" || category_id == "4"){
-                        var item_dropdown = document.getElementById('items_' +counter),
-                            item_id = item_dropdown.value,
-                            item_description = $(item_dropdown).find(':selected').text(),
-                            quantity = document.getElementById('qty_' + counter).value,
-                            jan = document.getElementById('jan_' + counter).value,
-                            feb = document.getElementById('feb_' + counter).value,
-                            mar = document.getElementById('mar_' + counter).value,
-                            apr = document.getElementById('apr_' + counter).value,
-                            may = document.getElementById('may_' + counter).value,
-                            jun = document.getElementById('jun_' + counter).value,
-                            jul = document.getElementById('jul_' + counter).value,
-                            aug = document.getElementById('aug_' + counter).value,
-                            sep = document.getElementById('sep_' + counter).value,
-                            oct = document.getElementById('oct_' + counter).value,
-                            nov = document.getElementById('nov_' + counter).value,
-                            dec = document.getElementById('dec_' + counter).value,
-                            price = document.getElementById('unitprice_' + counter).innerText,
-                            totalqty = 0;
+        //             //alert(counter_error);
+        //             if(category_id == "0"){
+        //                 alert('All categories should be filled');
+        //                 counter_error++;
+        //                 counter++;
+        //             }
+        //             else if(category_id == "1" || category_id == "4"){
+        //                 var item_dropdown = document.getElementById('items_' +counter),
+        //                     item_id = item_dropdown.value,
+        //                     item_description = $(item_dropdown).find(':selected').text(),
+        //                     quantity = document.getElementById('qty_' + counter).value,
+        //                     jan = document.getElementById('jan_' + counter).value,
+        //                     feb = document.getElementById('feb_' + counter).value,
+        //                     mar = document.getElementById('mar_' + counter).value,
+        //                     apr = document.getElementById('apr_' + counter).value,
+        //                     may = document.getElementById('may_' + counter).value,
+        //                     jun = document.getElementById('jun_' + counter).value,
+        //                     jul = document.getElementById('jul_' + counter).value,
+        //                     aug = document.getElementById('aug_' + counter).value,
+        //                     sep = document.getElementById('sep_' + counter).value,
+        //                     oct = document.getElementById('oct_' + counter).value,
+        //                     nov = document.getElementById('nov_' + counter).value,
+        //                     dec = document.getElementById('dec_' + counter).value,
+        //                     price = document.getElementById('unitprice_' + counter).innerText,
+        //                     totalqty = 0;
                         
-                        //alert(item_description);
-                        if(quantity == ""){
-                            quantity = 0;
-                        }    
-                        if(jan == ""){
-                            jan = 0;
-                        }
-                        if(feb == ""){
-                            feb = 0;
-                        }
-                        if(mar == ""){
-                            mar = 0;
-                        }
-                        if(apr == ""){
-                            apr = 0;
-                        }
-                        if(may == ""){
-                            may = 0;
-                        }
-                        if(jun == ""){
-                            jun = 0;
-                        }
-                        if(jul == ""){
-                            jul = 0;
-                        }
-                        if(aug == ""){
-                            aug = 0;
-                        }
-                        if(sep == ""){
-                            sep = 0;
-                        }
-                        if(oct == ""){
-                            oct = 0;
-                        }
-                        if(nov == ""){
-                            nov = 0;
-                        }
-                        if(dec == ""){
-                            dec = 0;
-                        }
+        //                 //alert(item_description);
+        //                 if(quantity == ""){
+        //                     quantity = 0;
+        //                 }    
+        //                 if(jan == ""){
+        //                     jan = 0;
+        //                 }
+        //                 if(feb == ""){
+        //                     feb = 0;
+        //                 }
+        //                 if(mar == ""){
+        //                     mar = 0;
+        //                 }
+        //                 if(apr == ""){
+        //                     apr = 0;
+        //                 }
+        //                 if(may == ""){
+        //                     may = 0;
+        //                 }
+        //                 if(jun == ""){
+        //                     jun = 0;
+        //                 }
+        //                 if(jul == ""){
+        //                     jul = 0;
+        //                 }
+        //                 if(aug == ""){
+        //                     aug = 0;
+        //                 }
+        //                 if(sep == ""){
+        //                     sep = 0;
+        //                 }
+        //                 if(oct == ""){
+        //                     oct = 0;
+        //                 }
+        //                 if(nov == ""){
+        //                     nov = 0;
+        //                 }
+        //                 if(dec == ""){
+        //                     dec = 0;
+        //                 }
 
-                        totalqty = parseInt(jan) + parseInt(feb) + parseInt(mar) + parseInt(apr) + parseInt(may) + parseInt(jun) + parseInt(jul) + 
-                            parseInt(aug) + parseInt(sep) + parseInt(oct) + parseInt(nov) + parseInt(dec);
+        //                 totalqty = parseInt(jan) + parseInt(feb) + parseInt(mar) + parseInt(apr) + parseInt(may) + parseInt(jun) + parseInt(jul) + 
+        //                     parseInt(aug) + parseInt(sep) + parseInt(oct) + parseInt(nov) + parseInt(dec);
 
-                        //alert(quantity);
-                        if(item_id == "0"){
-                            alert('Please fill-up all item specifications.');
-                            counter_error++;
-                        }
-                        else if(quantity == "0"){
-                            alert('Please specify the amount/quantity for all items');
-                            counter_error++;
-                        }
-                        else if(totalqty != quantity){
-                            alert('All unit quantities should be distributed.');
-                            counter_error++;
-                        }
-                        else{
-                            //put the row element in an data_array
-                            data_array.push({
-                                supply_id : item_id,
-                                supply_description : item_description,
-                                quantity : quantity,
-                                price : price,
-                                jan : jan,
-                                feb : feb,
-                                mar : mar,
-                                apr : apr,
-                                may : may,
-                                jun : jun,
-                                jul : jul,
-                                aug : aug,
-                                sep : sep,
-                                oct : oct,
-                                nov : nov,
-                                dec : dec
-                            });
-                        }
-                        counter++;
-                    }
-                    else{
-                        counter++;
-                    }
-                });
+        //                 //alert(quantity);
+        //                 if(item_id == "0"){
+        //                     alert('Please fill-up all item specifications.');
+        //                     counter_error++;
+        //                 }
+        //                 else if(quantity == "0"){
+        //                     alert('Please specify the amount/quantity for all items');
+        //                     counter_error++;
+        //                 }
+        //                 else if(totalqty != quantity){
+        //                     alert('All unit quantities should be distributed.');
+        //                     counter_error++;
+        //                 }
+        //                 else{
+        //                     //put the row element in an data_array
+        //                     data_array.push({
+        //                         supply_id : item_id,
+        //                         supply_description : item_description,
+        //                         quantity : quantity,
+        //                         price : price,
+        //                         jan : jan,
+        //                         feb : feb,
+        //                         mar : mar,
+        //                         apr : apr,
+        //                         may : may,
+        //                         jun : jun,
+        //                         jul : jul,
+        //                         aug : aug,
+        //                         sep : sep,
+        //                         oct : oct,
+        //                         nov : nov,
+        //                         dec : dec
+        //                     });
+        //                 }
+        //                 counter++;
+        //             }
+        //             else{
+        //                 counter++;
+        //             }
+        //         });
 
-                if(counter_error > 0){
-                    //do not insert to database
-                }
-                else{
-                    //insert to database
+        //         if(counter_error > 0){
+        //             //do not insert to database
+        //         }
+        //         else{
+        //             //insert to database
 
-                    //SOMETHING NEEDS TO BE FUCKING DONE OR JUST BRUTE PHP THIS FUCKING SHIT
+        //             //SOMETHING NEEDS TO BE FUCKING DONE OR JUST BRUTE PHP THIS FUCKING SHIT
 
-                    // SSSSSS  HH  HH  II  TTTTTTTT
-                    // SS      HH  HH  II     TT
-                    // SSSSSS  HHHHHH  II     TT
-                    //     SS  HH  HH  II     TT
-                    // SSSSSS  HH  HH  II     TT
+        //             // SSSSSS  HH  HH  II  TTTTTTTT
+        //             // SS      HH  HH  II     TT
+        //             // SSSSSS  HHHHHH  II     TT
+        //             //     SS  HH  HH  II     TT
+        //             // SSSSSS  HH  HH  II     TT
 
-                    alert(JSON.stringify(data_array));
+        //             alert(JSON.stringify(data_array));
 
-                    //to stringify the somethings
-                    data_array = JSON.stringify(data_array);
+        //             //convert data_array to object
+        //             var project_details = $.extend({}, data_array);
 
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('PPMP_controller/submitPPMP'); ?>",
-                        data: { data_array : data_array },
-                        dataType: 'json',
-                        success: function(data) {
-                            alert('PPMP submission success!');
-                        },
-                        error: function(errorw) {
-                            alert("error");
-                        }
-                    });         
-                }
-            });
+        //             $.ajax({
+        //                 type: "POST",
+        //                 url: "<?php echo base_url('PPMP_controller/submitPPMP'); ?>",
+        //                 data: { data_array : $.param(project_details) },
+        //                 dataType: 'json',
+        //                 success: function(data) {
+        //                     alert('PPMP submission success!');
+        //                     alert(data);
+        //                 },
+        //                 error: function(errorw) {
+        //                     console.log
+        //                 }
+        //             });         
+        //         }
+        //     });
         }); 
     </script>
 
 </head>
 <body>
-    <!--form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/submitPPMP'); ?>" enctype="multipart/form-data" data-parsley-validate=""-->
+    <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/submitPPMP'); ?>" enctype="multipart/form-data" data-parsley-validate="">
         <div class="container">
             <div class="col-md-12">
                 <h3>Project Procurement Management Plan</h3>
@@ -327,7 +338,7 @@
             <div>
                 <label class="col-md-2">End-User/Unit:</label>
                 <div class="col-md-10 text-nowrap">
-                    <input type="text" class="form-control input-sm" placeholder="User's office from db">
+                    <input type="text" id="unit" name="unit" class="form-control input-sm" placeholder="User's office from db">
                 </div>
             </div>
         </div>
@@ -365,7 +376,7 @@
                         <td class="text-nowrap"> 
                             <div class="control-group">
                                 <div class="controls">
-                                    <select name="category" id="category_1">
+                                    <select name="items[1][category]" id="category_1">
                                         <option value="0">Select Category</option>
                                     </select>
                                 </div>
@@ -374,54 +385,54 @@
                         <td class="text-nowrap text-center"> 
                             <div class="control-group">
                                 <div class="controls">
-                                    <select name="items" id="items_1" class="col-sm-11">
+                                    <select name="items[1][items]" id="items_1" class="col-sm-11">
                                         <option value="0">Select Item</option>
                                     </select>
                                 </div>
                             </div>
                         </td>
                         <td class="text-nowrap text-center">    
-                            <input type="number" id="qty_1" placeholder="0" min="0" class="td-width2" />
+                            <input type="number" name="items[1][qty]" id="qty_1" placeholder="0" min="0" value="0" class="td-width2" />
                         </td>
                         <td class="text-nowrap text-center" id="unit_1"></td>   
-                        <td class="text-center milestone-table" id="unitprice_1"> </td>                     
+                        <td class="text-center milestone-table" name="items[1][unitprice]" id="unitprice_1"> </td>                     
                         <td class="text-center milestone-table">    
-                            <input type="number" id="jan_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][jan]" id="jan_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="feb_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][feb]" id="feb_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="mar_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][mar]" id="mar_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="apr_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][apr]" id="apr_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="may_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][may]" id="may_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="jun_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][jun]" id="jun_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="jul_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][jul]" id="jul_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="aug_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][aug]" id="aug_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="sep_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][sep]" id="sep_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" id="oct_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][oct]" id="oct_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="milestone-table milestone-table">    
-                            <input type="number" id="nov_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][nov]" id="nov_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
                         <td class="milestone-table milestone-table">    
-                            <input type="number" id="dec_1" placeholder="0" min="0" class="td-width" />
+                            <input type="number" name="items[1][dec]" id="dec_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
-                        <td class="text-center milestone-table" id="subtotal_1"> </td>
+                        <td class="text-center milestone-table" name="subtotal_1" id="subtotal_1"> </td>
                         <td>
                             <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove" ></span></a>
                         </td>
@@ -433,7 +444,7 @@
             </div>
             <button type="submit" id="submit_button" name="action">Submit</button>
         </div>
-    <!--/form-->
+    </form>
 </body>
 </html>
 

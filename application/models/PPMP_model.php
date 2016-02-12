@@ -7,7 +7,7 @@ class PPMP_model extends CI_Model {
 		$this->load->helper('date');
 	}
 
-	function submitPPMP($data_array){
+	function submitPPMP(){
 		$date_format = 'DATE_W3C';
 
 		$date_submitted = standard_date($date_format);
@@ -23,31 +23,31 @@ class PPMP_model extends CI_Model {
 		$this->db->insert('project', $data);
 		$id = $this->db->insert_id();
 
-		if(is_array($data_array) || is_object($data_array)){
-  			foreach($data_array as $object){
-  				// echo '<li><a href="#">' . $object->ID . '</a></li>
-  				// <li><a href="#">' . $object->full_name . '</a></li>';
-  				$project_details = array(
-  					'project_id' => $id,
-  					'supply_id' => $object->supply_id,
-  					'supply_description' => $object->supply_description,
-  					'quantity' => $object->quantity,
-  					'price' => $object->price,
-  					'jan' => $object->jan,
-  					'feb' => $object->feb,
-  					'mar' => $object->mar,
-  					'apr' => $object->apr,
-  					'may' => $object->may,
-  					'jun' => $object->jun,
-  					'jul' => $object->jul,
-  					'aug' => $object->aug,
-  					'sep' => $object->sep,
-  					'oct' => $object->oct,
-  					'nov' => $object->nov,
-  					'dec' => $object->dec
-  				);
-  				$this->db->insert('project_details', $project_details);
-  			}
-  		}
+		return $id;
+	}
+
+	function insertProjectDetails($project_data, $ppmp_id){
+		$project_details = array(
+			'project_id' => $ppmp_id, 
+			'category_id' => $project_data['category'],
+			'supply_id' => $project_data['items'],	
+			//'supply_description' => ,
+			'quantity' => $project_data['qty'],
+			'price' => 1,
+			'jan_qty' => $project_data['jan'],
+			'feb_qty' => $project_data['feb'],
+			'mar_qty' => $project_data['mar'],
+			'apr_qty' => $project_data['apr'],
+			'may_qty' => $project_data['may'],
+			'jun_qty' => $project_data['jun'],
+			'jul_qty' => $project_data['jul'],
+			'aug_qty' => $project_data['aug'],
+			'sep_qty' => $project_data['sep'],
+			'oct_qty' => $project_data['oct'],
+			'nov_qty' => $project_data['nov'],
+			'dec_qty' => $project_data['dec']
+		);
+		//print_r($project_details);
+		$this->db->insert('project_details', $project_details);
 	}
 }
