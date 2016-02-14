@@ -34,6 +34,7 @@
                 var id = event.target.id,
                     type = id.replace(/[0-9]/g, '');
 
+                //if dropdown selected is category
                 if(type === "category_"){
                     var category = $('#' + id +' :selected').val(),
                     numberId = id.match(/\d+/)[0];
@@ -62,6 +63,7 @@
                         }
                     });          
                 }
+                //if dropdown selected is item
                 else if(type === "items_"){
                     var supply = $('#' + id +' :selected').val(),
                     numberId = id.match(/\d+/)[0];
@@ -168,162 +170,114 @@
             }
 
             //submit the PPMP
-        //     $('#submit_button').click(function(){
-        //         var table = $("table tbody"),
-        //             data_array = [],
-        //             counter = 1,
-        //             counter_error = 0;
+            $('#submit_button').click(function(e){
+                //e.preventDefault();
+                var table = $("table tbody"),
+                    data_array = [],
+                    counter = 1,
+                    counter_error = 0;
 
-        //         table.find('tr').each(function (i) {
-        //             var $tds = $(this).find('td'),
-        //                 category_dropdown = document.getElementById('category_' +counter),
-        //                 category_id = category_dropdown.value;
+                table.find('tr').each(function (i) {
+                    var $tds = $(this).find('td'),
+                        category_dropdown = document.getElementById('category_' +counter),
+                        category_id = category_dropdown.value;
 
-        //             //alert(counter_error);
-        //             if(category_id == "0"){
-        //                 alert('All categories should be filled');
-        //                 counter_error++;
-        //                 counter++;
-        //             }
-        //             else if(category_id == "1" || category_id == "4"){
-        //                 var item_dropdown = document.getElementById('items_' +counter),
-        //                     item_id = item_dropdown.value,
-        //                     item_description = $(item_dropdown).find(':selected').text(),
-        //                     quantity = document.getElementById('qty_' + counter).value,
-        //                     jan = document.getElementById('jan_' + counter).value,
-        //                     feb = document.getElementById('feb_' + counter).value,
-        //                     mar = document.getElementById('mar_' + counter).value,
-        //                     apr = document.getElementById('apr_' + counter).value,
-        //                     may = document.getElementById('may_' + counter).value,
-        //                     jun = document.getElementById('jun_' + counter).value,
-        //                     jul = document.getElementById('jul_' + counter).value,
-        //                     aug = document.getElementById('aug_' + counter).value,
-        //                     sep = document.getElementById('sep_' + counter).value,
-        //                     oct = document.getElementById('oct_' + counter).value,
-        //                     nov = document.getElementById('nov_' + counter).value,
-        //                     dec = document.getElementById('dec_' + counter).value,
-        //                     price = document.getElementById('unitprice_' + counter).innerText,
-        //                     totalqty = 0;
+                    //alert(counter_error);
+                    if(category_id == "0"){
+                        alert('All categories should be filled');
+                        counter_error++;
+                        counter++;
+                    }
+                    else if(category_id == "1" || category_id == "4"){
+                        var item_dropdown = document.getElementById('items_' +counter),
+                            item_id = item_dropdown.value,
+                            item_description = $(item_dropdown).find(':selected').text(),
+                            quantity = document.getElementById('qty_' + counter).value,
+                            jan = document.getElementById('jan_' + counter).value,
+                            feb = document.getElementById('feb_' + counter).value,
+                            mar = document.getElementById('mar_' + counter).value,
+                            apr = document.getElementById('apr_' + counter).value,
+                            may = document.getElementById('may_' + counter).value,
+                            jun = document.getElementById('jun_' + counter).value,
+                            jul = document.getElementById('jul_' + counter).value,
+                            aug = document.getElementById('aug_' + counter).value,
+                            sep = document.getElementById('sep_' + counter).value,
+                            oct = document.getElementById('oct_' + counter).value,
+                            nov = document.getElementById('nov_' + counter).value,
+                            dec = document.getElementById('dec_' + counter).value,
+                            price = document.getElementById('unitprice_' + counter).innerText,
+                            totalqty = 0;
                         
-        //                 //alert(item_description);
-        //                 if(quantity == ""){
-        //                     quantity = 0;
-        //                 }    
-        //                 if(jan == ""){
-        //                     jan = 0;
-        //                 }
-        //                 if(feb == ""){
-        //                     feb = 0;
-        //                 }
-        //                 if(mar == ""){
-        //                     mar = 0;
-        //                 }
-        //                 if(apr == ""){
-        //                     apr = 0;
-        //                 }
-        //                 if(may == ""){
-        //                     may = 0;
-        //                 }
-        //                 if(jun == ""){
-        //                     jun = 0;
-        //                 }
-        //                 if(jul == ""){
-        //                     jul = 0;
-        //                 }
-        //                 if(aug == ""){
-        //                     aug = 0;
-        //                 }
-        //                 if(sep == ""){
-        //                     sep = 0;
-        //                 }
-        //                 if(oct == ""){
-        //                     oct = 0;
-        //                 }
-        //                 if(nov == ""){
-        //                     nov = 0;
-        //                 }
-        //                 if(dec == ""){
-        //                     dec = 0;
-        //                 }
+                        //alert(item_description);
+                        if(quantity == ""){
+                            quantity = 0;
+                        }    
+                        if(jan == ""){
+                            jan = 0;
+                        }
+                        if(feb == ""){
+                            feb = 0;
+                        }
+                        if(mar == ""){
+                            mar = 0;
+                        }
+                        if(apr == ""){
+                            apr = 0;
+                        }
+                        if(may == ""){
+                            may = 0;
+                        }
+                        if(jun == ""){
+                            jun = 0;
+                        }
+                        if(jul == ""){
+                            jul = 0;
+                        }
+                        if(aug == ""){
+                            aug = 0;
+                        }
+                        if(sep == ""){
+                            sep = 0;
+                        }
+                        if(oct == ""){
+                            oct = 0;
+                        }
+                        if(nov == ""){
+                            nov = 0;
+                        }
+                        if(dec == ""){
+                            dec = 0;
+                        }
 
-        //                 totalqty = parseInt(jan) + parseInt(feb) + parseInt(mar) + parseInt(apr) + parseInt(may) + parseInt(jun) + parseInt(jul) + 
-        //                     parseInt(aug) + parseInt(sep) + parseInt(oct) + parseInt(nov) + parseInt(dec);
+                        totalqty = parseInt(jan) + parseInt(feb) + parseInt(mar) + parseInt(apr) + parseInt(may) + parseInt(jun) + parseInt(jul) + 
+                            parseInt(aug) + parseInt(sep) + parseInt(oct) + parseInt(nov) + parseInt(dec);
 
-        //                 //alert(quantity);
-        //                 if(item_id == "0"){
-        //                     alert('Please fill-up all item specifications.');
-        //                     counter_error++;
-        //                 }
-        //                 else if(quantity == "0"){
-        //                     alert('Please specify the amount/quantity for all items');
-        //                     counter_error++;
-        //                 }
-        //                 else if(totalqty != quantity){
-        //                     alert('All unit quantities should be distributed.');
-        //                     counter_error++;
-        //                 }
-        //                 else{
-        //                     //put the row element in an data_array
-        //                     data_array.push({
-        //                         supply_id : item_id,
-        //                         supply_description : item_description,
-        //                         quantity : quantity,
-        //                         price : price,
-        //                         jan : jan,
-        //                         feb : feb,
-        //                         mar : mar,
-        //                         apr : apr,
-        //                         may : may,
-        //                         jun : jun,
-        //                         jul : jul,
-        //                         aug : aug,
-        //                         sep : sep,
-        //                         oct : oct,
-        //                         nov : nov,
-        //                         dec : dec
-        //                     });
-        //                 }
-        //                 counter++;
-        //             }
-        //             else{
-        //                 counter++;
-        //             }
-        //         });
-
-        //         if(counter_error > 0){
-        //             //do not insert to database
-        //         }
-        //         else{
-        //             //insert to database
-
-        //             //SOMETHING NEEDS TO BE FUCKING DONE OR JUST BRUTE PHP THIS FUCKING SHIT
-
-        //             // SSSSSS  HH  HH  II  TTTTTTTT
-        //             // SS      HH  HH  II     TT
-        //             // SSSSSS  HHHHHH  II     TT
-        //             //     SS  HH  HH  II     TT
-        //             // SSSSSS  HH  HH  II     TT
-
-        //             alert(JSON.stringify(data_array));
-
-        //             //convert data_array to object
-        //             var project_details = $.extend({}, data_array);
-
-        //             $.ajax({
-        //                 type: "POST",
-        //                 url: "<?php echo base_url('PPMP_controller/submitPPMP'); ?>",
-        //                 data: { data_array : $.param(project_details) },
-        //                 dataType: 'json',
-        //                 success: function(data) {
-        //                     alert('PPMP submission success!');
-        //                     alert(data);
-        //                 },
-        //                 error: function(errorw) {
-        //                     console.log
-        //                 }
-        //             });         
-        //         }
-        //     });
+                        //alert(quantity);
+                        if(item_id == "0"){
+                            alert('Please fill-up all item specifications.');
+                            counter_error++;
+                        }
+                        else if(quantity == "0"){
+                            alert('Please specify the amount/quantity for all items');
+                            counter_error++;
+                        }
+                        else if(totalqty != quantity){
+                            alert('All unit quantities should be distributed properly.');
+                            counter_error++;
+                        }
+                        counter++;
+                    }
+                    else{
+                        counter++;
+                    }
+                });
+                if(counter_error == '0'){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            });
         }); 
     </script>
 

@@ -17,5 +17,10 @@ class PPMP_controller extends CI_Controller{
 		foreach($_POST['items'] as $project_details){
 		  	$this->PPMP_model->insertProjectDetails($project_details, $ppmp_id);
 		}
+
+		$data['project'] = $this->PPMP_model->getProject($ppmp_id);
+		$data['project_details'] = $this->PPMP_model->getProjectDetails($ppmp_id);
+		//print_r($data);
+		$this->load->view('USER_ViewPPMP', $data);
 	}
 }

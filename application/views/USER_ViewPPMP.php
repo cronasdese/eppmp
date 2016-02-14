@@ -20,7 +20,13 @@
         <h4 class="text-center"><b>Project Procurement Management Plan (PPMP)</b></h4>
          <div class="form-group">    
             <label class="control-label col-md-2">Office/Department: </label>
-            <p> Insert</p>
+            <?php
+                if(is_array($project) || is_object($project)){
+                    foreach($project as $project_data){
+                        echo '<p> ' . $project_data->office_name . '</p>';
+                    }
+                }
+            ?>
         </div>
     </div>
     
@@ -54,7 +60,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="row_1">
+                    <?php
+                        if(is_array($project_details) || is_object($project_details)){
+                            foreach($project_details as $project_details_data){
+                                echo '<tr>
+                                    <td class="text-nowrap">' . $project_details_data->category . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->supply_description . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->quantity . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->unit . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->jan_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->feb_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->mar_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->apr_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->may_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->jun_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->jul_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->aug_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->sep_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->oct_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->nov_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->dec_qty . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->price . '</td>
+                                    <td class="text-nowrap">' . $project_details_data->quantity*$project_details_data->price . '</td>
+                                </tr>';
+                            }
+                        }
+                    ?>
+                    <!--tr id="row_1">
                         <td class="text-nowrap" name="category" id="category_1">Empty</td>
                         <td class="text-nowrap col-sm-6" id="items_1" name="items">Empty</td>
                         <td class="text-nowrap text-center" id="qty_1">0</td>
@@ -74,7 +106,7 @@
                         <td class="text-center col-sm-1" id="unitprice_1">0</td>
                         <td class="text-center col-sm-2" id="subtotal_1">0</td>
                       
-                    </tr>
+                    </tr-->
                 </tbody>
             </table>
         </form>
