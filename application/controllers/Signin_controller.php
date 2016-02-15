@@ -12,7 +12,7 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('Projects');
+		$this->load->view('login');
 	}	
 
 	public function validateAccount(){

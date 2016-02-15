@@ -11,6 +11,10 @@
     <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // hide the dropdown and textfield for items
+            $('#iteminput_1').hide();
+            $('#items_1').hide();
+
             //to populate the first category dropdown
             $.ajax({ 
                 url: "<?php echo base_url('Supplies_controller/getCategory'); ?>",
@@ -37,34 +41,54 @@
                 //if dropdown selected is category
                 if(type === "category_"){
                     var category = $('#' + id +' :selected').val(),
-                    numberId = id.match(/\d+/)[0];
+                        numberId = id.match(/\d+/)[0],
+                        divId = $('#iteminput_dropdown_textfield_' + numberId);
                 
-                    $('#items_' + numberId + '> option').remove(); // to clear items
+                    if((category == 2)||(category == 3)||(category == 5)||(category == 6)){
+                        $('#iteminput_' + numberId).show();
+                        $('#items_' +numberId).hide();
 
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('Supplies_controller/getSuppliesWithSubcategory'); ?>",
-                        data: { category:category },
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#items_' + numberId).append($('<option>', {
-                                value: 0,
-                                text: 'Select Item',
-                            }));
-                            $(data).each(function(){
+                        $('#items_' + numberId + '> option').remove(); // to clear items
+                        // $('#items_' + numberId).remove();
+                        // document.getElementById('unit_' + numberId).innerHTML = "";
+                        // $('<input type="text" name="items['+ numberId +'][iteminput]" id="iteminput_'+ numberId +'" class="col-sm-11" placeholder="Enter item description"/>').appendTo(divId);
+                    }
+                    else{
+                        $('#iteminput_' + numberId).hide();
+                        $('#items_' + numberId).show();
+
+                        document.getElementById('iteminput_' + numberId).value = null;
+                        // $('#iteminput_' + numberId).remove();
+                        // $('<select name="items['+ numberId +'][items]" id="items_'+ numberId +'" class="col-sm-11"></select>').appendTo(divId);
+                        
+                        $('#items_' + numberId + '> option').remove(); // to clear items
+
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo base_url('Supplies_controller/getSuppliesWithSubcategory'); ?>",
+                            data: { category:category },
+                            dataType: 'json',
+                            success: function(data) {
                                 $('#items_' + numberId).append($('<option>', {
-                                    value: this.item_id,
-                                    text: this.item_description,
+                                    value: 0,
+                                    text: 'Select Item',
                                 }));
-                            });
-                        },
-                        error: function(errorw) {
-                            alert("error");
-                        }
-                    });          
+                                $(data).each(function(){
+                                    $('#items_' + numberId).append($('<option>', {
+                                        value: this.item_id,
+                                        text: this.item_description,
+                                    }));
+                                });
+                            },
+                            error: function(errorw) {
+                                alert("error");
+                            }
+                        });
+                    }
                 }
                 //if dropdown selected is item
                 else if(type === "items_"){
+                    //alert('items');
                     var supply = $('#' + id +' :selected').val(),
                     numberId = id.match(/\d+/)[0];
 
@@ -77,11 +101,11 @@
                             //alert(data);
                             $(data).each(function(){
                                 document.getElementById('unit_' + numberId).innerHTML = this.unit;
-                                document.getElementById('unitprice_' + numberId).innerHTML = this.price;
+                                document.getElementById('unitprice_' + numberId).value = this.price;
 
                                 //update subtotal when quantity is not empty
                                 var quantity = $('#qty_' + numberId).val(),
-                                price = document.getElementById('unitprice_' + numberId).innerText,
+                                price = document.getElementById('unitprice_' + numberId).value,
                                 subtotal = 0;
 
                                 if(quantity != ""){
@@ -105,7 +129,15 @@
 
                 if(type === "qty_"){
                     var quantity = $('#' + id).val(),
-                        price = document.getElementById('unitprice_' + numberId).innerText,
+                        price = document.getElementById('unitprice_' + numberId).value,
+                        subtotal = 0;
+
+                    subtotal = quantity*price;
+                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toFixed(2);
+                }
+                else if(type === "unitprice_"){
+                    var price = $('#' + id).val(),
+                        quantity = document.getElementById('qty_' + numberId).value,
                         subtotal = 0;
 
                     subtotal = quantity*price;
@@ -127,6 +159,7 @@
                 row.attr('id', 'row_' + id);
                 row.find('#category_' + oldId).attr('id', 'category_' + id).attr('name', 'items[' + id + '][category]');
                 row.find('#items_' + oldId).attr('id', 'items_' + id).attr('name', 'items[' + id + '][items]');
+                row.find('#iteminput_' + oldId).attr('id', 'iteminput_' + id).attr('name', 'items[' + id + '][iteminput]');
                 row.find('#unit_' + oldId).attr('id', 'unit_' + id);
                 row.find('#qty_' + oldId).attr('id', 'qty_' + id).attr('name', 'items[' + id + '][qty]');
                 row.find('#jan_' + oldId).attr('id', 'jan_' + id).attr('name', 'items[' + id + '][jan]');
@@ -143,14 +176,16 @@
                 row.find('#dec_' + oldId).attr('id', 'dec_' + id).attr('name', 'items[' + id + '][dec]');
                 row.find('#unitprice_' + oldId).attr('id', 'unitprice_' + id).attr('name', 'items[' + id + '][unitprice]');
                 row.find('#subtotal_' + oldId).attr('id', 'subtotal_' + id);
+                row.find('#iteminput_dropdown_textfield_' + oldId).attr('id', 'iteminput_dropdown_textfield_' + id);
                 $('#myTable').append(row);
 
                 //clear cell elements
                 $('#items_' + id + '> option').remove();
-                $('#items_' + id).append($('<option>', {
-                    value: 0,
-                    text: 'Select Item',
-                }));
+                // $('#items_' + id).append($('<option>', {
+                //     value: 0,
+                //     text: 'Select Item',
+                // }));
+                document.getElementById('iteminput_' + id).value = null;
                 document.getElementById('unit_' + id).innerHTML = "";
                 document.getElementById('qty_' + id).value = "";  
                 document.getElementById('jan_' + id).value = "";  
@@ -165,8 +200,14 @@
                 document.getElementById('oct_' + id).value = "";  
                 document.getElementById('nov_' + id).value = "";  
                 document.getElementById('dec_' + id).value = "";                
-                document.getElementById('unitprice_' + id).innerHTML = "";
+                document.getElementById('unitprice_' + id).value = 0;
                 document.getElementById('subtotal_' + id).innerHTML = "";
+
+                $('#items_' + id).hide();
+                $('#iteminput_' + id).hide();
+                
+                // $('#items_' + id).remove();
+                // $('#iteminput_' + id).remove();
             }
 
             //submit the PPMP
@@ -205,7 +246,7 @@
                             oct = document.getElementById('oct_' + counter).value,
                             nov = document.getElementById('nov_' + counter).value,
                             dec = document.getElementById('dec_' + counter).value,
-                            price = document.getElementById('unitprice_' + counter).innerText,
+                            price = document.getElementById('unitprice_' + counter).value,
                             totalqty = 0;
                         
                         //alert(item_description);
@@ -265,9 +306,91 @@
                             alert('All unit quantities should be distributed properly.');
                             counter_error++;
                         }
+                        else if(price == "0"){
+                            alert('All items must have prices');
+                            counter_error++;
+                        }
                         counter++;
                     }
                     else{
+                        var item_description = document.getElementById('iteminput_' + counter).value,
+                            quantity = document.getElementById('qty_' + counter).value,
+                            jan = document.getElementById('jan_' + counter).value,
+                            feb = document.getElementById('feb_' + counter).value,
+                            mar = document.getElementById('mar_' + counter).value,
+                            apr = document.getElementById('apr_' + counter).value,
+                            may = document.getElementById('may_' + counter).value,
+                            jun = document.getElementById('jun_' + counter).value,
+                            jul = document.getElementById('jul_' + counter).value,
+                            aug = document.getElementById('aug_' + counter).value,
+                            sep = document.getElementById('sep_' + counter).value,
+                            oct = document.getElementById('oct_' + counter).value,
+                            nov = document.getElementById('nov_' + counter).value,
+                            dec = document.getElementById('dec_' + counter).value,
+                            price = document.getElementById('unitprice_' + counter).value,
+                            totalqty = 0;
+                        
+                        //alert(item_description);
+                        if(quantity == ""){
+                            quantity = 0;
+                        }    
+                        if(jan == ""){
+                            jan = 0;
+                        }
+                        if(feb == ""){
+                            feb = 0;
+                        }
+                        if(mar == ""){
+                            mar = 0;
+                        }
+                        if(apr == ""){
+                            apr = 0;
+                        }
+                        if(may == ""){
+                            may = 0;
+                        }
+                        if(jun == ""){
+                            jun = 0;
+                        }
+                        if(jul == ""){
+                            jul = 0;
+                        }
+                        if(aug == ""){
+                            aug = 0;
+                        }
+                        if(sep == ""){
+                            sep = 0;
+                        }
+                        if(oct == ""){
+                            oct = 0;
+                        }
+                        if(nov == ""){
+                            nov = 0;
+                        }
+                        if(dec == ""){
+                            dec = 0;
+                        }
+
+                        totalqty = parseInt(jan) + parseInt(feb) + parseInt(mar) + parseInt(apr) + parseInt(may) + parseInt(jun) + parseInt(jul) + 
+                            parseInt(aug) + parseInt(sep) + parseInt(oct) + parseInt(nov) + parseInt(dec);
+
+                        //alert(quantity);
+                        if(item_description == ""){
+                            alert('Please fill-up all item specifications.');
+                            counter_error++;
+                        }
+                        else if(quantity == "0"){
+                            alert('Please specify the amount/quantity for all items');
+                            counter_error++;
+                        }
+                        else if(totalqty != quantity){
+                            alert('All unit quantities should be distributed properly.');
+                            counter_error++;
+                        }
+                        else if(price == "0"){
+                            alert('All items must have prices');
+                            counter_error++;
+                        }
                         counter++;
                     }
                 });
@@ -345,10 +468,11 @@
                         </td>
                         <td class="text-nowrap text-center"> 
                             <div class="control-group">
-                                <div class="controls">
+                                <div id="iteminput_dropdown_textfield_1" class="controls">
                                     <select name="items[1][items]" id="items_1" class="col-sm-11">
                                         <option value="0">Select Item</option>
                                     </select>
+                                    <input type="text" name="items[1][iteminput]" id="iteminput_1" class="col-sm-11" placeholder="Enter item description"/>
                                 </div>
                             </div>
                         </td>
@@ -356,7 +480,9 @@
                             <input type="number" name="items[1][qty]" id="qty_1" placeholder="0" min="0" value="0" class="td-width2" />
                         </td>
                         <td class="text-nowrap text-center" id="unit_1"></td>   
-                        <td class="text-center milestone-table" name="items[1][unitprice]" id="unitprice_1"> </td>                     
+                        <td class="text-center milestone-table"> 
+                            <input type="text" name="items[1][unitprice]" id="unitprice_1" value="0"/>
+                        </td>                     
                         <td class="text-center milestone-table">    
                             <input type="number" name="items[1][jan]" id="jan_1" placeholder="0" min="0" value="0" class="td-width" />
                         </td>
