@@ -292,7 +292,14 @@
             <div>
                 <label class="col-md-2">End-User/Unit:</label>
                 <div class="col-md-10 text-nowrap">
-                    <input type="text" id="unit" name="unit" class="form-control input-sm" placeholder="User's office from db">
+                    <?php
+                        if(is_array($user_details) || is_object($user_details)){
+                            foreach ($user_details as $office_name) {
+                                echo'<input type="text" id="user_id" name="user_id" class="hidden" value="' . $office_name->user_id . '"/>
+                                <p>' . $office_name->office_name . '</p>';
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

@@ -7,12 +7,12 @@ class PPMP_model extends CI_Model {
 		$this->load->helper('date');
 	}
 
-	function submitPPMP(){
+	function submitPPMP($user_id){
 		$date_format = 'DATE_W3C';
 
 		$date_submitted = standard_date($date_format);
 		$data = array(
-			'user_id' => 1,
+			'user_id' => $user_id,
 			'date_submitted' => $date_submitted,
 			'first_lvl_status' => 0,
 			'second_lvl_status' => 0,
@@ -68,7 +68,8 @@ class PPMP_model extends CI_Model {
 	function getProject($ppmp_id){
 		$this->db->select('project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, office.office_name');
 		$this->db->from('project');
-		$this->db->join('office', 'project.user_id = office.id');
+		$this->db->join('user', 'project.user_id = user.id');
+		$this->db->join('office', 'office.id = user.office_id');
 		$this->db->where('project.id', $ppmp_id);
 		$this->db->limit(1);
 		$query = $this->db->get();

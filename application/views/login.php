@@ -9,7 +9,26 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
         <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
         <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-        <script src ="<?php echo base_url('assets/js/ppmp.js'); ?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //to populate the office name dropdown
+                $.ajax({ 
+                    url: "<?php echo base_url('Signin_controller/getOfficeNames'); ?>",
+                    dataType: 'json',
+                    success: function(data) {
+                        $(data).each(function(){
+                            $("#office_names").append($('<option>', {
+                                value: this.id,
+                                text: this.office_name,
+                            }));
+                        })
+                    },
+                    error: function(errorw) {
+                        alert("error");
+                    }
+                });
+            });
+        </script>
     </head>
     <body id="loginBGC1">
         <!-- WHOLE NAVBAR -->
@@ -27,10 +46,14 @@
                             <div class="form-group">
                               <label for="inputUserID" class="text-pos text-center col-sm-2 control-label">Office</label>
                                 <div class="col-sm-12">
-                                    <select type="text" id="drp-width" class="form-control" name="inputUserID" required>
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
+                                    <select type="text" id="office_names" class="form-control" name="office_id" required>
+                                        <?php
+                                            if(is_array($offices) || is_object($offices)){
+                                                foreach ($offices as $office_names) {
+                                                    echo '<option value="' . $office_names->id . '">' . $office_names->office_name . '</option>';
+                                                }
+                                            }
+                                        ?>
                                     </select>
                                 </div>    
                             </div>  
@@ -42,7 +65,7 @@
                             </div>        
                             <div class="form-group">
                               <div class="col-sm-12">
-                                <button type="submit" id="validate" class="btn btn-default col-sm-12">Login</button>
+                                <button type="submit" id="validate" class="btn btn-default col-sm-12" name="action">Login</button>
                               </div>
                             </div>
                         </form>

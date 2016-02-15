@@ -12,37 +12,41 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('try2');
+		$this->load->view('Projects');
 	}	
 
 	public function validateAccount(){
-		$user_id = $this->input->post('inputUserID');
+		$office_id = $this->input->post('office_id');
 		$password = $this->input->post('inputPassword');
 
-		$this->form_validation->set_rules('inputUserID', 'User ID', 'trim|required|xss_clean|callback__usernameRegex');
 		$this->form_validation->set_rules('inputPassword', 'Password', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
 			$this->load->view('login');
 		}
 		else{
-			$validate = $this->user_model->validateUser($user_id, $password);
-			if($validate == NULL){
+			$data['user_details'] = $this->user_model->validateUser($office_id, $password);
+			if($data['user_details'] == NULL){
 				$this->load->view('login');
 			}
 			else{
-				$this->load->view('USER_Home');
+				$this->load->view('try2', $data);
 			}
 		}
 	}
 
-	public function _usernameRegex($user_name){
-		$pattern = '/^([0-9]{3})([-])([0-9]{5})$/';
-		if(preg_match($pattern, $user_name)){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
+	public function getOfficeNames(){
+		$office_names = $this->user_model->getOffices();
+		echo json_encode($office_names);
 	}
+
+	// public function _usernameRegex($user_name){
+	// 	$pattern = '/^([0-9]{3})([-])([0-9]{5})$/';
+	// 	if(preg_match($pattern, $user_name)){
+	// 		return TRUE;
+	// 	}
+	// 	else{
+	// 		return FALSE;
+	// 	}
+	// }
 }
