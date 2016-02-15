@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Projects</title>
+        <title>Approve Module</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
@@ -46,7 +46,8 @@
                                 <th class="office">Office<span class="fa fa-sort"></span></th>
                                 <th class="date">Date Submitted<span class="fa fa-sort"></span></th>
                                 <th class="status">Estimated Budget<span class="fa fa-sort"></span></th>    
-                                <th class="status" title="non-sortable">Status</th>
+                                <th class="status" title="non-sortable"> </th>
+                                <th class="status" title="non-sortable"> </th>
                                 <th class="status" title="non-sortable"> </th>
                             </tr>
                         </thead>
@@ -57,26 +58,10 @@
                                 <td>Empty</td>
                                 <td>Empty</td>
                                 <td>Empty</td>
-                                <td><span class="label label-success">Aprroved</span></td>
                                 <td><button class="btn btn-default btn-sm">Open</button></td>
-                            </tr>
-                            <tr>
-                                <td>Empty</td>
-                                <td><a href="#">Empty</a></td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td><span class="label label-primary">Waiting</span></td>
-                                <td><button class="btn btn-default btn-sm">Open</button></td>
-                            </tr>
-                            <tr>
-                                <td>Empty</td>
-                                <td><a href="#">Empty</a></td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td><span class="label label-danger">Rejected</span></td>
-                                <td><button class="btn btn-default btn-sm">Open</button></td>
+                                <td><button class="btn btn-success btn-sm">Approve</button></td>
+                                <td><button class="btn btn-remove btn-sm">Reject</button></td>
+
                             </tr>
                         </tbody>
                         <tfoot>
