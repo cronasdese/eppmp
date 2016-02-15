@@ -21,11 +21,11 @@
          <div class="form-group">    
             <label class="control-label col-md-2">Office/Department: </label>
             <?php
-                if(is_array($project) || is_object($project)){
-                    foreach($project as $project_data){
-                        echo '<p> ' . $project_data->office_name . '</p>';
-                    }
-                }
+                echo '<p>' . $project[0]->office_name . '</p>';
+            ?>
+            <label class="control-label col-md-2">Project/Title: </label>
+            <?php
+                echo '<p>' . $project[0]->title . '</p>';
             ?>
         </div>
     </div>
@@ -86,27 +86,6 @@
                             }
                         }
                     ?>
-                    <!--tr id="row_1">
-                        <td class="text-nowrap" name="category" id="category_1">Empty</td>
-                        <td class="text-nowrap col-sm-6" id="items_1" name="items">Empty</td>
-                        <td class="text-nowrap text-center" id="qty_1">0</td>
-                        <td class="text-nowrap text-center col-sm-1" id="unit_1">Empty</td>
-                        <td class="text-nowrap th-size" id="jan_1">0</td>
-                        <td class="text-nowrap th-size" id="feb_1">0</td>
-                        <td class="text-nowrap th-size" id="mar_1">0</td>
-                        <td class="text-nowrap th-size" id="apr_1">0</td>
-                        <td class="text-nowrap th-size" id="may_1">0</td>
-                        <td class="text-nowrap th-size" id="jun_1">0</td>
-                        <td class="text-nowrap th-size" id="jul_1">0</td>
-                        <td class="text-nowrap th-size" id="aug_1">0</td>
-                        <td class="text-nowrap th-size" id="sep_1">0</td>
-                        <td class="text-nowrap th-size" id="oct_1">0</td>
-                        <td class="text-nowrap th-size" id="nov_1">0</td>
-                        <td class="text-nowrap th-size" id="dec_1">0</td>
-                        <td class="text-center col-sm-1" id="unitprice_1">0</td>
-                        <td class="text-center col-sm-2" id="subtotal_1">0</td>
-                      
-                    </tr-->
                 </tbody>
             </table>
         </form>
@@ -117,20 +96,27 @@
                 <thead>
                     <tr>
                         <th class="col-md-3">Prepared by:</th>
-                        <th class="col-md-5">Recommending Approved:</th>
-                        <th class="col-md-4">Approved by:</th>
+                        <th class="col-md-3">Recommended by:</th>
+                        <th class="col-md-3">Evaluated by:</th>
+                        <th class="col-md-3">Approved by:</th>
                     </tr>    
                 </thead>
                 <tbody>
                     <tr>
-                        <th class="text-center">Empty</th>
-                        <th class="text-center">Empty</th>
-                        <th class="text-center">Empty</th>
+                        <?php
+                            echo '<th class="text-center">'. $first_approver[0]->name .'</th>';
+                            echo '<th class="text-center">'. $second_approver[0]->name .'</th>';
+                            echo '<th class="text-center">'. $third_approver[0]->name .'</th>';
+                            echo '<th class="text-center">'. $fourth_approver[0]->name .'</th>';
+                        ?>
                     </tr>
                      <tr>
-                        <th class="text-center">Position</th>
-                        <th class="text-center">Position</th>
-                        <th class="text-center">Position</th>
+                        <?php
+                            echo '<th class="text-center">'. $first_approver[0]->position .'</th>';
+                            echo '<th class="text-center">'. $second_approver[0]->position .'</th>';
+                            echo '<th class="text-center">'. $third_approver[0]->position .'</th>';
+                            echo '<th class="text-center">'. $fourth_approver[0]->position .'</th>';
+                        ?>
                     </tr>
                 </tbody>
             </table>  
