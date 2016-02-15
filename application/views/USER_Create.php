@@ -423,6 +423,12 @@
                             }
                         }
                     ?>
+                </div>  
+            </div>
+            <div>
+                <label class="col-md-2">Project/Title:</label>
+                <div>
+                    <input type="text" id="title" name="title" class="col-md-10" required/>
                 </div>
             </div>
         </div>

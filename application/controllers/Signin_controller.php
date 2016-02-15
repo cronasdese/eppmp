@@ -12,7 +12,9 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('login');
+		$this->load->model('PPMP_model');
+		$data['projects'] = $this->PPMP_model->getAllProjects(1);
+		$this->load->view('Projects', $data);
 	}	
 
 	public function validateAccount(){
@@ -30,7 +32,7 @@ class Signin_controller extends CI_Controller{
 				$this->load->view('login');
 			}
 			else{
-				$this->load->view('try2', $data);
+				$this->load->view('USER_Create', $data);
 			}
 		}
 	}

@@ -51,33 +51,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Empty</td>
-                                <td><a href="#">Empty</a></td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td><span class="label label-success">Aprroved</span></td>
-                                <td><button class="btn btn-default btn-sm">Open</button></td>
-                            </tr>
-                            <tr>
-                                <td>Empty</td>
-                                <td><a href="#">Empty</a></td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td><span class="label label-primary">Waiting</span></td>
-                                <td><button class="btn btn-default btn-sm">Open</button></td>
-                            </tr>
-                            <tr>
-                                <td>Empty</td>
-                                <td><a href="#">Empty</a></td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td>Empty</td>
-                                <td><span class="label label-danger">Rejected</span></td>
-                                <td><button class="btn btn-default btn-sm">Open</button></td>
-                            </tr>
+                            <?php
+                                if(is_array($projects) || is_object($projects)){
+                                    foreach ($projects as $project_data) {
+                                        echo'
+                                        <tr>
+                                        <td>'. $project_data->project_id .'</td>
+                                        <td><a href="#">'. $project_data->project_title .'</a></td>
+                                        <td>'. $project_data->office_name .'</td>
+                                        <td>'. $project_data->date_submitted .'</td>
+                                        <td>'. $project_data->estimated_budget .'</td>';
+                                        if(($project_data->first_lvl_status == 1) && ($project_data->second_lvl_status == 1) && ($project_data->third_lvl_status == 1) && ($project_data->fourth_lvl_status == 1)){
+                                            echo'<td><span class="label label-success">Aprroved</span></td>';
+                                        }
+                                        else if(($project_data->first_lvl_status == 3) || ($project_data->second_lvl_status == 3) || ($project_data->third_lvl_status == 3) || ($project_data->fourth_lvl_status == 3)){
+                                            echo'<td><span class="label label-danger">Rejected</span></td>';
+                                        }
+                                        else{
+                                            echo'<td><span class="label label-primary">Pending</span></td>';
+                                        }
+                                        echo '<td><button class="btn btn-default btn-sm">Open</button></td>
+                                        </tr>';
+                                    }
+                                }
+                            ?>
                         </tbody>
                         <tfoot>
                             <tr>
