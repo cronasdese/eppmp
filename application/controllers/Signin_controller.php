@@ -12,11 +12,10 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-
-
 		$this->load->model('PPMP_model');
-		$data['projects'] = $this->PPMP_model->getAllProjects(1);
-		$this->load->view('Projects', $data);
+		$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
+		$data['user_id'] = 2;
+		$this->load->view('USER_Approve', $data);
 	}	
 
 	public function validateAccount(){

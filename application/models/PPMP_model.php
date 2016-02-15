@@ -155,15 +155,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getAllProjects($user_id){
-		// SELECT project.id project_id, project.title project_title, project.date_submitted date_submitted, office.office_name office_name, SUM(project_details.quantity*project_details.price), project.first_lvl_status first_lvl_status, project.second_lvl_status second_lvl_status, project.third_lvl_status third_lvl_status, project.fourth_lvl_status fourth_lvl_status
-		// FROM project
-		// JOIN project_details
-		// ON project.id = project_details.project_id
-		// JOIN user
-		// ON project.user_id = user.id
-		// JOIN office
-		// ON user.office_id = office.id
-		// WHERE user.id = 1 AND project.submitted = 1
+		// for Projects view
 		$this->db->select('project.id project_id, project.title project_title, project.date_submitted date_submitted, office.office_name office_name, SUM(project_details.quantity*project_details.price) estimated_budget, project.first_lvl_status first_lvl_status, project.second_lvl_status second_lvl_status, project.third_lvl_status third_lvl_status, project.fourth_lvl_status fourth_lvl_status');
 		$this->db->from('project');
 		$this->db->join('project_details', 'project_id = project_details.project_id');
@@ -173,5 +165,84 @@ class PPMP_model extends CI_Model {
 		$this->db->where('project.submitted', 1);
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	function getAllProjectsToBeApproved($user_id){
+		//for USER_Approve view	
+		$this->db->select('project.id project_id, project.title project_title, office.office_name office_name, project.date_submitted date_submitted, SUM(project_details.quantity*project_details.price) estimated_budget, approval.first_lvl_id, approval.second_lvl_id, approval.third_lvl_id, approval.fourth_lvl_id, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status');
+		$this->db->from('approval');
+		$this->db->join('office', 'approval.office_id = office.id');
+		$this->db->join('user', 'office.id = user.office_id');
+		$this->db->join('project', 'user.id = project.user_id');
+		$this->db->join('project_details', 'project.id = project_details.project_id');
+		$this->db->where('approval.first_lvl_id', $user_id);
+		$this->db->or_where('approval.second_lvl_id', $user_id);
+		$this->db->or_where('approval.third_lvl_id', $user_id);
+		$this->db->or_where('approval.fourth_lvl_id', $user_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function rejectPPMP($ppmp_id, $reason_for_rejection){
+		//for USER_Approve rejection
+		$this->db->select('project.*');
+		$this->db->from('project');
+		$this->db->where('id', $ppmp_id);
+		$query = $this->db->get();
+		$query_array = $query->result_array();
+
+		$project = array();
+		//print_r($query_array);
+		if($query_array[0]['second_lvl_status'] == 0){
+			$project = array(
+				'second_lvl_status' => 2,
+				'reason_for_rejection' => $reason_for_rejection
+			);
+		}
+		else if($query_array[0]['third_lvl_status'] == 0){
+			$project = array(
+				'third_lvl_status' => 2,
+				'reason_for_rejection' => $reason_for_rejection
+			);
+		}
+		else if($query_array[0]['fourth_lvl_status'] == 0){
+			$project = array(
+				'fourth_lvl_status' => 2,
+				'reason_for_rejection' => $reason_for_rejection
+			);
+		}
+
+		$this->db->where('id', $ppmp_id);
+		$this->db->update('project', $project);
+	}
+
+	function approvePPMP($ppmp_id){
+		//for USER_Approve approve
+		$this->db->select('project.*');
+		$this->db->from('project');
+		$this->db->where('id', $ppmp_id);
+		$query = $this->db->get();
+		$query_array = $query->result_array();
+
+		$project = array();
+		//print_r($query_array);
+		if($query_array[0]['second_lvl_status'] == 0){
+			$project = array(
+				'second_lvl_status' => 1
+			);
+		}
+		else if($query_array[0]['third_lvl_status'] == 0){
+			$project = array(
+				'third_lvl_status' => 1
+			);
+		}
+		else if($query_array[0]['fourth_lvl_status'] == 0){
+			$project = array(
+				'fourth_lvl_status' => 1
+			);
+		}
+
+		$this->db->where('id', $ppmp_id);
+		$this->db->update('project', $project);
 	}
 }

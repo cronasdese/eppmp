@@ -33,4 +33,18 @@ class PPMP_controller extends CI_Controller{
 		}
 		$this->load->view('USER_ViewPPMP', $data);
 	}
+
+	public function rejectPPMP(){
+		//print_r($_POST);
+		$reason_for_rejection = $this->input->post('reason_for_rejection');
+		$project_id = $this->input->post('project_id');
+
+		$this->PPMP_model->rejectPPMP($project_id, $reason_for_rejection);
+	}
+
+	public function approvePPMP(){
+		//print_r($_POST);
+		$project_id = $this->input->post('project_id');
+		$this->PPMP_model->approvePPMP($project_id);
+	}
 }
