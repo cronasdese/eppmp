@@ -16,7 +16,7 @@
 	<body>
 		<!-- WHOLE NAVBAR -->
 		<div>
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default fixed-nav-bar">
 			  	<div class="container">
 
 			  		<!-- NAVBAR HEADER LEFT -->
