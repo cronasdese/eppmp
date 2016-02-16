@@ -11,20 +11,21 @@
         <script src ="assets/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#projectTable tr').click(function(e) {
-                    var id = event.target.id,
-                        type = id.replace(/[0-9]/g, ''),
-                        numberId = id.match(/\d+/)[0],
-                        projectId = document.getElementById('project_id' + numberId).value;
+                // $('#projectTable tr').click(function(e) {
+                //     var id = event.target.id,
+                //         type = id.replace(/[0-9]/g, ''),
+                //         numberId = id.match(/\d+/)[0],
+                //         projectId = document.getElementById('project_id' + numberId).value;
 
-                    //alert(projectId);
-                    if(type == 'reject'){
-                        document.getElementById('project_id_modal_reject').value = projectId;
-                    }
-                    else if(type == 'approve'){
-                        document.getElementById('project_id_modal_approve').value = projectId;
-                    }
-                });
+                //     if(type == 'reject'){
+                //         document.getElementById('project_id_modal_reject').value = projectId;
+                //         return true;
+                //     }
+                //     else if(type == 'approve'){
+                //         document.getElementById('project_id_modal_approve').value = projectId;
+                //         return true;
+                //     }
+                // });
             });
         </script>        
     </head>
@@ -67,9 +68,10 @@
                                     $row = 1;
                                     foreach ($projects as $project_data) {
                                         if((($project_data->first_lvl_id == $user_id) && ($project_data->first_lvl_status == '0')) || (($project_data->second_lvl_id == $user_id) && ($project_data->first_lvl_status == '1') && ($project_data->second_lvl_status == '0')) || (($project_data->third_lvl_id == $user_id) && ($project_data->second_lvl_status == '1') && ($project_data->third_lvl_status == '0')) || (($project_data->fourth_lvl_id == $user_id) && ($project_data->third_lvl_status == '1') && ($project_data->fourth_lvl_status == '0'))){
-                                            echo '<tr id="row'. $row .'"">
+                                            echo '<form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
+                                                <tr id="row'. $row .'"">
                                                 <td>
-                                                    <input id="project_id'. $row .'" name="project_id'. $row .'" value="'. $project_data->project_id .'" readonly/>
+                                                    <input id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
                                                 </td>
                                                 <td>'. $project_data->project_title .'</td>
                                                 <td>'. $project_data->office_name .'</td>
@@ -78,7 +80,8 @@
                                                 <td><button id="open'. $row .'" class="btn btn-primary btn-sm col-sm-12">Open</button></td>
                                                 <td><button id="approve'. $row .'" class="btn btn-success btn-sm col-sm-9" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                                                 <td><button id="reject'. $row .'" type="button" class="btn btn-danger btn-sm col-sm-10" data-toggle="modal" data-target="#rejectModal">Reject</button></td>
-                                            </tr>';
+                                                </tr>
+                                            </form>';
                                         }
                                         $row++;
                                     }

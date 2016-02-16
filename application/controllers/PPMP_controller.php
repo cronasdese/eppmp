@@ -47,4 +47,24 @@ class PPMP_controller extends CI_Controller{
 		$project_id = $this->input->post('project_id');
 		$this->PPMP_model->approvePPMP($project_id);
 	}
+
+	public function viewPPMP(){
+		$ppmp_id = $_POST['project_id'];
+		$data['project'] = $this->PPMP_model->getProject($ppmp_id);
+		$data['project_details'] = $this->PPMP_model->getProjectDetails($ppmp_id);
+		//print_r($data);
+		foreach ($data['project'] as $office_id) {
+			//print_r($office_id);
+			$data['first_approver'] = $this->PPMP_model->getProjectFirstApprover($office_id->office_id);
+			$data['second_approver'] = $this->PPMP_model->getProjectSecondApprover($office_id->office_id);
+			$data['third_approver'] = $this->PPMP_model->getProjectThirdApprover($office_id->office_id);
+			$data['fourth_approver'] = $this->PPMP_model->getProjectFourthApprover($office_id->office_id);
+		}
+		//print_r($data);
+		$this->load->view('USER_ViewPPMP', $data);
+	}
+
+	public function consolidate(){
+		
+	}
 }
