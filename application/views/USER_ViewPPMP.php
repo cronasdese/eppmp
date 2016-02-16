@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TEST TABLE</title>
+    <title>PPMP</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
@@ -116,11 +116,58 @@
                             echo '<th class="text-center">'. $second_approver[0]->position .'</th>';
                             echo '<th class="text-center">'. $third_approver[0]->position .'</th>';
                             echo '<th class="text-center">'. $fourth_approver[0]->position .'</th>';
-                        ?>
+                        ?> 
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
+                        <td colspan="2"><button class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
                     </tr>
                 </tbody>
             </table>  
         </div>  
+    </div>
+</div>
+<!--REJECT BUTTON MODAL-->
+<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/rejectPPMP'); ?>" enctype="multipart/form-data" data-parsley-validate="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Reject Project</h4>
+                </div>
+                <div class="modal-body">
+                        <label class="col-sm-3">Project ID:</label>
+                        <input id="project_id_modal_reject" name="project_id" readonly />
+                        <br/><br/>
+                        <textarea class="form-control" rows="3" id="textArea" name="reason_for_rejection" placeholder="Write note here..." required=""></textarea>
+                        <span class="help-block">This will let the user know why the project was rejected.</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" name="action">Send back</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--APPROVE BUTTON MODAL-->
+<div class="modal fade" id="approveModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/approvePPMP'); ?>" enctype="multipart/form-data" data-parsley-validate="">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <span class="text-center">Are you sure you want to approve this project?</span>  
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" name="action">Approve</button>  
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>    
 </body>
