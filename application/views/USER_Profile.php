@@ -9,7 +9,6 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
 		<script src ="assets/js/jquery-2.1.4.min.js"></script>
 		<script src ="assets/js/bootstrap.min.js"></script>
-		<script src ="assets/js/populate_dropdown.js"></script>
 	</head>
 	<body>
 		<!-- WHOLE NAVBAR -->
@@ -56,20 +55,6 @@
 		<div id="wrapper" class="active">
      
 	      <!-- Sidebar -->
-		    <div id="sidebar-wrapper">
-			    <ul id="sidebar_menu" class="sidebar-nav">
-			        <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-			    </ul>
-			    <ul class="sidebar-nav" id="sidebar">     
-			        <li><a href="#">Home<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Create <span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Projects<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Drafts<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">History<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			    	<!--SPACE DAPAT TO OR DIVIDER-->
-			        <li><a href="#">Approve PPMP<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			    </ul>
-		    </div>
 	          
 	      <!-- Page content -->
 		    <div id="page-content-wrapper">
@@ -94,7 +79,7 @@
 											<p>Math Depart</p>
 									    </div>
 									    <div class="form-group">
-											<label class="control-label col-md-4">User ID: </label>
+											<label class="control-label col-md-5">Position/Designation</label>
 											<p> churva123 </p>
 									    </div>
 									    <div class="form-group">
@@ -173,71 +158,46 @@
 							<h4 class="modal-title" id="myModalLabel">Edit Information</h4>
 						</div>
 							<div class="modal-body">
-								<div class="well">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-										<li><a href="#profile" data-toggle="tab">Password</a></li>
-									</ul>
-										<div id="myTabContent" class="tab-content">
-											<div class="tab-pane active in" id="home">
-												<form id="tab">
-													<br/>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">Username</label>
-												    	<input type="text" value="Username" class="input-xlarge">
-												    </div>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">First Name</label>
-												    	<input type="text" value="First Name" class="input-xlarge">
-												    </div>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">Last Name</label>
-												    	<input type="text" value="Last Name" class="input-xlarge">
-												    </div>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">Email</label>
-												    	<input type="text" value="churva@yourcompany.com" class="input-xlarge">
-												    </div>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">Telephone</label>
-												        <input type="text" value="123-5678" class="input-xlarge">
-												    </div>
-												    <div class="form-group">
-												    	<label class="control-label col-md-3">Mobile</label>
-												        <input type="text" value="0123456789" class="input-xlarge">
-												    </div>
-												    <div class="form-group">	
-												    	<label class="control-label col-md-3">Address</label>
-												        <textarea value="" rows="3" class="input-xlarge">
-												        </textarea>
-												    </div>    
-												          	<div>
-												        	    <button class="btn btn-primary">Update</button>
-												        	</div>
-												</form>
-											</div>
-											<div class="tab-pane fade" id="profile">
-												<form id="tab2">
-													<br/>
-												    <label class="control-label col-md-3">New Password</label>
-												        <input type="password" class="input-xlarge">
-												        <br/>
-												        <br/>	
-												        	<div>
-												        	    <button class="btn btn-primary">Update</button>
-												        	</div>
-												</form>
-											</div>
-										</div>
-  								</div>
+								<form>
+									<br/>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">New Password</label>
+								        <input type="password" class="input-xlarge" placeholder="**********">
+								    </div>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">First Name</label>
+								    	<input type="text" value="First Name" class="input-xlarge">
+								    </div>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">Middle Name</label>
+								    	<input type="text" value="Middle Name" class="input-xlarge">
+								    </div>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">Last Name</label>
+								    	<input type="text" value="Last name" class="input-xlarge">
+								    </div>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">Position</label>
+								        <input type="text" value="123-5678" class="input-xlarge">
+								    </div>
+								    <div class="form-group">
+								    	<label class="control-label col-md-3">Mobile</label>
+								        <input type="text" value="0123456789" class="input-xlarge">
+								    </div>
+								    <div class="form-group">	
+								    	<label class="control-label col-md-3">Address</label>
+								        <textarea value="" rows="3" class="input-xlarge">
+								        </textarea>
+								    </div> 
+								</form>		
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary">Update</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>	
-
 	    </div>
 	</body>
 </html>
