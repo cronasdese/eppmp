@@ -15,7 +15,7 @@ class Signin_controller extends CI_Controller{
 		$this->load->model('PPMP_model');
 		$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
 		$data['user_id'] = 2;
-		$this->load->view('ADMIN_topnav', $data);
+		$this->load->view('USER_Approve', $data);
 	}	
 
 	public function validateAccount(){

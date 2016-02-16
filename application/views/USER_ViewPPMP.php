@@ -9,7 +9,20 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
     <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
     <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#approve').click(function(e) {
+                var projectId = document.getElementById('project_id').value;
+                //alert(projectId);
+                document.getElementById('project_id_modal_approve').value = projectId;
+            });
+            $('#reject').click(function(e) {
+                var projectId = document.getElementById('project_id').value;
+                //alert(projectId);
+                document.getElementById('project_id_modal_reject').value = projectId;
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -25,6 +38,7 @@
             ?>
             <label class="control-label col-md-2">Project/Title: </label>
             <?php
+                echo '<input id="project_id" name="project_id" class="hidden" value="'. $project[0]->project_id .'"/>';
                 echo '<p>' . $project[0]->title . '</p>';
             ?>
         </div>
@@ -119,8 +133,8 @@
                         ?> 
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
-                        <td colspan="2"><button class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
+                        <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
+                        <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
                     </tr>
                 </tbody>
             </table>  
@@ -137,8 +151,7 @@
                     <h4 class="modal-title">Reject Project</h4>
                 </div>
                 <div class="modal-body">
-                        <label class="col-sm-3">Project ID:</label>
-                        <input id="project_id_modal_reject" name="project_id" readonly />
+                        <input id="project_id_modal_reject" name="project_id" class="hidden"/
                         <br/><br/>
                         <textarea class="form-control" rows="3" id="textArea" name="reason_for_rejection" placeholder="Write note here..." required=""></textarea>
                         <span class="help-block">This will let the user know why the project was rejected.</span>
@@ -159,6 +172,7 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="col-lg-12">
+                        <input id="project_id_modal_approve" name="project_id" class="hidden"/>
                         <span class="text-center">Are you sure you want to approve this project?</span>  
                     </div>
                 </div>

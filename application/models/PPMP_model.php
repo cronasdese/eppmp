@@ -90,7 +90,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProject($ppmp_id){
-		$this->db->select('project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name');
+		$this->db->select('project.id project_id, project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name');
 		$this->db->from('project');
 		$this->db->join('user', 'project.user_id = user.id');
 		$this->db->join('office', 'office.id = user.office_id');
