@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2016 at 09:44 AM
+-- Generation Time: Feb 17, 2016 at 01:44 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,8 +38,15 @@ CREATE TABLE IF NOT EXISTS `approval` (
   KEY `first_lvl_id` (`first_lvl_id`),
   KEY `second_lvl_id` (`second_lvl_id`),
   KEY `third_lvl_id` (`third_lvl_id`),
-  KEY `fourth_lvl_id` (`fourth_lvl_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `approval_ibfk_5` (`fourth_lvl_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `approval`
+--
+
+INSERT INTO `approval` (`id`, `office_id`, `first_lvl_id`, `second_lvl_id`, `third_lvl_id`, `fourth_lvl_id`) VALUES
+(1, 6, 1, 2, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -92,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `office` (
   `office_name` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Dumping data for table `office`
@@ -197,7 +204,8 @@ INSERT INTO `office` (`id`, `office_name`, `status`) VALUES
 (96, 'Medical/Dental', 1),
 (97, 'Sports Office', 1),
 (98, 'CLA-Kalinangan Dance Troupe', 1),
-(99, 'Senior Citizens & Persons with Disability', 1);
+(99, 'Senior Citizens & Persons with Disability', 1),
+(100, 'BAC-Chairman', 1);
 
 -- --------------------------------------------------------
 
@@ -208,16 +216,24 @@ INSERT INTO `office` (`id`, `office_name`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `description` varchar(512) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `date_submitted` date NOT NULL,
   `first_lvl_status` tinyint(1) NOT NULL,
   `second_lvl_status` tinyint(1) NOT NULL,
   `third_lvl_status` tinyint(1) NOT NULL,
-  `fourth_lvl_status` tinyint(1) NOT NULL,
-  `reason_for_rejection` varchar(512) NOT NULL,
+  `fourth_lvl_status` int(11) NOT NULL,
+  `reason_for_rejection` varchar(512) DEFAULT NULL,
+  `submitted` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=210 ;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `user_id`, `title`, `date_submitted`, `first_lvl_status`, `second_lvl_status`, `third_lvl_status`, `fourth_lvl_status`, `reason_for_rejection`, `submitted`) VALUES
+(209, 1, 'Title', '2016-02-15', 1, 0, 0, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -228,17 +244,19 @@ CREATE TABLE IF NOT EXISTS `project` (
 CREATE TABLE IF NOT EXISTS `project_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `supply_id` int(11) DEFAULT NULL,
   `supply_description` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `unit` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `jan_qty` int(11) NOT NULL,
   `feb_qty` int(11) NOT NULL,
   `mar_qty` int(11) NOT NULL,
   `apr_qty` int(11) NOT NULL,
   `may_qty` int(11) NOT NULL,
-  `june_qty` int(11) NOT NULL,
-  `july_qty` int(11) NOT NULL,
+  `jun_qty` int(11) NOT NULL,
+  `jul_qty` int(11) NOT NULL,
   `aug_qty` int(11) NOT NULL,
   `sep_qty` int(11) NOT NULL,
   `oct_qty` int(11) NOT NULL,
@@ -246,8 +264,16 @@ CREATE TABLE IF NOT EXISTS `project_details` (
   `dec_qty` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
-  KEY `supply_id` (`supply_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `supply_id` (`supply_id`),
+  KEY `fk_category_id` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+
+--
+-- Dumping data for table `project_details`
+--
+
+INSERT INTO `project_details` (`id`, `project_id`, `category_id`, `supply_id`, `supply_description`, `quantity`, `unit`, `price`, `jan_qty`, `feb_qty`, `mar_qty`, `apr_qty`, `may_qty`, `jun_qty`, `jul_qty`, `aug_qty`, `sep_qty`, `oct_qty`, `nov_qty`, `dec_qty`) VALUES
+(99, 209, 1, 12, 'CARBON FILM, A4 SIZE, 100 sheets per box', 1, 'box', '223.60', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -304,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `supply` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `subcategory_id` (`subcategory_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5232 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150 ;
 
 --
 -- Dumping data for table `supply`
@@ -478,7 +504,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `office_id` (`office_id`),
   KEY `user_type_id` (`user_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `office_id`, `user_type_id`, `name`, `position`, `password`, `status`) VALUES
+(1, 6, 2, 'Peragrino B. Amador', 'BAC Secretary', '12345', 1),
+(2, 8, 4, 'Vivian C. Santos', 'Budget Officer', '12345', 1),
+(4, 100, 4, 'Enrico Hilario', 'BAC. Chairman', '12345', 1),
+(5, 69, 4, 'Adora S. Pili', 'President', '12345', 1);
 
 -- --------------------------------------------------------
 
@@ -532,6 +568,7 @@ ALTER TABLE `project`
 -- Constraints for table `project_details`
 --
 ALTER TABLE `project_details`
+  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `project_details_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`),
   ADD CONSTRAINT `project_details_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supply` (`id`);
 
