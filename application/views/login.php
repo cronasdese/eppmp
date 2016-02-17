@@ -36,6 +36,7 @@
             <div class="col-sm-10 col-md-offset-1">
                 <div class="inner-page ">
                     <div class="logo text-center">
+                        <img src="assets/images/logo.png" alt="tuplogo" width="180px" height="150px">
                         <p id="loginLOGO">Intranet-based Electronic Project Procurement Management Plan</p>
                     </div>
                 </div>
