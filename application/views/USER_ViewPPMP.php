@@ -132,6 +132,7 @@
                             echo '<th class="text-center">'. $fourth_approver[0]->position .'</th>';
                         ?> 
                     </tr>
+
                     <?php
                         if($user_type_id == 4){
                             echo '<tr>
@@ -140,6 +141,10 @@
                             </tr>';   
                         }
                     ?>
+                    <tr>
+                        <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
+                        <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
+                    </tr>
                 </tbody>
             </table>  
         </div>  
