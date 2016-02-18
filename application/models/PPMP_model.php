@@ -28,15 +28,15 @@ class PPMP_model extends CI_Model {
 	}
 
 	function insertProjectDetails($project_data, $ppmp_id){
-		$this->db->select('supply_description, unit');
-		$this->db->from('supply');
-		$this->db->where('id', $project_data['items']);
-		$this->db->limit(1);
-		$query = $this->db->get();
-		//return an array result not an object
-		$query_array = $query->result_array();
-
 		if(trim($project_data['iteminput']) == ""){
+			$this->db->select('supply_description, unit');
+			$this->db->from('supply');
+			$this->db->where('id', $project_data['items']);
+			$this->db->limit(1);
+			$query = $this->db->get();
+			//return an array result not an object
+			$query_array = $query->result_array();
+
 			$project_details = array(
 				'project_id' => $ppmp_id, 
 				'category_id' => $project_data['category'],
@@ -90,7 +90,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProject($ppmp_id){
-		$this->db->select('project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name');
+		$this->db->select('project.id project_id, project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name');
 		$this->db->from('project');
 		$this->db->join('user', 'project.user_id = user.id');
 		$this->db->join('office', 'office.id = user.office_id');
@@ -225,7 +225,7 @@ class PPMP_model extends CI_Model {
 		$query_array = $query->result_array();
 
 		$project = array();
-		//print_r($query_array);
+		print_r($query_array);
 		if($query_array[0]['second_lvl_status'] == 0){
 			$project = array(
 				'second_lvl_status' => 1

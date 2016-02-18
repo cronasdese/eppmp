@@ -31,6 +31,8 @@ class PPMP_controller extends CI_Controller{
 			$data['third_approver'] = $this->PPMP_model->getProjectThirdApprover($office_id->office_id);
 			$data['fourth_approver'] = $this->PPMP_model->getProjectFourthApprover($office_id->office_id);
 		}
+		$data['user_type_id'] = $this->session->userdata('user_type_id');
+		//print_r($data);
 		$this->load->view('USER_ViewPPMP', $data);
 	}
 
@@ -61,6 +63,7 @@ class PPMP_controller extends CI_Controller{
 			$data['fourth_approver'] = $this->PPMP_model->getProjectFourthApprover($office_id->office_id);
 		}
 		//print_r($data);
+		$data['user_type_id'] = $this->session->userdata('user_type_id');
 		$this->load->view('USER_ViewPPMP', $data);
 	}
 
