@@ -6943,13 +6943,13 @@ a.list-group-item-danger.active:focus {
  font-family: Helvetica;
 }
 #loginBGC1{
-  margin-top: 100px;
-  background-color: #0f0f0a;
+  margin-top: 20px;
+  /*background-color: #0f0f0a;*/
 }
 #loginBGC2{
   max-width: 400px;
-  background-color: #eee;
-  padding-top: 10px;
+  /*background-color: #eee; */  
+  padding-top: 1px;
   padding-bottom: 25px;
   padding-left: 10px;/
 }
@@ -6964,9 +6964,9 @@ a.list-group-item-danger.active:focus {
 /*#drp-width{
   width: 400px;
 }*/
-.btn{
+#validate{
   cursor: pointer;
-  /*background-color: #BD2031;*/
+  background-color: #BD2031;
   margin:0px;
   border: 0px;
   margin-top: 10px;

@@ -4,11 +4,11 @@
         <title>Approve Module</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="'assets/css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
-        <script src ="assets/js/jquery-2.1.4.min.js"></script>
-        <script src ="assets/js/bootstrap.min.js"></script>    
+        <link rel="stylesheet" href= "<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+        <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
+        <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script> 
     </head>
     <body>  
         <div class="row">
@@ -52,6 +52,7 @@
                                             echo '<form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
                                                 <tr id="row'. $row .'"">
                                                 <td>
+                                                    <input id="user_id'. $row .'" name="user_id" value="'. $user_id .'" class="hidden" />
                                                     <input id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
                                                 </td>
                                                 <td>'. $project_data->project_title .'</td>

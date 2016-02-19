@@ -12,6 +12,11 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
+		// $this->load->view('USER_ViewPPMP');
+		// $this->load->model('PPMP_model');
+		// $data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
+		// $data['user_id'] = 2;
+		// $this->load->view('USER_Approve', $data);
 		$this->load->model('PPMP_model');
 		$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
 		$data['user_id'] = 2;
@@ -34,7 +39,21 @@ class Signin_controller extends CI_Controller{
 				$this->load->view('login');
 			}
 			else{
-				$this->load->view('USER_Create', $data);
+				foreach ($data['user_details'] as $type) {
+					$this->session->set_userdata('user_id', $type->user_id);
+					$this->session->set_userdata('user_type_id', $type->user_type_id);
+					if($type->user_type_id == 3){
+						$this->load->view('USER_Create', $data);
+					}
+					else if($type->user_type_id == 4){
+						$this->load->model('PPMP_model');
+						print_r($type->user_id);
+						$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved($type->user_id);
+						$data['user_id'] = $type->user_id;
+						print_r($data['projects']);
+						$this->load->view('USER_Approve', $data);
+					}
+				}
 			}
 		}
 	}

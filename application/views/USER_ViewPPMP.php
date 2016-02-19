@@ -13,7 +13,7 @@
         $(document).ready(function(){
             $('#approve').click(function(e) {
                 var projectId = document.getElementById('project_id').value;
-                //alert(projectId);
+                alert(projectId);
                 document.getElementById('project_id_modal_approve').value = projectId;
             });
             $('#reject').click(function(e) {
@@ -132,6 +132,15 @@
                             echo '<th class="text-center">'. $fourth_approver[0]->position .'</th>';
                         ?> 
                     </tr>
+
+                    <?php
+                        if($user_type_id == 4){
+                            echo '<tr>
+                                <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
+                                <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
+                            </tr>';   
+                        }
+                    ?>
                     <tr>
                         <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                         <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
@@ -151,8 +160,7 @@
                     <h4 class="modal-title">Reject Project</h4>
                 </div>
                 <div class="modal-body">
-                        <input id="project_id_modal_reject" name="project_id" class="hidden"/
-                        <br/><br/>
+                        <input id="project_id_modal_reject" name="project_id" class="hidden" />
                         <textarea class="form-control" rows="3" id="textArea" name="reason_for_rejection" placeholder="Write note here..." required=""></textarea>
                         <span class="help-block">This will let the user know why the project was rejected.</span>
                 </div>
