@@ -169,18 +169,32 @@ class PPMP_model extends CI_Model {
 
 	function getAllProjectsToBeApproved($user_id){
 		//for USER_Approve view	
-		$this->db->select('project.id project_id, project.title project_title, office.office_name office_name, project.date_submitted date_submitted, SUM(project_details.quantity*project_details.price) estimated_budget, approval.first_lvl_id, approval.second_lvl_id, approval.third_lvl_id, approval.fourth_lvl_id, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status');
+		//first version
+		$this->db->select('project.id project_id, project.title project_title, office.office_name office_name, project.date_submitted date_submitted, approval.first_lvl_id, approval.second_lvl_id, approval.third_lvl_id, approval.fourth_lvl_id, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status');
 		$this->db->from('approval');
 		$this->db->join('office', 'approval.office_id = office.id');
 		$this->db->join('user', 'office.id = user.office_id');
 		$this->db->join('project', 'user.id = project.user_id');
-		$this->db->join('project_details', 'project.id = project_details.project_id');
 		$this->db->where('approval.first_lvl_id', $user_id);
 		$this->db->or_where('approval.second_lvl_id', $user_id);
 		$this->db->or_where('approval.third_lvl_id', $user_id);
 		$this->db->or_where('approval.fourth_lvl_id', $user_id);
 		$query = $this->db->get();
 		return $query->result();
+
+		//second version
+		// $this->db->select('project.id project_id, project.title project_title, office.office_name office_name, project.date_submitted date_submitted, SUM(project_details.quantity*project_details.price) estimated_budget, approval.first_lvl_id, approval.second_lvl_id, approval.third_lvl_id, approval.fourth_lvl_id, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status');
+		// $this->db->from('approval');
+		// $this->db->join('office', 'approval.office_id = office.id');
+		// $this->db->join('user', 'office.id = user.office_id');
+		// $this->db->join('project', 'user.id = project.user_id');
+		// $this->db->join('project_details', 'project.id = project_details.project_id');
+		// $this->db->where('approval.first_lvl_id', $user_id);
+		// $this->db->or_where('approval.second_lvl_id', $user_id);
+		// $this->db->or_where('approval.third_lvl_id', $user_id);
+		// $this->db->or_where('approval.fourth_lvl_id', $user_id);
+		// $query = $this->db->get();
+		// return $query->result();
 	}
 
 	function rejectPPMP($ppmp_id, $reason_for_rejection){

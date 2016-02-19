@@ -37,7 +37,7 @@
                                 <th class="project col-sm-3">Project/Program<span class="fa fa-sort"></span></th>
                                 <th class="office">Office<span class="fa fa-sort"></span></th>
                                 <th class="date">Date Submitted<span class="fa fa-sort"></span></th>
-                                <th class="status">Estimated Budget<span class="fa fa-sort"></span></th>    
+                                <!--th class="status">Estimated Budget<span class="fa fa-sort"></span></th-->    
                                 <th class="status" title="non-sortable"> </th>
                                 <th class="status" title="non-sortable"> </th>
                                 <th class="status" title="non-sortable"> </th>
@@ -57,7 +57,7 @@
                                                 <td>'. $project_data->project_title .'</td>
                                                 <td>'. $project_data->office_name .'</td>
                                                 <td>'. $project_data->date_submitted .'</td>
-                                                <td>'. $project_data->estimated_budget .'</td>
+                                                <!--td>/*. $project_data->estimated_budget .*/</td-->
                                                 <td><button id="open'. $row .'" class="btn btn-primary btn-sm col-sm-12">Open</button></td>
                                                 </tr>
                                             </form>';
