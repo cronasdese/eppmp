@@ -9,90 +9,111 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
 		<script src ="assets/js/jquery-2.1.4.min.js"></script>
 		<script src ="assets/js/bootstrap.min.js"></script>
-		<script src ="assets/js/populate_dropdown.js"></script>
+		<script type="text/javascript">
+		    $(function(){
+		    $(".dropdown").hover(            
+	            function() {
+	                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+	                $(this).toggleClass('open');
+	                $('b', this).toggleClass("caret caret-up");                
+	            },
+	            function() {
+	                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+	                $(this).toggleClass('open');
+	                $('b', this).toggleClass("caret caret-up");                
+	            });
+		    });
+		</script>
 	</head>
 	<body>
-		<!-- WHOLE NAVBAR -->
+		<!--div class="container" style="white-space:nowrap">
+				<img src="assets/images/logo.png" alt="logo" class="img-responsive" width="100" height="100" style="float:left"/>
+				<p> &nbsp;</p><h3>Electronic Project Procurement Management Plan</h3>
+		</div-->		
 		<div>
-			<nav class="navbar navbar-default">
-			  	<div class="container">
-
-			  		<!-- NAVBAR HEADER LEFT -->
-			    	<div class="navbar-header">
-			      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container">  
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 				        	<span class="sr-only">Toggle navigation</span>
 				        	<span class="icon-bar"></span>
 				        	<span class="icon-bar"></span>
 				        	<span class="icon-bar"></span>
-			      		</button>
-			      		<a class="navbar-brand" href="#">E-PPMP</a>
-			    	</div>
-
-			    	<!-- NAVBAR HEADER RIGHT -->
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				      	<ul class="nav navbar-nav navbar-right">
-				        	<li class="dropdown">
-					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>
-					          	<ul class="dropdown-menu" role="menu">
-					            	<li><a href="#">Action</a></li>
-					            	<li><a href="#">Another action</a></li>
-					            	<li><a href="#">Something else here</a></li>
-					         	</ul>
-				        	</li>
-				        	<li class="dropdown">
-					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sammera Alim <span class="caret"></span></a>
-					          	<ul class="dropdown-menu" role="menu">
-					            	<li><a href="#">Profile</a></li>
-					            	<li class="divider"></li>
-					            	<li><a href="#">Logout</a></li>
-					         	</ul>
-				        	</li>
-				      	</ul>
+				      	</button>
+				      	<a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="img-responsive" width="40" height="30" style="float:left; margin-top:-10px"/> E-PPMP</a>
 				    </div>
-			  	</div>
-			</nav>
+
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      	<ul class="nav navbar-nav">
+					        <li> &nbsp; &nbsp; &nbsp; </li>
+					        <li class="active"><a href="#">Home</a></li>			      
+					    </ul>
+			      		<ul class="nav navbar-nav navbar-right">
+			       		 	<li><a href="#">Notification &nbsp; <i class="glyphicon glyphicon-bell"></i></a></li>
+					        <li class="dropdown">
+					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Full Name &nbsp; <b class="caret"></b></a>
+					         	<ul class="dropdown-menu">
+						            <li><a href="#">Profile</a></li>
+			            			<li class="divider"></li>
+			            			<li><a href="#">Log-out</a></li>
+			          			</ul>
+			        		</li>
+			      		</ul>
+			    	</div><!-- /.navbar-collapse -->
+
+				</div>	 	  
+			</nav>	
 		</div>
-		<!-- Sidebar -->
-		<div id="wrapper" class="active">
-     
-	      <!-- Sidebar -->
-		    <div id="sidebar-wrapper">
-			    <ul id="sidebar_menu" class="sidebar-nav">
-			        <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-			    </ul>
-			    <ul class="sidebar-nav" id="sidebar">     
-			        <li><a href="#">Home<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Create <span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Projects<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">Drafts<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			        <li><a href="#">History<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			    	<!--SPACE DAPAT TO OR DIVIDER-->
-			    	<li class="divider"></li>
-			        <li><a href="#">Approve PPMP<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-			    </ul>
-		    </div>
-	          
-	      <!-- Page content -->
-		    <div id="page-content-wrapper">
-		        <!-- Keep all page content within the page-content inset div! -->
-		        <div class="page-content inset">
-		          	<div class="row">
-		              	<div class="col-md-12">
-		              		<div class="jumbotron homeJumbotron">
-							  <h1>Welcome, *Insert user's name here*!</h1>
-							  <p>Insert ka-ekekkan here</p>
-							</div>	
-		            	</div>
-		          	</div>
-		        </div>
-		    </div>
-		    <script type="text/javascript">
-				$("#menu-toggle").click(function(e) {
-			        e.preventDefault();
-			        $("#wrapper").toggleClass("active");
-					});
-				});
-			</script>
-	    </div>
+		<div class="container">
+			<div class="row">
+
+			    <div class="col-lg-12">
+			        <h1 class="page-header">Home</h1>
+			    </div>
+
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+			        <a class="thumbnail" href="#">
+			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        </a>
+			    </div>		  
+			</div>
+		</div>    
 	</body>
 </html>
+  

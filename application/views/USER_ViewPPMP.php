@@ -33,11 +33,11 @@
         <h4 class="text-center"><b>Project Procurement Management Plan (PPMP)</b></h4>
          <div class="form-group">    
             <label class="control-label col-md-2">Office/Department: </label>
-            <?php
+           <?php
                 echo '<p>' . $project[0]->office_name . '</p>';
             ?>
             <label class="control-label col-md-2">Project/Title: </label>
-            <?php
+           <?php
                 echo '<input id="project_id" name="project_id" class="hidden" value="'. $project[0]->project_id .'"/>';
                 echo '<p>' . $project[0]->title . '</p>';
             ?>
@@ -74,7 +74,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+                   <?php
                         if(is_array($project_details) || is_object($project_details)){
                             foreach($project_details as $project_details_data){
                                 echo '<tr>
@@ -101,6 +101,12 @@
                         }
                     ?>
                 </tbody>
+                <tfoot>
+                        <tr>
+                            <th class="text-nowrap text-center" colspan="16" rowspan="2">Estimated Total Budget: </th>
+                            <th class="text-nowrap text-center" colspan="2" rowspan="2">00000.00</th>
+                        </tr>
+                </tfoot>
             </table>
         </form>
     </div>
@@ -109,23 +115,23 @@
             <table class="col-sm-12">
                 <thead>
                     <tr>
-                        <th class="col-md-3">Prepared by:</th>
-                        <th class="col-md-3">Recommended by:</th>
-                        <th class="col-md-3">Evaluated by:</th>
-                        <th class="col-md-3">Approved by:</th>
+                        <th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
+                        <th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
+                        <th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
+                        <th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
                     </tr>    
                 </thead>
                 <tbody>
                     <tr>
-                        <?php
+                       <?php
                             echo '<th class="text-center">'. $first_approver[0]->name .'</th>';
                             echo '<th class="text-center">'. $second_approver[0]->name .'</th>';
                             echo '<th class="text-center">'. $third_approver[0]->name .'</th>';
                             echo '<th class="text-center">'. $fourth_approver[0]->name .'</th>';
-                        ?>
+                        ?> 
                     </tr>
                      <tr>
-                        <?php
+                       <?php
                             echo '<th class="text-center">'. $first_approver[0]->position .'</th>';
                             echo '<th class="text-center">'. $second_approver[0]->position .'</th>';
                             echo '<th class="text-center">'. $third_approver[0]->position .'</th>';
@@ -133,7 +139,7 @@
                         ?> 
                     </tr>
 
-                    <?php
+                   <?php
                         if($user_type_id == 4){
                             echo '<tr>
                                 <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
