@@ -137,4 +137,16 @@ class Admin_model extends CI_Model {
 
 		$this->db->insert('office', $data);
 	}
+
+	function search($search){
+		$this->db->select('user.id user_id, office.id office_id, office.office_name office_name, user.name, user.position, user.status');
+		$this->db->from('user');
+		$this->db->join('office', 'user.office_id = office.id');
+		$this->db->like('office.office_name', $search);
+		$this->db->or_like('user.name', $search);
+		$this->db->or_like('user.position', $search);
+		$this->db->order_by('user.status', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

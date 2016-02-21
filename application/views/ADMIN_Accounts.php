@@ -277,14 +277,16 @@
 				<div class="row">	
 					<div class="btn-tooltip">
 						<div class="col-md-12">	
-							<div class="btn-group">
-								<div class="form-group">
-									<input type="text" placeholder="Search">
-				            	</div>
-				            </div>	
-				            <div class="btn-group">
-								<a href="#" class="btn btn-default btn-sm" style="margin-top:-14px">Display</a>	
-							</div> 
+							<form enctype="multipart/form-data" method="POST" action="<?php echo base_url('Admin_controller/search'); ?>" enctype="multipart/form-data" data-parsley-validate>
+								<div class="btn-group">
+									<div class="form-group">
+										<input id="search" name="search" type="text" placeholder="Search" required>
+					            	</div>
+					            </div>	
+					            <div class="btn-group">
+									<button id="search_button" name="action" class="btn btn-default btn-sm" style="margin-top:-14px">Display</button>	
+								</div> 
+							</form>
 						</div>      
 		            </div>                         
 				</div>

@@ -79,4 +79,11 @@ class Admin_controller extends CI_Controller {
 		$added_office = $this->admin_model->addOffice($office_name, $status);
 		echo json_encode($added_office);
 	}
+
+	public function search(){
+		$search = $this->input->post('search');
+		$data['users'] = $this->admin_model->search($search);
+
+		$this->load->view('ADMIN_Accounts', $data);
+	}
 }
