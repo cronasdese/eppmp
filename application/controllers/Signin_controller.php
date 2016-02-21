@@ -12,16 +12,11 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		// $this->load->view('USER_ViewPPMP');
-		// $this->load->model('PPMP_model');
-		// $data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
-		// $data['user_id'] = 2;
-		// $this->load->view('USER_Approve', $data);
-		$this->load->model('PPMP_model');
-		$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved('2');
-		$data['user_id'] = 2;
-		$this->load->view('USER_Approve', $data);
-		//$this->load->view('login');
+		$this->load->model('admin_model');
+		$data['users'] = $this->admin_model->getAllUsers();
+		$this->load->view('ADMIN_Accounts', $data);
+		// $this->load->model('admin_model');
+		// $data['offices'] = $this->admin_model->getOfficesWithNoDesignation();
 	}	
 
 	public function validateAccount(){
@@ -62,14 +57,4 @@ class Signin_controller extends CI_Controller{
 		$office_names = $this->user_model->getOffices();
 		echo json_encode($office_names);
 	}
-
-	// public function _usernameRegex($user_name){
-	// 	$pattern = '/^([0-9]{3})([-])([0-9]{5})$/';
-	// 	if(preg_match($pattern, $user_name)){
-	// 		return TRUE;
-	// 	}
-	// 	else{
-	// 		return FALSE;
-	// 	}
-	// }
 }
