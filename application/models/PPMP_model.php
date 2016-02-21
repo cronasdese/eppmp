@@ -58,7 +58,6 @@ class PPMP_model extends CI_Model {
 				'nov_qty' => $project_data['nov'],
 				'dec_qty' => $project_data['dec']
 			);
-			//print_r($project_details);
 			$this->db->insert('project_details', $project_details);
 			$project_detail_id = $this->db->insert_id();
 		}
@@ -84,16 +83,16 @@ class PPMP_model extends CI_Model {
 				'dec_qty' => $project_data['dec']
 			);
 			$this->db->insert('project_details', $project_details);
-			//print_r('2');
 		}
 
 	}
 
 	function getProject($ppmp_id){
-		$this->db->select('project.id project_id, project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name');
+		$this->db->select('project.id project_id, project.user_id, project.date_submitted, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status, project.reason_for_rejection, project.title title, office.id office_id, office.office_name, SUM(project_details.quantity*project_details.price) estimated_budget');
 		$this->db->from('project');
 		$this->db->join('user', 'project.user_id = user.id');
 		$this->db->join('office', 'office.id = user.office_id');
+		$this->db->join('project_details', 'project.id = project_details.project_id');
 		$this->db->where('project.id', $ppmp_id);
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -258,5 +257,164 @@ class PPMP_model extends CI_Model {
 
 		$this->db->where('id', $ppmp_id);
 		$this->db->update('project', $project);
+	}
+
+	function generatePurchaseOrder($ppmp_id, $month){
+		// SELECT office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position
+		// FROM project
+		// JOIN project_details
+		// ON project.id = project_details.project_id
+		// JOIN user
+		// ON project.user_id = user.id
+		// JOIN office
+		// ON user.office_id = office.id
+		// JOIN category
+		// ON project_details.category_id = category.id
+		// WHERE project_details.feb_qty > 0 AND project_details.project_id = 215
+		$query;
+		if($month == "January"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.jan_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "February"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.feb_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "March"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.mar_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "April"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.apr_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "May"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.may_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "June"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.jun_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "July"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.jul_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "August"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.aug_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "September"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.sep_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "October"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.oct_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else if($month == "November"){
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.nov_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+		else{
+			$this->db->select('office.office_name office_name, project.title project_title, category.category category, project.date_submitted date_submitted, project_details.unit unit, project_details.supply_description supply_description, project_details.quantity quantity, project_details.price price, user.name user_name, user.position user_position');
+			$this->db->from('project');
+			$this->db->join('project_details', 'project.id = project_details.project_id');
+			$this->db->join('user', 'project.user_id = user.id');
+			$this->db->join('office', 'user.office_id = office.id');
+			$this->db->join('category', 'project_details.category_id = category.id');
+			$this->db->where('project_details.dec_qty > 0');
+			$this->db->where('project_details.project_id', $ppmp_id);
+			$query = $this->db->get();
+		}
+
+		$date_format = 'DATE_W3C';
+
+		$date_generated = standard_date($date_format);
+
+		$data = array(
+			'date_generated' => $date_generated,
+			'project_id' => $ppmp_id
+		);
+		$this->db->insert('purchase_order', $data);
+		$pr_id = $this->db->insert_id();
+		return array($query->result(), $pr_id);
 	}
 }

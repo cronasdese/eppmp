@@ -70,4 +70,11 @@ class PPMP_controller extends CI_Controller{
 	public function consolidate(){
 		
 	}
+
+	public function generatePurchaseOrder(){
+		$month = "January";
+		$ppmp_id = 215;
+		$data['purchase_order'] = $this->PPMP_model->generatePurchaseOrder($ppmp_id, $month);
+		$this->load->view('PR', $data);
+	}
 }

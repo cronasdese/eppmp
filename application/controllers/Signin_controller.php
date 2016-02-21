@@ -12,11 +12,11 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->model('admin_model');
-		$data['users'] = $this->admin_model->getAllUsers();
-		$this->load->view('ADMIN_Accounts', $data);
-		// $this->load->model('admin_model');
-		// $data['offices'] = $this->admin_model->getOfficesWithNoDesignation();
+		$this->load->model('PPMP_model');
+		$month = "January";
+		$ppmp_id = 215;
+		$data['purchase_order'] = $this->PPMP_model->generatePurchaseOrder($ppmp_id, $month);
+		$this->load->view('PR', $data);
 	}	
 
 	public function validateAccount(){
