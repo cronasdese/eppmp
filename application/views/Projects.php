@@ -31,9 +31,8 @@
                             </form>
                         </div>
                     </div>
-                    
-                    
                     <br />  
+                    <hr />
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -42,6 +41,7 @@
                                 <th class="office">Office<span class="fa fa-sort"></span></th>
                                 <th class="date">Date Submitted<span class="fa fa-sort"></span></th>  
                                 <th class="status" title="non-sortable">Status</th>
+                                <th class="status" title="non-sortable"> </th>
                                 <th class="status" title="non-sortable"> </th>
                             </tr>
                         </thead>
@@ -54,7 +54,7 @@
                                         <form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
                                         <tr>
                                         <td>
-                                            <input id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
+                                            <input style="border:none" id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
                                         </td>
                                         <td><a href="#">'. $project_data->project_title .'</a></td>
                                         <td>'. $project_data->office_name .'</td>
@@ -68,7 +68,8 @@
                                         else{
                                             echo'<td><span class="label label-primary">Pending</span></td>';
                                         }
-                                        echo '<td><button id="open'. $row .'" class="btn btn-default btn-sm">Open</button></td>
+                                        echo '<td class="col-sm-1"><button id="open'. $row .'" class="btn btn-default btn-sm"> Open </button></td>
+                                        <td class="col-sm-1"><button id="adopt'. $row .'" class="btn btn-default btn-sm"> Adopt </button></td>
                                         </tr>
                                         </form>';
                                         $row++;

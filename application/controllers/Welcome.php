@@ -20,6 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Start_Consolidation');
+		$this->load->view('USER_ViewPPMP');
 	}
 }

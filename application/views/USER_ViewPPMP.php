@@ -25,7 +25,25 @@
     </script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-left:40px">
+    <div class="row">
+        <select class="col-md-offset-9">
+            <option value="0">Select Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <button type="submit">Generate PR</button>
+    </div>
     <div class="container-fluid">
         <br />
         <p class="text-center">Technological Univesity of the Philippines</p>
@@ -118,10 +136,10 @@
                         <?php
                             //first_lvl_status
                             if($project[0]->first_lvl_status == 1){
-                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok okcolor"></span></th>';
                             }
                             else if($project[0]->first_lvl_status == 2){
-                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-remove removecolor"></span></th>';
                             }
                             else{
                                 echo '<th class="col-md-3">Prepared by: </th>';
@@ -129,10 +147,10 @@
 
                             //second_lvl_status
                             if($project[0]->second_lvl_status == 1){
-                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok okcolor"></span></th>';
                             }
                             else if($project[0]->second_lvl_status == 2){
-                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-remove removecolor"></span></th>';
                             }
                             else{
                                 echo '<th class="col-md-3">Recommended by: </th>';
@@ -140,10 +158,10 @@
 
                             //third_lvl_status
                             if($project[0]->third_lvl_status == 1){
-                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok okcolor"></span></th>';
                             }
                             else if($project[0]->third_lvl_status == 2){
-                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-remove removecolor"></span></th>';
                             }
                             else{
                                 echo '<th class="col-md-3">Evaluated by: </th>';
@@ -151,10 +169,10 @@
 
                             //fourth_lvl_status
                             if($project[0]->fourth_lvl_status == 1){
-                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok okcolor"></span></th>';
                             }
                             else if($project[0]->fourth_lvl_status == 2){
-                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
+                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-remove removecolor"></span></th>';
                             }
                             else{
                                 echo '<th class="col-md-3">Approved by: </th>';
@@ -165,18 +183,18 @@
                 <tbody>
                     <tr>
                        <?php
-                            echo '<th class="text-center">'. $first_approver[0]->name .'</th>';
-                            echo '<th class="text-center">'. $second_approver[0]->name .'</th>';
-                            echo '<th class="text-center">'. $third_approver[0]->name .'</th>';
-                            echo '<th class="text-center">'. $fourth_approver[0]->name .'</th>';
+                            echo '<th class="col-md-3">'. $first_approver[0]->name .'</th>';
+                            echo '<th class="col-md-3">'. $second_approver[0]->name .'</th>';
+                            echo '<th class="col-md-3">'. $third_approver[0]->name .'</th>';
+                            echo '<th class="col-md-3">'. $fourth_approver[0]->name .'</th>';
                         ?> 
                     </tr>
                      <tr>
                        <?php
-                            echo '<th class="text-center">'. $first_approver[0]->position .'</th>';
-                            echo '<th class="text-center">'. $second_approver[0]->position .'</th>';
-                            echo '<th class="text-center">'. $third_approver[0]->position .'</th>';
-                            echo '<th class="text-center">'. $fourth_approver[0]->position .'</th>';
+                            echo '<th class="col-md-3">'. $first_approver[0]->position .'</th>';
+                            echo '<th class="col-md-3">'. $second_approver[0]->position .'</th>';
+                            echo '<th class="col-md-3">'. $third_approver[0]->position .'</th>';
+                            echo '<th class="col-md-3">'. $fourth_approver[0]->position .'</th>';
                         ?> 
                     </tr>
 

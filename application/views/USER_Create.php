@@ -537,11 +537,30 @@
                 </tbody>
             </table>
             <div class="container-fluid">
-                <a id="table-add"><span class="table-add glyphicon glyphicon-plus col-md-offset-12"></span></a>
+                <a id="table-add" style="margin-left:-7px"><span class="table-add glyphicon glyphicon-plus col-md-offset-12"></span></a>
+                <button type="submit" id="submit_button" name="action" class="col-sm-1" data-toggle="modal" data-target="#submitModal">Submit</button>
             </div>
-            <button type="submit" id="submit_button" name="action">Submit</button>
         </div>
     </form>
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form enctype="multipart/form-data" method="POST" enctype="multipart/form-data" data-parsley-validate="">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <input id="project_id_modal_approve" name="project_id" class="hidden"/>
+                            <span class="text-center">You are about to submit this project. 
+                            Are you sure that you don't want to add more items?</span>  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-sm" name="action">Submit Now</button>  
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> 
 </body>
 </html>
 
