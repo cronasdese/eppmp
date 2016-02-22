@@ -25,11 +25,7 @@
 		    });
 		</script>
 	</head>
-	<body>
-		<!--div class="container" style="white-space:nowrap">
-				<img src="assets/images/logo.png" alt="logo" class="img-responsive" width="100" height="100" style="float:left"/>
-				<p> &nbsp;</p><h3>Electronic Project Procurement Management Plan</h3>
-		</div-->		
+	<body>	
 		<div>
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">  
@@ -41,7 +37,8 @@
 				        	<span class="icon-bar"></span>
 				        	<span class="icon-bar"></span>
 				      	</button>
-				      	<a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="img-responsive" width="40" height="30" style="float:left; margin-top:-10px"/> E-PPMP</a>
+				      	<img src="assets/images/logo.png" alt="logo" class="img-responsive" width="40" height="30" style="float:left; margin-top:5px; margin-right:10px"/> 
+				      	<div class="navbar-brand">E-PPMP</div>
 				    </div>
 
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,13 +47,13 @@
 					        <li class="active"><a href="#">Home</a></li>			      
 					    </ul>
 			      		<ul class="nav navbar-nav navbar-right">
-			       		 	<li><a href="#">Notification &nbsp; <i class="glyphicon glyphicon-bell"></i></a></li>
+			       		 	<li><a href="#" class="bodyclass">Notification &nbsp; <i class="glyphicon glyphicon-bell"></i></a></li>
 					        <li class="dropdown">
-					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Full Name &nbsp; <b class="caret"></b></a>
+					          	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">User Full Name &nbsp; <b class="caret"></b></a>
 					         	<ul class="dropdown-menu">
-						            <li><a href="#">Profile</a></li>
+						            <li><a href="#" class="bodyclass">Profile</a></li>
 			            			<li class="divider"></li>
-			            			<li><a href="#">Log-out</a></li>
+			            			<li><a href="#" class="bodyclass">Log-out</a></li>
 			          			</ul>
 			        		</li>
 			      		</ul>
@@ -71,49 +68,65 @@
 			    <div class="col-lg-12">
 			        <h1 class="page-header">Home</h1>
 			    </div>
-
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        <a class="thumbnail theight" href="#">
+			        	<h2 class="text-center"><span class="glyphicon glyphicon-edit"></span></h2>
+		            	<h3 class="text-center text-nowrap">Create Project</h3>
+		            	<br />
+        				<p class="text-center">Created Project: </p>
 			        </a>
 			    </div>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			        <a class="thumbnail theight" href="#" >
+			        	<h2 class="text-center"><span class="glyphicon glyphicon-open"></span></h2>
+			            <h3 class="text-center">View Projects</h3>
+        				<p class="text-center">Approved Project: </p>
+        				<p class="text-center">Rejected Project: </p>
 			        </a>
 			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-duplicate"></span></h1>
+			            <h3 class="text-center">Generate PR</h3>
+		            	<br />
 			        </a>
 			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			 	 <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-download-alt"></span></h1>
+			            <h3 class="text-center">Consolidate</h3>
+		            	<br />
 			        </a>
 			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-copy"></span></h1>
+			            <h3 class="text-center">Generate APP</h3>
+		            	<br />
+			        </a>
+			    </div> 
+			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-user"></span></h1>
+			            <h3 class="text-center">Accounts</h3>
+		            	<br />
 			        </a>
 			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-phone-alt"></span></h1>
+			            <h3 class="text-center">Offices</h3>
+		            	<br />
 			        </a>
 			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			        <a class="thumbnail theight" href="#">
+			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-bell"></span></h1>
+			            <h3 class="text-center">Notifications</h3>
+		            	<br />
 			        </a>
-			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail" href="#">
-			            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-			        </a>
-			    </div>		  
+			    </div>          
 			</div>
 		</div>    
 	</body>
 </html>
-  
