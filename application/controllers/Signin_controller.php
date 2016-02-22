@@ -44,11 +44,12 @@ class Signin_controller extends CI_Controller{
 						// $data['user_id'] = $type->user_id;
 						// print_r($data['projects']);
 						// $this->load->view('USER_Approve', $data);
-						$this->load->view('NAV');
+						$this->load->view('NAV', $data);
 						$this->load->view('USER_HOME', $data);
 					}
 					else{
-						//admin home
+						//$this->load->view('NAV', $data);
+						$this->load->view('ADMIN_Home');
 					}
 				}
 			}

@@ -36,9 +36,22 @@ class User_model extends CI_Model {
 		return $query->result();
 	}
 
-	function saveEditUser($user_id, $name, $old_password, $new_password){
-
+	function saveEditUser($user_id, $name, $new_password){
+		$data = array();
+		if($new_password == ""){
+			$data = array(
+				'name' => $name
+			);
+		}
+		else{
+			$data = array(
+				'name' => $name,
+				'password' => $new_password
+			);
+		}
+		
 		$this->db->where('id', $user_id);
+		$this->db->update('user', $data);
 	}
 
 	function validatePassword($user_id, $old_password){

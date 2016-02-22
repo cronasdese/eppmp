@@ -21,12 +21,39 @@
 					document.getElementById('office_edit').value = office;
 				});
 
+				var checkValue = false;
 				$('#update_button').click(function(){
 					var name = document.getElementById('name_edit').value,
 						old_password = document.getElementById('old_password_edit').value,
 						new_password = document.getElementById('new_password_edit').value;
-					
-					//$.ajax
+
+					if((name == "") || (old_password == "")){
+						alert('Please fill-up all input fields.');
+					}
+					else{
+						$.ajax({
+	                        type: "POST",
+	                        url: "<?php echo base_url('User_controller/validatePassword'); ?>",
+	                        data: { old_password : old_password },
+	                        async: false,
+	                        dataType: 'json',
+	                        success: function(data) {
+	                            if($.isEmptyObject(data)){
+	                            	alert('Incorrect old password.');
+	                            }
+	                            else{
+	                            	alert('Change user details successful');
+	                            	checkValue = true;
+	                            	$('form').attr('action', '<?php echo base_url('User_controller/saveEditUser'); ?>');
+	                            	$('form').submit();
+	                            }
+	                        },
+	                        error: function(errorw) {
+	                            alert("error");
+	                        }
+	                    }); 
+					}
+					return checkValue; 
 				});
 			});
 		</script>
@@ -93,13 +120,6 @@
 		          	</div>
 		        </div>
 		    </div>
-		    <script type="text/javascript">
-				$("#menu-toggle").click(function(e) {
-			        e.preventDefault();
-			        $("#wrapper").toggleClass("active");
-					});
-				});
-			</script>
 			
   			<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -108,20 +128,20 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="myModalLabel">Edit Information</h4>
 						</div>
+						<form id="edit_form" enctype="multipart/form-data" method="POST" action="<?php echo base_url('User_controller/saveEditUser'); ?>" enctype="multipart/form-data" data-parsley-validate>
 							<div class="modal-body">
-								<form enctype="multipart/form-data" method="POST" action="<?php echo base_url('User_controller/saveEditUser'); ?>" enctype="multipart/form-data" data-parsley-validate>
 									<br/>
 									<div class="form-group">
 								    	<label class="control-label col-md-3">Old Password</label>
-								        <input id="old_password_edit" name="old_password_edit" type="password" class="input-xlarge" placeholder="**********" required>
+								        <input id="old_password_edit" name="old_password_edit" type="password" class="input-xlarge" placeholder="**********">
 								    </div>
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">New Password</label>
-								        <input id="new_password_edit" name="new_password_edit" type="password" class="input-xlarge" placeholder="**********" required>
+								        <input id="new_password_edit" name="new_password_edit" type="password" class="input-xlarge" placeholder="**********">
 								    </div>
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">Full Name</label>
-								    	<input id="name_edit" name="name_edit" type="text" class="input-xlarge" required>
+								    	<input id="name_edit" name="name_edit" type="text" class="input-xlarge">
 								    </div>
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">Office Name</label>
@@ -130,13 +150,13 @@
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">Position</label>
 								        <input id="position_edit" name="position_edit" type="text" class="input-xlarge" readonly>
-								    </div>
-								</form>		
+								    </div>	
 							</div>
-						<div class="modal-footer">
-							<button id="update_button" name="action" class="btn btn-primary">Update</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
+							<div class="modal-footer">
+								<button type="submit" name="action" id="update_button" class="btn btn-primary">Update</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</form>	
 					</div>
 				</div>
 			</div>	

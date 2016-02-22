@@ -21,8 +21,14 @@ class Pages_controller extends CI_Controller{
 
 	public function viewProjects(){
 		$user_id = $this->session->userdata('user_id');
+		$user_type_id = $this->session->userdata('user_type_id');
+		if($user_type_id == 4){
+			$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved($user_id);
+		}
+		else{
+			$data['projects'] = $this->PPMP_model->getAllProjects($user_id);
+		}
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
-		$data['projects'] = $this->PPMP_model->getAllProjects($user_id);
 		$this->load->view('NAV', $data);
 		$this->load->view('Projects', $data);
 	}

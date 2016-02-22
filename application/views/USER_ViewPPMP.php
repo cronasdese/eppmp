@@ -181,7 +181,21 @@
                     </tr>
 
                    <?php
-                        if($user_type_id == 4){
+                        if(
+                            ($user_type_id == 4) && 
+                            (
+                                ($project[0]->first_lvl_status != 2) && 
+                                ($project[0]->second_lvl_status != 2) && 
+                                ($project[0]->third_lvl_status != 2) && 
+                                ($project[0]->fourth_lvl_status != 2)
+                            ) &&
+                            (
+                                (($first_approver[0]->name == $user_details[0]->name) && ($project[0]->first_lvl_status == 0)) ||
+                                (($second_approver[0]->name == $user_details[0]->name) && ($project[0]->second_lvl_status == 0)) ||
+                                (($third_approver[0]->name == $user_details[0]->name) && ($project[0]->third_lvl_status == 0)) ||
+                                (($fourth_approver[0]->name == $user_details[0]->name) && ($project[0]->fourth_lvl_status == 0))
+                            )
+                        ){
                             echo '<tr>
                                 <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
                                 <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
