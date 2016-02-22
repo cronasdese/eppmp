@@ -13,7 +13,7 @@
         $(document).ready(function(){
             $('#approve').click(function(e) {
                 var projectId = document.getElementById('project_id').value;
-                alert(projectId);
+                //alert(projectId);
                 document.getElementById('project_id_modal_approve').value = projectId;
             });
             $('#reject').click(function(e) {
@@ -104,7 +104,7 @@
                 <tfoot>
                         <tr>
                             <th class="text-nowrap text-center" colspan="16" rowspan="2">Estimated Total Budget: </th>
-                            <th class="text-nowrap text-center" colspan="2" rowspan="2">00000.00</th>
+                            <?php echo '<th class="text-nowrap text-center" colspan="2" rowspan="2">'. $project[0]->estimated_budget .'</th>'; ?>
                         </tr>
                 </tfoot>
             </table>
@@ -115,10 +115,32 @@
             <table class="col-sm-12">
                 <thead>
                     <tr>
-                        <th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
-                        <th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
-                        <th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
-                        <th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>
+                        <?php
+                            if($project[0]->first_lvl_status == 0){
+                                echo '<th class="col-md-3">Prepared by: </th>';
+                            }
+                            else{
+                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                            }
+                            if($project[0]->second_lvl_status == 0){
+                                echo '<th class="col-md-3">Recommended by: </th>';
+                            }
+                            else{
+                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                            }
+                            if($project[0]->third_lvl_status == 0){
+                                echo '<th class="col-md-3">Evaluated by: </th>';
+                            }
+                            else{
+                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                            }
+                            if($project[0]->fourth_lvl_status == 0){
+                                echo '<th class="col-md-3">Approved by: </th>';
+                            }
+                            else{
+                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                            }
+                        ?>
                     </tr>    
                 </thead>
                 <tbody>
@@ -147,10 +169,6 @@
                             </tr>';   
                         }
                     ?>
-                    <tr>
-                        <td colspan="2"><button id="approve" class="btn btn-success btn-sm col-sm-12" data-toggle="modal" data-target="#approveModal">Approve</button></td>
-                        <td colspan="2"><button id="reject" class="btn btn-danger btn-sm col-sm-12" data-toggle="modal" data-target="#rejectModal">Reject</button></td></td>
-                    </tr>
                 </tbody>
             </table>  
         </div>  
