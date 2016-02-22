@@ -44,10 +44,9 @@
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav">
 					        <li> &nbsp; &nbsp; &nbsp; </li>
-					        <li class="active"><a href="<?php echo base_url('Pages_controller/home'); ?>">Home</a></li>			      
 					    </ul>
 			      		<ul class="nav navbar-nav navbar-right">
-			       		 	<li><a href="#" class="bodyclass">Notification &nbsp; <i class="glyphicon glyphicon-bell"></i></a></li>
+			       		 	<li class="active"><a href="<?php echo base_url('Pages_controller/home'); ?>">Home &nbsp;</a></li>	
 					        <li class="dropdown">
 					          	<?php echo'<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">'. $user_details[0]->name .' &nbsp; <b class="caret"></b></a>'; ?>
 					         	<ul class="dropdown-menu">
