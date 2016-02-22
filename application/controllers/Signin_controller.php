@@ -12,11 +12,7 @@ class Signin_controller extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->model('PPMP_model');
-		$month = "January";
-		$ppmp_id = 215;
-		$data['purchase_order'] = $this->PPMP_model->generatePurchaseOrder($ppmp_id, $month);
-		$this->load->view('PR', $data);
+		$this->load->view('login');
 	}	
 
 	public function validateAccount(){
@@ -37,16 +33,22 @@ class Signin_controller extends CI_Controller{
 				foreach ($data['user_details'] as $type) {
 					$this->session->set_userdata('user_id', $type->user_id);
 					$this->session->set_userdata('user_type_id', $type->user_type_id);
-					if($type->user_type_id == 3){
-						$this->load->view('USER_Create', $data);
+					if(($type->user_type_id == 3) || ($type->user_type_id == 2)){
+						$this->load->view('NAV', $data);
+						$this->load->view('USER_HOME', $data);
 					}
 					else if($type->user_type_id == 4){
-						$this->load->model('PPMP_model');
-						print_r($type->user_id);
-						$data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved($type->user_id);
-						$data['user_id'] = $type->user_id;
-						print_r($data['projects']);
-						$this->load->view('USER_Approve', $data);
+						// $this->load->model('PPMP_model');
+						// print_r($type->user_id);
+						// $data['projects'] = $this->PPMP_model->getAllProjectsToBeApproved($type->user_id);
+						// $data['user_id'] = $type->user_id;
+						// print_r($data['projects']);
+						// $this->load->view('USER_Approve', $data);
+						$this->load->view('NAV');
+						$this->load->view('USER_HOME', $data);
+					}
+					else{
+						//admin home
 					}
 				}
 			}

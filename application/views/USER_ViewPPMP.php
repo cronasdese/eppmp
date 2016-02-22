@@ -94,8 +94,8 @@
                                     <td class="text-nowrap">' . $project_details_data->oct_qty . '</td>
                                     <td class="text-nowrap">' . $project_details_data->nov_qty . '</td>
                                     <td class="text-nowrap">' . $project_details_data->dec_qty . '</td>
-                                    <td class="text-nowrap">' . $project_details_data->price . '</td>
-                                    <td class="text-nowrap">' . $project_details_data->quantity*$project_details_data->price . '</td>
+                                    <td class="text-nowrap">' . number_format($project_details_data->price, 2, '.', ',') . '</td>
+                                    <td class="text-nowrap">' . number_format($project_details_data->quantity*$project_details_data->price, 2, '.', ',') . '</td>
                                 </tr>';
                             }
                         }
@@ -104,7 +104,7 @@
                 <tfoot>
                         <tr>
                             <th class="text-nowrap text-center" colspan="16" rowspan="2">Estimated Total Budget: </th>
-                            <?php echo '<th class="text-nowrap text-center" colspan="2" rowspan="2">'. $project[0]->estimated_budget .'</th>'; ?>
+                            <?php echo '<th class="text-nowrap text-center" colspan="2" rowspan="2">'. number_format($project[0]->estimated_budget, 2, '.', ',') .'</th>'; ?>
                         </tr>
                 </tfoot>
             </table>
@@ -116,29 +116,48 @@
                 <thead>
                     <tr>
                         <?php
-                            if($project[0]->first_lvl_status == 0){
-                                echo '<th class="col-md-3">Prepared by: </th>';
-                            }
-                            else{
+                            //first_lvl_status
+                            if($project[0]->first_lvl_status == 1){
                                 echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
                             }
-                            if($project[0]->second_lvl_status == 0){
-                                echo '<th class="col-md-3">Recommended by: </th>';
+                            else if($project[0]->first_lvl_status == 2){
+                                echo '<th class="col-md-3">Prepared by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
                             }
                             else{
+                                echo '<th class="col-md-3">Prepared by: </th>';
+                            }
+
+                            //second_lvl_status
+                            if($project[0]->second_lvl_status == 1){
                                 echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
                             }
-                            if($project[0]->third_lvl_status == 0){
-                                echo '<th class="col-md-3">Evaluated by: </th>';
+                            else if($project[0]->second_lvl_status == 2){
+                                echo '<th class="col-md-3">Recommended by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
                             }
                             else{
+                                echo '<th class="col-md-3">Recommended by: </th>';
+                            }
+
+                            //third_lvl_status
+                            if($project[0]->third_lvl_status == 1){
                                 echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
                             }
-                            if($project[0]->fourth_lvl_status == 0){
-                                echo '<th class="col-md-3">Approved by: </th>';
+                            else if($project[0]->third_lvl_status == 2){
+                                echo '<th class="col-md-3">Evaluated by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
                             }
                             else{
+                                echo '<th class="col-md-3">Evaluated by: </th>';
+                            }
+
+                            //fourth_lvl_status
+                            if($project[0]->fourth_lvl_status == 1){
                                 echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-ok circlecolor"></span></th>';
+                            }
+                            else if($project[0]->fourth_lvl_status == 2){
+                                echo '<th class="col-md-3">Approved by: <span class="glyphicon glyphicon-remove circlecolor"></span></th>';
+                            }
+                            else{
+                                echo '<th class="col-md-3">Approved by: </th>';
                             }
                         ?>
                     </tr>    

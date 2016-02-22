@@ -9,6 +9,7 @@ class PPMP_controller extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->model('PPMP_model');
+		$this->load->model('user_model');
 	}
 
 	public function submitPPMP(){
@@ -33,6 +34,8 @@ class PPMP_controller extends CI_Controller{
 		}
 		$data['user_type_id'] = $this->session->userdata('user_type_id');
 		//print_r($data);
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$this->load->view('NAV', $data);
 		$this->load->view('USER_ViewPPMP', $data);
 	}
 
@@ -63,7 +66,9 @@ class PPMP_controller extends CI_Controller{
 			$data['fourth_approver'] = $this->PPMP_model->getProjectFourthApprover($office_id->office_id);
 		}
 		//print_r($data);
+		$data['user_details'] = $this->user_model->getUserDetails($this->session->userdata('user_id'));
 		$data['user_type_id'] = $this->session->userdata('user_type_id');
+		$this->load->view('NAV', $data);
 		$this->load->view('USER_ViewPPMP', $data);
 	}
 

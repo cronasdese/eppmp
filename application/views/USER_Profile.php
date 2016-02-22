@@ -4,66 +4,45 @@
 		<title>Profile</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
-		<link rel="stylesheet" href="'assets/css/bootstrap.min.css" >
-		<link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
-		<script src ="assets/js/jquery-2.1.4.min.js"></script>
-		<script src ="assets/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+		<script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
+		<script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#update_user').click(function(){
+					var name = document.getElementById('name').innerHTML,
+						office = document.getElementById('office').innerHTML,
+						position = document.getElementById('position').innerHTML;
+					
+					document.getElementById('name_edit').value = name;
+					document.getElementById('position_edit').value = position;
+					document.getElementById('office_edit').value = office;
+				});
+
+				$('#update_button').click(function(){
+					var name = document.getElementById('name_edit').value,
+						old_password = document.getElementById('old_password_edit').value,
+						new_password = document.getElementById('new_password_edit').value;
+					
+					//$.ajax
+				});
+			});
+		</script>
 	</head>
 	<body>
-		<!-- WHOLE NAVBAR -->
-		<div>
-			<nav class="navbar  navbar-default">
-			  	<div class="container">
-
-			  		<!-- NAVBAR HEADER LEFT -->
-			    	<div class="navbar-header">
-			      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				        	<span class="sr-only">Toggle navigation</span>
-				        	<span class="icon-bar"></span>
-				        	<span class="icon-bar"></span>
-				        	<span class="icon-bar"></span>
-			      		</button>
-			      		<a class="navbar-brand" href="#">E-PPMP</a>
-			    	</div>
-
-			    	<!-- NAVBAR HEADER RIGHT -->
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				      	<ul class="nav navbar-nav navbar-right">
-				        	<li class="dropdown">
-					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>
-					          	<ul class="dropdown-menu" role="menu">
-					            	<li><a href="#">Action</a></li>
-					            	<li><a href="#">Another action</a></li>
-					            	<li><a href="#">Something else here</a></li>
-					         	</ul>
-				        	</li>
-				        	<li class="dropdown">
-					          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sammera Alim <span class="caret"></span></a>
-					          	<ul class="dropdown-menu" role="menu">
-					            	<li><a href="#">Profile</a></li>
-					            	<li class="divider"></li>
-					            	<li><a href="#">Logout</a></li>
-					         	</ul>
-				        	</li>
-				      	</ul>
-				    </div>
-			  	</div>
-			</nav>
-		</div>
+		
 		<!-- Sidebar -->
 		<div id="wrapper" class="active">
-     
-	      <!-- Sidebar -->
-	          
-	      <!-- Page content -->
+
 		    <div id="page-content-wrapper">
 		        <!-- Keep all page content within the page-content inset div! -->
 		        <div class="page-content inset">
 		          	<div class="row">
 		              	<div class="col-md-12">
 		              		<div>
-		              			<h3> User full name</h3>
+		              			<?php echo '<h3 id="name">'. $user_details[0]->name .'</h3>'; ?>
 		              		</div>
 		              		<br/>	
 			              	<br/>	              		
@@ -71,36 +50,20 @@
 			              		<div class="panel panel-default">
 								  	<div class="panel-heading">
 								   		<h3 class="panel-title"><b>Basic Information</b>
-								   		<a href="#" class="col-md-offset-7" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-edit"></span></a></h3> <!--glyphicon glyphicon-edit-->
+								   		<a id="update_user" href="#" class="col-md-offset-7" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-edit"></span></a></h3> <!--glyphicon glyphicon-edit-->
 								  	</div>
 								 	<div class="panel-body">
 								 		<div class="form-group">	
 											<label class="control-label col-md-4">Office/Unit: </label>
-											<p>Math Depart</p>
+											<?php echo '<p id="office">'. $user_details[0]->office_name .'</p>'; ?>
 									    </div>
 									    <div class="form-group">
-											<label class="control-label col-md-5">Position/Designation</label>
-											<p> churva123 </p>
+											<label class="control-label col-md-4">Position/Designation</label>
+											<?php echo '<p id="position">'. $user_details[0]->position .'</p>'; ?>
 									    </div>
 									    <div class="form-group">
 											<label class="control-label col-md-4">Password: </label>
 											<p> ********** </p>
-									    </div>
-								  		<div class="form-group">
-											<label class="control-label col-md-4">Email: </label>
-											<p> churvanes@yahoo.com </p>
-									    </div>
-										<div class="form-group">
-											<label class="control-label col-md-4">Telephone: </label>
-											<p> 123-4567</p>
-										</div>
-										<div class="form-group">	
-											<label class="control-label col-md-4">Mobile: </label>
-											<p> 123456789</p>
-										</div>
-										<div class="form-group">	
-											<label class="control-label col-md-4">Address: </label>
-											<p> Ayala blv., Ermita, Manila </p>
 									    </div>
 								  	</div>
 								</div>
@@ -111,30 +74,18 @@
 								   		<h3 class="panel-title"><b>Statistics</b></h3>
 								  	</div>
 								 	<div class="panel-body">
-								 		<div class="form-group">	
-											<label class="control-label col-md-5">Last Login: </label>
-											<p> 1 minute ago</p>
-									    </div>
 									    <div class="form-group">
-											<label class="control-label col-md-5">Project created: </label>
-											<p> 100 </p>
+											<label class="control-label col-md-5">Project submitted: </label>
+											<?php echo '<p>'. $projects_submitted[0]->projects_submitted .'</p>'; ?>
 									    </div>
 								  		<div class="form-group">
-											<label class="control-label col-md-5">Project submitted: </label>
-											<p> 50 </p>
+											<label class="control-label col-md-5">Project approved: </label>
+											<?php echo '<p>'. $projects_approved[0]->projects_approved .'</p>'; ?>
 									    </div>
 										<div class="form-group">
-											<label class="control-label col-md-5">Project approved: </label>
-											<p> 20 </p>
+											<label class="control-label col-md-5">Project rejected: </label>
+											<?php echo '<p>'. $projects_rejected[0]->projects_rejected .'</p>'; ?>
 										</div>
-										<div class="form-group">	
-											<label class="control-label col-md-5">Logins/Day: </label>
-											<p> 2 </p>
-										</div>
-										<div class="form-group">	
-											<label class="control-label col-md-5">Logins: </label>
-											<p> 48 </p>
-									    </div>
 								  	</div>
 								</div>
 							</div>	
@@ -158,41 +109,32 @@
 							<h4 class="modal-title" id="myModalLabel">Edit Information</h4>
 						</div>
 							<div class="modal-body">
-								<form>
+								<form enctype="multipart/form-data" method="POST" action="<?php echo base_url('User_controller/saveEditUser'); ?>" enctype="multipart/form-data" data-parsley-validate>
 									<br/>
+									<div class="form-group">
+								    	<label class="control-label col-md-3">Old Password</label>
+								        <input id="old_password_edit" name="old_password_edit" type="password" class="input-xlarge" placeholder="**********" required>
+								    </div>
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">New Password</label>
-								        <input type="password" class="input-xlarge" placeholder="**********">
+								        <input id="new_password_edit" name="new_password_edit" type="password" class="input-xlarge" placeholder="**********" required>
 								    </div>
 								    <div class="form-group">
-								    	<label class="control-label col-md-3">First Name</label>
-								    	<input type="text" value="First Name" class="input-xlarge">
+								    	<label class="control-label col-md-3">Full Name</label>
+								    	<input id="name_edit" name="name_edit" type="text" class="input-xlarge" required>
 								    </div>
 								    <div class="form-group">
-								    	<label class="control-label col-md-3">Middle Name</label>
-								    	<input type="text" value="Middle Name" class="input-xlarge">
-								    </div>
-								    <div class="form-group">
-								    	<label class="control-label col-md-3">Last Name</label>
-								    	<input type="text" value="Last name" class="input-xlarge">
+								    	<label class="control-label col-md-3">Office Name</label>
+								    	<input id="office_edit" name="office_edit" type="text" class="input-xlarge" readonly>
 								    </div>
 								    <div class="form-group">
 								    	<label class="control-label col-md-3">Position</label>
-								        <input type="text" value="123-5678" class="input-xlarge">
+								        <input id="position_edit" name="position_edit" type="text" class="input-xlarge" readonly>
 								    </div>
-								    <div class="form-group">
-								    	<label class="control-label col-md-3">Mobile</label>
-								        <input type="text" value="0123456789" class="input-xlarge">
-								    </div>
-								    <div class="form-group">	
-								    	<label class="control-label col-md-3">Address</label>
-								        <textarea value="" rows="3" class="input-xlarge">
-								        </textarea>
-								    </div> 
 								</form>		
 							</div>
 						<div class="modal-footer">
-							<button class="btn btn-primary">Update</button>
+							<button id="update_button" name="action" class="btn btn-primary">Update</button>
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</div>
 					</div>

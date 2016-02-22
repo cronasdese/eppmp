@@ -52,7 +52,7 @@
                                             echo '<form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
                                                 <tr id="row'. $row .'"">
                                                 <td>
-                                                    <input id="user_id'. $row .'" name="user_id" value="'. $user_id .'" class="hidden" />
+                                                    <input id="user_id'. $row .'" name="user_id" value="'. $user_details[0]->user_id .'" class="hidden" />
                                                     <input id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
                                                 </td>
                                                 <td>'. $project_data->project_title .'</td>

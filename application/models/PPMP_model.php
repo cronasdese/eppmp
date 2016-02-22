@@ -155,9 +155,8 @@ class PPMP_model extends CI_Model {
 
 	function getAllProjects($user_id){
 		// for Projects view
-		$this->db->select('project.id project_id, project.title project_title, project.date_submitted date_submitted, office.office_name office_name, SUM(project_details.quantity*project_details.price) estimated_budget, project.first_lvl_status first_lvl_status, project.second_lvl_status second_lvl_status, project.third_lvl_status third_lvl_status, project.fourth_lvl_status fourth_lvl_status');
+		$this->db->select('project.id project_id, project.title project_title, project.date_submitted date_submitted, office.office_name office_name, project.first_lvl_status first_lvl_status, project.second_lvl_status second_lvl_status, project.third_lvl_status third_lvl_status, project.fourth_lvl_status fourth_lvl_status');
 		$this->db->from('project');
-		$this->db->join('project_details', 'project_id = project_details.project_id');
 		$this->db->join('user', 'project.user_id = user.id');
 		$this->db->join('office', 'user.office_id = office.id');
 		$this->db->where('user.id', $user_id);
@@ -416,5 +415,54 @@ class PPMP_model extends CI_Model {
 		$this->db->insert('purchase_order', $data);
 		$pr_id = $this->db->insert_id();
 		return array($query->result(), $pr_id);
+	}
+
+	function searchProjects($search, $user_id){
+		$this->db->select('project.id project_id, project.title project_title, project.date_submitted date_submitted, office.office_name office_name, project.first_lvl_status first_lvl_status, project.second_lvl_status second_lvl_status, project.third_lvl_status third_lvl_status, project.fourth_lvl_status fourth_lvl_status');
+		$this->db->from('project');
+		$this->db->join('user', 'project.user_id = user.id');
+		$this->db->join('office', 'user.office_id = office.id');
+		$this->db->where('user.id', $user_id);
+		$this->db->where('project.submitted', 1);
+		$this->db->like('project.title', $search);
+		$this->db->or_like('office.office_name', $search);
+		$this->db->or_like('project.date_submitted', $search);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function countProjectsSubmitted($user_id){
+		// SELECT COUNT(id) projects_submitted
+		// FROM project
+		// WHERE user_id = 1
+		$this->db->select('COUNT(id) projects_submitted');
+		$this->db->from('project');
+		$this->db->where('user_id', $user_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function countProjectsApproved($user_id){
+		$this->db->select('COUNT(id) projects_approved');
+		$this->db->from('project');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('first_lvl_status', 1);
+		$this->db->where('second_lvl_status', 1);
+		$this->db->where('third_lvl_status', 1);
+		$this->db->where('fourth_lvl_status', 1);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function countProjectsRejected($user_id){
+		$this->db->select('COUNT(id) projects_rejected');
+		$this->db->from('project');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('first_lvl_status', 2);
+		$this->db->or_where('second_lvl_status', 2);
+		$this->db->or_where('third_lvl_status', 2);
+		$this->db->or_where('fourth_lvl_status', 2);
+		$query = $this->db->get();
+		return $query->result();
 	}
 }

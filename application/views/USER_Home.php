@@ -4,11 +4,11 @@
 		<title>Home</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
-		<link rel="stylesheet" href="'assets/css/bootstrap.min.css" >
-		<link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
-		<script src ="assets/js/jquery-2.1.4.min.js"></script>
-		<script src ="assets/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href= "<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+		<script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
+		<script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 		<script type="text/javascript">
 		    $(function(){
 		    $(".dropdown").hover(            
@@ -26,42 +26,6 @@
 		</script>
 	</head>
 	<body>	
-		<div>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="container">  
-				    <!-- Brand and toggle get grouped for better mobile display -->
-				    <div class="navbar-header">
-				      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				        	<span class="sr-only">Toggle navigation</span>
-				        	<span class="icon-bar"></span>
-				        	<span class="icon-bar"></span>
-				        	<span class="icon-bar"></span>
-				      	</button>
-				      	<img src="assets/images/logo.png" alt="logo" class="img-responsive" width="40" height="30" style="float:left; margin-top:5px; margin-right:10px"/> 
-				      	<div class="navbar-brand">E-PPMP</div>
-				    </div>
-
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				      	<ul class="nav navbar-nav">
-					        <li> &nbsp; &nbsp; &nbsp; </li>
-					        <li class="active"><a href="#">Home</a></li>			      
-					    </ul>
-			      		<ul class="nav navbar-nav navbar-right">
-			       		 	<li><a href="#" class="bodyclass">Notification &nbsp; <i class="glyphicon glyphicon-bell"></i></a></li>
-					        <li class="dropdown">
-					          	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">User Full Name &nbsp; <b class="caret"></b></a>
-					         	<ul class="dropdown-menu">
-						            <li><a href="#" class="bodyclass">Profile</a></li>
-			            			<li class="divider"></li>
-			            			<li><a href="#" class="bodyclass">Log-out</a></li>
-			          			</ul>
-			        		</li>
-			      		</ul>
-			    	</div><!-- /.navbar-collapse -->
-
-				</div>	 	  
-			</nav>	
-		</div>
 		<div class="container">
 			<div class="row">
 
@@ -69,19 +33,19 @@
 			        <h1 class="page-header">Home</h1>
 			    </div>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail theight" href="#">
-			        	<h2 class="text-center"><span class="glyphicon glyphicon-edit"></span></h2>
+		    		<a class="thumbnail theight" href="<?php echo base_url('Pages_controller/createPPMP'); ?>">
+			        	<h2 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-edit"></span></h2>
 		            	<h3 class="text-center text-nowrap">Create Project</h3>
-		            	<br />
-        				<p class="text-center">Created Project: </p>
+		            	<!--br />
+        				<p class="text-center">Created Project: </p-->
 			        </a>
 			    </div>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail theight" href="#" >
-			        	<h2 class="text-center"><span class="glyphicon glyphicon-open"></span></h2>
+			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/viewProjects'); ?>" >
+			        	<h2 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-open"></span></h2>
 			            <h3 class="text-center">View Projects</h3>
-        				<p class="text-center">Approved Project: </p>
-        				<p class="text-center">Rejected Project: </p>
+        				<!--p class="text-center">Approved Project: </p>
+        				<p class="text-center">Rejected Project: </p-->
 			        </a>
 			    </div>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
@@ -92,20 +56,20 @@
 			        </a>
 			    </div>
 			 	 <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
+			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/consolidate'); ?>">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-download-alt"></span></h1>
 			            <h3 class="text-center">Consolidate</h3>
 		            	<br />
 			        </a>
 			    </div>
 			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
+			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/generateAPP'); ?>">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-copy"></span></h1>
 			            <h3 class="text-center">Generate APP</h3>
 		            	<br />
 			        </a>
 			    </div> 
-			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+			     <!--div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
 			        <a class="thumbnail theight" href="#">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-user"></span></h1>
 			            <h3 class="text-center">Accounts</h3>
@@ -118,7 +82,7 @@
 			            <h3 class="text-center">Offices</h3>
 		            	<br />
 			        </a>
-			    </div>
+			    </div-->
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
 			        <a class="thumbnail theight" href="#">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-bell"></span></h1>

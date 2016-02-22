@@ -100,8 +100,10 @@
                         success: function(data) {
                             //alert(data);
                             $(data).each(function(){
+                                var price = this.price;
+                                //alert(price.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
                                 document.getElementById('unit_' + numberId).innerHTML = this.unit;
-                                document.getElementById('unitprice_' + numberId).value = this.price;
+                                document.getElementById('unitprice_' + numberId).value = price.toLocaleString();
 
                                 //update subtotal when quantity is not empty
                                 var quantity = $('#qty_' + numberId).val(),
@@ -110,7 +112,7 @@
 
                                 if(quantity != ""){
                                     subtotal = quantity*price;
-                                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toFixed(2);
+                                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toLocaleString();
                                 }
                             });
                         },
@@ -133,7 +135,7 @@
                         subtotal = 0;
 
                     subtotal = quantity*price;
-                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toFixed(2);
+                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toLocaleString();
                 }
                 else if(type === "unitprice_"){
                     var price = $('#' + id).val(),
@@ -141,7 +143,9 @@
                         subtotal = 0;
 
                     subtotal = quantity*price;
-                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toFixed(2);
+                    //alert(price.toFixed(2));
+                    //document.getElementById(id).value = price.toFixed(2);
+                    document.getElementById('subtotal_' + numberId).innerHTML = subtotal.toLocaleString();
                 }
             });
             

@@ -21,18 +21,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="form-group col-sm-3">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-md-offset-7">
-                            <select class="form-control input-sm pull-right">
-                                <option>1</option>
-                                <option>2</option>
-                            </select>
+                            <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('Pages_controller/searchProjects'); ?>" enctype="multipart/form-data" data-parsley-validate>
+                                <div class="input-group input-group-sm">
+                                    <input id="search" name="search" type="text" class="form-control" placeholder="Search" required>
+                                    <span class="input-group-btn">
+                                        <button id="search_button" name="action" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     
@@ -44,8 +40,7 @@
                                 <th class="id">PCode<span class="fa fa-sort"></span></th>
                                 <th class="project">Project/Program<span class="fa fa-sort"></span></th>
                                 <th class="office">Office<span class="fa fa-sort"></span></th>
-                                <th class="date">Date Submitted<span class="fa fa-sort"></span></th>
-                                <th class="status">Estimated Budget<span class="fa fa-sort"></span></th>    
+                                <th class="date">Date Submitted<span class="fa fa-sort"></span></th>  
                                 <th class="status" title="non-sortable">Status</th>
                                 <th class="status" title="non-sortable"> </th>
                             </tr>
@@ -53,41 +48,34 @@
                         <tbody>
                             <?php
                                 if(is_array($projects) || is_object($projects)){
+                                    $row = 1;
                                     foreach ($projects as $project_data) {
                                         echo'
+                                        <form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
                                         <tr>
-                                        <td>'. $project_data->project_id .'</td>
+                                        <td>
+                                            <input id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
+                                        </td>
                                         <td><a href="#">'. $project_data->project_title .'</a></td>
                                         <td>'. $project_data->office_name .'</td>
-                                        <td>'. $project_data->date_submitted .'</td>
-                                        <td>'. $project_data->estimated_budget .'</td>';
+                                        <td>'. $project_data->date_submitted .'</td>';
                                         if(($project_data->first_lvl_status == 1) && ($project_data->second_lvl_status == 1) && ($project_data->third_lvl_status == 1) && ($project_data->fourth_lvl_status == 1)){
                                             echo'<td><span class="label label-success">Aprroved</span></td>';
                                         }
-                                        else if(($project_data->first_lvl_status == 3) || ($project_data->second_lvl_status == 3) || ($project_data->third_lvl_status == 3) || ($project_data->fourth_lvl_status == 3)){
+                                        else if(($project_data->first_lvl_status == 2) || ($project_data->second_lvl_status == 2) || ($project_data->third_lvl_status == 2) || ($project_data->fourth_lvl_status == 2)){
                                             echo'<td><span class="label label-danger">Rejected</span></td>';
                                         }
                                         else{
                                             echo'<td><span class="label label-primary">Pending</span></td>';
                                         }
-                                        echo '<td><button class="btn btn-default btn-sm">Open</button></td>
-                                        </tr>';
+                                        echo '<td><button id="open'. $row .'" class="btn btn-default btn-sm">Open</button></td>
+                                        </tr>
+                                        </form>';
+                                        $row++;
                                     }
                                 }
                             ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="9">
-                                    <div class="text-center">
-                                        <ul class="pager">
-                                          <li><a href="#">Previous</a></li>
-                                          <li><a href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
