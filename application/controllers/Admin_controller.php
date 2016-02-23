@@ -9,22 +9,6 @@ class Admin_controller extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 
-	public function insertCategory(){
-		$category = $this->input->post('category');
-		$subcategory = $this->input->post('subcategory');
-
-		$this->form_validation->set_rules('category', 'Category', 'required');
-		$this->form_validation->set_rules('subcategory', 'Subcategory', 'required');
-
-		if($this->form_validation->run() == FALSE){
-			$this->load->view('ADMIN_ADDCategory');
-		}
-		else{
-			$category_id = $this->admin_model->insertCategory($category);
-      		$this->admin_model->insertSubcategory($category_id, $subcategory);
-      	}
-	}
-
 	public function getAllUsers(){
 		$data['users'] = $this->admin_model->getAllUsers();
 		$this->load->view('ADMIN_Accounts');
@@ -80,10 +64,24 @@ class Admin_controller extends CI_Controller {
 		echo json_encode($added_office);
 	}
 
+	public function editOffice(){
+		$office_name = $this->input->post('office_name');
+		$status = $this->input->post('status');
+		$office_id = $this->input->post('office_id');
+		$added_office = $this->admin_model->editOffice($office_id, $office_name, $status);
+		echo json_encode($added_office);
+	}
+
 	public function search(){
 		$search = $this->input->post('search');
 		$data['users'] = $this->admin_model->search($search);
 
 		$this->load->view('ADMIN_Accounts', $data);
+	}
+
+	public function addCategory(){
+		$category = $this->input->post('category');
+		$this->admin_model->addCategory($category);
+		//$this-
 	}
 }

@@ -47,32 +47,69 @@
                         </thead>
                         <tbody>
                             <?php
-                                if(is_array($projects) || is_object($projects)){
-                                    $row = 1;
-                                    foreach ($projects as $project_data) {
-                                        echo'
-                                        <form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
-                                        <tr>
-                                        <td>
-                                            <input style="border:none" id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
-                                        </td>
-                                        <td><a href="#">'. $project_data->project_title .'</a></td>
-                                        <td>'. $project_data->office_name .'</td>
-                                        <td>'. $project_data->date_submitted .'</td>';
-                                        if(($project_data->first_lvl_status == 1) && ($project_data->second_lvl_status == 1) && ($project_data->third_lvl_status == 1) && ($project_data->fourth_lvl_status == 1)){
-                                            echo'<td><span class="label label-success">Aprroved</span></td>';
+                                if(($user_type_id[0] == 2) || ($user_type_id[0] == 3)){
+                                    if(is_array($projects) || is_object($projects)){
+                                        $row = 1;
+                                        foreach ($projects as $project_data) {
+                                            echo'
+                                            <form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
+                                            <tr>
+                                            <td>
+                                                <input style="border:none" id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
+                                            </td>
+                                            <td><a href="#">'. $project_data->project_title .'</a></td>
+                                            <td>'. $project_data->office_name .'</td>
+                                            <td>'. $project_data->date_submitted .'</td>';
+                                            if(($project_data->first_lvl_status == 1) && ($project_data->second_lvl_status == 1) && ($project_data->third_lvl_status == 1) && ($project_data->fourth_lvl_status == 1)){
+                                                echo'<td><span class="label label-success">Aprroved</span></td>';
+                                            }
+                                            else if(($project_data->first_lvl_status == 2) || ($project_data->second_lvl_status == 2) || ($project_data->third_lvl_status == 2) || ($project_data->fourth_lvl_status == 2)){
+                                                echo'<td><span class="label label-danger">Rejected</span></td>';
+                                            }
+                                            else{
+                                                echo'<td><span class="label label-primary">Pending</span></td>';
+                                            }
+                                            echo '<td class="col-sm-1"><button id="open'. $row .'" class="btn btn-default btn-sm"> Open </button></td>
+                                            <td class="col-sm-1"><button id="adopt'. $row .'" class="btn btn-default btn-sm"> Adopt </button></td>
+                                            </tr>
+                                            </form>';
+                                            $row++;
                                         }
-                                        else if(($project_data->first_lvl_status == 2) || ($project_data->second_lvl_status == 2) || ($project_data->third_lvl_status == 2) || ($project_data->fourth_lvl_status == 2)){
-                                            echo'<td><span class="label label-danger">Rejected</span></td>';
+                                    }
+                                }
+                                else{
+                                    if(is_array($projects) || is_object($projects)){
+                                        $row = 1;
+                                        foreach ($projects as $project_data) {
+                                            echo'
+                                            <form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
+                                            <tr>
+                                            <td>
+                                                <input style="border:none" id="project_id'. $row .'" name="project_id" value="'. $project_data->project_id .'" readonly/>
+                                            </td>
+                                            <td><a href="#">'. $project_data->project_title .'</a></td>
+                                            <td>'. $project_data->office_name .'</td>
+                                            <td>'. $project_data->date_submitted .'</td>';
+                                            if(
+                                                (($project_data->first_lvl_id == $user_details[0]->user_id) && ($project_data->first_lvl_status == 1)) ||
+                                                (($project_data->second_lvl_id == $user_details[0]->user_id) && ($project_data->second_lvl_status == 1)) ||
+                                                (($project_data->third_lvl_id == $user_details[0]->user_id) && ($project_data->third_lvl_status == 1)) ||
+                                                (($project_data->fourth_lvl_id == $user_details[0]->user_id) && ($project_data->fourth_lvl_status == 1))
+                                            ){
+                                                echo'<td><span class="label label-success">Aprroved</span></td>';
+                                            }
+                                            else if(($project_data->first_lvl_status == 2) || ($project_data->second_lvl_status == 2) || ($project_data->third_lvl_status == 2) || ($project_data->fourth_lvl_status == 2)){
+                                                echo'<td><span class="label label-danger">Rejected</span></td>';
+                                            }
+                                            else{
+                                                echo'<td><span class="label label-primary">Pending</span></td>';
+                                            }
+                                            echo '<td class="col-sm-1"><button id="open'. $row .'" class="btn btn-default btn-sm"> Open </button></td>
+                                            <td class="col-sm-1"><button id="adopt'. $row .'" class="btn btn-default btn-sm"> Adopt </button></td>
+                                            </tr>
+                                            </form>';
+                                            $row++;
                                         }
-                                        else{
-                                            echo'<td><span class="label label-primary">Pending</span></td>';
-                                        }
-                                        echo '<td class="col-sm-1"><button id="open'. $row .'" class="btn btn-default btn-sm"> Open </button></td>
-                                        <td class="col-sm-1"><button id="adopt'. $row .'" class="btn btn-default btn-sm"> Adopt </button></td>
-                                        </tr>
-                                        </form>';
-                                        $row++;
                                     }
                                 }
                             ?>

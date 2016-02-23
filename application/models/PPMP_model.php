@@ -110,7 +110,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProjectFirstApprover($office_id){
-		$this->db->select('user.name, user.position');
+		$this->db->select('user.id user_id, user.name, user.position');
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.first_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
@@ -121,7 +121,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProjectSecondApprover($office_id){
-		$this->db->select('user.name, user.position');
+		$this->db->select('user.id user_id, user.name, user.position');
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.second_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
@@ -132,7 +132,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProjectThirdApprover($office_id){
-		$this->db->select('user.name, user.position');
+		$this->db->select('user.id user_id, user.name, user.position');
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.third_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
@@ -143,7 +143,7 @@ class PPMP_model extends CI_Model {
 	}
 
 	function getProjectFourthApprover($office_id){
-		$this->db->select('user.name, user.position');
+		$this->db->select('user.id user_id, user.name, user.position');
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.fourth_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
@@ -425,9 +425,24 @@ class PPMP_model extends CI_Model {
 		$this->db->where('user.id', $user_id);
 		$this->db->where('project.submitted', 1);
 		$this->db->like('project.title', $search);
-		$this->db->or_like('office.office_name', $search);
-		$this->db->or_like('project.date_submitted', $search);
 		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function searchProjectsToBeApproved($search, $user_id){
+		$this->db->select('project.id project_id, project.title project_title, office.office_name office_name, project.date_submitted date_submitted, approval.first_lvl_id, approval.second_lvl_id, approval.third_lvl_id, approval.fourth_lvl_id, project.first_lvl_status, project.second_lvl_status, project.third_lvl_status, project.fourth_lvl_status');
+		$this->db->from('approval');
+		$this->db->join('office', 'approval.office_id = office.id');
+		$this->db->join('user', 'office.id = user.office_id');
+		$this->db->join('project', 'user.id = project.user_id');
+		$this->db->where('project.submitted', 1);
+		$this->db->where('approval.first_lvl_id', $user_id);
+		$this->db->or_where('approval.second_lvl_id', $user_id);
+		$this->db->or_where('approval.third_lvl_id', $user_id);
+		$this->db->or_where('approval.fourth_lvl_id', $user_id);
+		$this->db->like('project.title', $search);
+		$query = $this->db->get();
+		print_r($this->db->last_query());
 		return $query->result();
 	}
 

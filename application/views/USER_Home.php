@@ -69,20 +69,6 @@
 		            	<br />
 			        </a>
 			    </div> 
-			     <!--div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-user"></span></h1>
-			            <h3 class="text-center">Accounts</h3>
-		            	<br />
-			        </a>
-			    </div>
-			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-phone-alt"></span></h1>
-			            <h3 class="text-center">Offices</h3>
-		            	<br />
-			        </a>
-			    </div-->
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
 			        <a class="thumbnail theight" href="#">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-bell"></span></h1>

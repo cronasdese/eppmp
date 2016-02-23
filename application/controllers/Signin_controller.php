@@ -48,7 +48,7 @@ class Signin_controller extends CI_Controller{
 						$this->load->view('USER_HOME', $data);
 					}
 					else{
-						//$this->load->view('NAV', $data);
+						$this->load->view('ADMIN_Nav', $data);
 						$this->load->view('ADMIN_Home');
 					}
 				}

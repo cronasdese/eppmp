@@ -33,63 +33,25 @@
 			        <h1 class="page-header">Home</h1>
 			    </div>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-		    		<a class="thumbnail theight" href="<?php echo base_url('Pages_controller/createPPMP'); ?>">
+		    		<a class="thumbnail theight" href="<?php echo base_url('Pages_controller/adminAdd'); ?>">
 			        	<h2 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-edit"></span></h2>
-		            	<h3 class="text-center text-nowrap">Create Project</h3>
-		            	<!--br />
-        				<p class="text-center">Created Project: </p-->
-			        </a>
-			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/viewProjects'); ?>" >
-			        	<h2 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-open"></span></h2>
-			            <h3 class="text-center">View Projects</h3>
-        				<!--p class="text-center">Approved Project: </p>
-        				<p class="text-center">Rejected Project: </p-->
-			        </a>
-			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-duplicate"></span></h1>
-			            <h3 class="text-center">Generate PR</h3>
-		            	<br />
-			        </a>
-			    </div>
-			 	 <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/consolidate'); ?>">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-download-alt"></span></h1>
-			            <h3 class="text-center">Consolidate</h3>
-		            	<br />
+		            	<h3 class="text-center text-nowrap">Supplies/Items</h3>
 			        </a>
 			    </div>
 			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/generateAPP'); ?>">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-copy"></span></h1>
-			            <h3 class="text-center">Generate APP</h3>
-		            	<br />
-			        </a>
-			    </div> 
-			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
+			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/adminAccounts'); ?>">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-user"></span></h1>
 			            <h3 class="text-center">Accounts</h3>
 		            	<br />
 			        </a>
 			    </div>
 			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
+			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/adminOffices'); ?>">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-phone-alt"></span></h1>
 			            <h3 class="text-center">Offices</h3>
 		            	<br />
 			        </a>
-			    </div>
-			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="#">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-bell"></span></h1>
-			            <h3 class="text-center">Notifications</h3>
-		            	<br />
-			        </a>
-			    </div>          
+			    </div>         
 			</div>
 		</div>    
 	</body>

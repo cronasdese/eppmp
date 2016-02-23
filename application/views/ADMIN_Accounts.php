@@ -145,26 +145,6 @@
                         }
                     });
 				});
-
-				$('#add_office').click(function(){
-					var office_name = document.getElementById('office_name_add_office').value,
-						status = $('#status_add_office').val();
-
-					$.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('Admin_controller/addOffice'); ?>",
-                        data: { office_name : office_name,
-                        		status : status },
-                        dataType: 'json',
-                        success: function(data) {
-                            alert('You have successfully added an office.');
-                            location.reload();
-                        },
-                        error: function(errorw) {
-                            alert("error");
-                        }
-                    });
-				});
 			});
 		</script>
 	</head>
@@ -229,49 +209,11 @@
 							</div>
 							<!--END OF ADD USER MODAL-->	
 					</div>
-				  	<div class="btn-group">
+				  	<!--div class="btn-group">
 					   	<a href="#" class="btn btn-default btn-sm col-sm-12" data-toggle="modal" data-target="#officeModal">
 					   		<span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:10px"> </span>	Add Office
 					   	</a>
-				   		<!-- Office Modal -->
-						<div class="modal fade" id="officeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      	<div class="modal-header">
-							        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        	<h4 class="modal-title" id="myModalLabel">New Office</h4>
-							      	</div>
-							      	<div class="modal-body">
-							        	<div class="form-group">
-											<label class="control-label col-md-3">Office name: </label>
-											<input id="office_name_add_office" type="text" label="Enter First name">
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3">Status: </label>
-										    <select id="status_add_office" style="margin-top:10px">
-										    	<option value="1">Activate</option>
-										    	<option value="0">Deactivate</option>
-										    </select>
-						            	</div>	
-										<!--Di ko knows kung ano pa kailangan dito hahahaha-->
-
-							      	</div>
-							      	<div class="modal-footer">
-								        <div class="col-sm-offset-7">
-								        	<button id="add_office" type="button" class="btn btn-primary btn-md">Save changes</button>
-								       		<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-								    	</div> 
-							      	</div>
-							    </div>
-							</div>
-						</div>
-						<!--END OF ADD OFFICE MODAL-->
-				  	</div>
-					  	<!--script type="text/javascript">
-							$(function () {
-							  $('[data-toggle="tooltip"]').tooltip()
-								});
-						</script-->	
+				  	</div-->
 					</div>	
 				</div>
 				<div class="row">	

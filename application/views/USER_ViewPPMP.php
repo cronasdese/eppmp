@@ -25,25 +25,32 @@
     </script>
 </head>
 <body>
-<div class="container" style="margin-left:40px">
-    <div class="row">
-        <select class="col-md-offset-9">
-            <option value="0">Select Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-        <button type="submit">Generate PR</button>
-    </div>
+<div class="container">
+    <?php
+        if($project[0]->first_lvl_status == 1 && $project[0]->second_lvl_status == 1 && $project[0]->third_lvl_status == 1 && $project[0]->fourth_lvl_status == 1){
+            echo '
+                <form enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/generatePurchaseOrder') .'" enctype="multipart/form-data">
+                    <div class="row">
+                        <input id="project_id" name="project_id" class="hidden" value="'. $project[0]->project_id .'"/>
+                        <select id="month" name="month" class="col-md-offset-9">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <button type="submit">Generate PR</button>
+                    </div>
+                </form>';
+        }
+    ?>
     <div class="container-fluid">
         <br />
         <p class="text-center">Technological Univesity of the Philippines</p>
@@ -208,10 +215,10 @@
                                 ($project[0]->fourth_lvl_status != 2)
                             ) &&
                             (
-                                (($first_approver[0]->name == $user_details[0]->name) && ($project[0]->first_lvl_status == 0)) ||
-                                (($second_approver[0]->name == $user_details[0]->name) && ($project[0]->second_lvl_status == 0)) ||
-                                (($third_approver[0]->name == $user_details[0]->name) && ($project[0]->third_lvl_status == 0)) ||
-                                (($fourth_approver[0]->name == $user_details[0]->name) && ($project[0]->fourth_lvl_status == 0))
+                                (($first_approver[0]->user_id == $user_details[0]->user_id) && ($project[0]->first_lvl_status == 0)) ||
+                                (($second_approver[0]->user_id == $user_details[0]->user_id) && ($project[0]->second_lvl_status == 0) && ($project[0]->first_lvl_status == 1)) ||
+                                (($third_approver[0]->user_id == $user_details[0]->user_id) && ($project[0]->third_lvl_status == 0) && ($project[0]->second_lvl_status == 1)) ||
+                                (($fourth_approver[0]->user_id == $user_details[0]->user_id) && ($project[0]->fourth_lvl_status == 0) && ($project[0]->third_lvl_status == 1))
                             )
                         ){
                             echo '<tr>

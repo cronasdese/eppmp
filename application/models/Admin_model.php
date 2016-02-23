@@ -69,6 +69,13 @@ class Admin_model extends CI_Model {
 		return $query->result();
 	}
 
+	function getAllOffices(){
+		$this->db->select('id office_id, office_name, status');
+		$this->db->from('office');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function getOffices($user_id){
 		$this->db->select('user.office_id');
 		$this->db->from('user');
@@ -136,6 +143,16 @@ class Admin_model extends CI_Model {
 		);
 
 		$this->db->insert('office', $data);
+	}
+
+	function editOffice($office_id, $office_name, $status){
+		$data = array(
+			'office_name' => $office_name,
+			'status' => $status
+		);
+
+		$this->db->where('id', $office_id);
+		$this->db->update('office', $data);
 	}
 
 	function search($search){

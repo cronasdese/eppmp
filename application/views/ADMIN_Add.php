@@ -50,22 +50,24 @@
 			    		<br />
 						<h3 class="text-right">Add Category</h3>
 						<hr />
-						<div class="container">	
-							<table>
-								<tr>
-									<td class="text-nowrap">
-										<label class="col-sm-5 control-label">New Category: </label>
-										<input type="text" class="col-sm-12" placeholder="Enter New Subcategory"/>
-									</td>
-								</tr>
-							</table>
-							<br />
-							<br />	
-							<div class="row">
-							 	<button type="submit" class="btn btn-primary btn-sm col-sm-2" style="margin-right:10px">Add</button>
-							 	<button type="button" class="btn btn-sm col-sm-1">Cancel</button>
-							</div>				
-						</div>	
+						<form enctype="multipart/form-data" method="POST" action="<?php echo base_url('Admin_controller/addCategory'); ?>" enctype="multipart/form-data" data-parsley-validate>
+							<div class="container">	
+								<table>
+									<tr>
+										<td class="text-nowrap">
+											<label class="col-sm-5 control-label">New Category: </label>
+											<input id="category" name="category" type="text" class="col-sm-12" placeholder="Enter New Category" required />
+										</td>
+									</tr>
+								</table>
+								<br />
+								<br />	
+								<div class="row">
+								 	<button type="submit" class="btn btn-primary btn-sm col-sm-2" style="margin-right:10px">Add</button>
+								 	<button type="button" class="btn btn-sm col-sm-1">Cancel</button>
+								</div>				
+							</div>	
+						</form>
 					</div>
 			  	</div>
 			  	<!--ADD SUBCATEGORY-->
