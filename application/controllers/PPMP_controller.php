@@ -112,7 +112,28 @@ class PPMP_controller extends CI_Controller{
 		$data['purchase_order'] = $this->PPMP_model->generatePurchaseOrder($ppmp_id, $month);
 		$data['user_details'] = $this->user_model->getUserDetails($this->session->userdata('user_id'));
 		$data['user_type_id'] = $this->session->userdata('user_type_id');
-		$this->load->view('NAV', $data);
-		$this->load->view('PR', $data);
+		//print_r($data);
+		if($data['purchase_order'][0] == NULL){
+			$data['project'] = $this->PPMP_model->getProject($ppmp_id);
+			$data['project_details'] = $this->PPMP_model->getProjectDetails($ppmp_id);
+			//print_r($data);
+			foreach ($data['project'] as $office_id) {
+				//print_r($office_id);
+				$data['first_approver'] = $this->PPMP_model->getProjectFirstApprover($office_id->office_id);
+				$data['second_approver'] = $this->PPMP_model->getProjectSecondApprover($office_id->office_id);
+				$data['third_approver'] = $this->PPMP_model->getProjectThirdApprover($office_id->office_id);
+				$data['fourth_approver'] = $this->PPMP_model->getProjectFourthApprover($office_id->office_id);
+			}
+			//print_r($data);
+			$data['user_details'] = $this->user_model->getUserDetails($this->session->userdata('user_id'));
+			$data['user_type_id'] = $this->session->userdata('user_type_id');
+			$this->load->view('NAV', $data);
+			$this->load->view('USER_ViewPPMP', $data);
+		}
+		else{
+			$this->load->view('NAV', $data);
+			$this->load->view('PR', $data);
+		}
+		
 	}
 }

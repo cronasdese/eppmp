@@ -26,7 +26,7 @@
                         <ul class="list-inline">
                             <?php
                                 echo 
-                                '<li class="col-md-4"><label class="col-md-3">Department</label>'. $purchase_order[0][0]->office_name .'<p class="col-md-2"></p></li> 
+                                '<li class="col-md-4"><label class="col-md-3">Department</label>'. $user_details[0]->office_name .'<p class="col-md-2"></p></li> 
                                 <li class="col-md-4"><label class="col-md-2">PR No.:</label><p class="col-md-1">'. $purchase_order[1] .'</p></li>
                                 <li class="col-md-4"><label class="col-md-2">Date:</label><p class="col-md-1">'. date("Y-m-d") .'</p></li>';
                             ?>

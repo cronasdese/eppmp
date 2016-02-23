@@ -166,4 +166,13 @@ class Admin_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function searchOffice($search){
+		$this->db->select('office.id office_id, office.office_name office_name, office.status');
+		$this->db->from('office');
+		$this->db->like('office.office_name', $search);
+		$this->db->order_by('office.status', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

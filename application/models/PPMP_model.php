@@ -425,6 +425,8 @@ class PPMP_model extends CI_Model {
 		$this->db->where('user.id', $user_id);
 		$this->db->where('project.submitted', 1);
 		$this->db->like('project.title', $search);
+		$this->db->or_like('office.office_name', $search);
+		$this->db->or_like('project.date_submitted', $search);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -435,14 +437,14 @@ class PPMP_model extends CI_Model {
 		$this->db->join('office', 'approval.office_id = office.id');
 		$this->db->join('user', 'office.id = user.office_id');
 		$this->db->join('project', 'user.id = project.user_id');
-		$this->db->where('project.submitted', 1);
 		$this->db->where('approval.first_lvl_id', $user_id);
 		$this->db->or_where('approval.second_lvl_id', $user_id);
 		$this->db->or_where('approval.third_lvl_id', $user_id);
 		$this->db->or_where('approval.fourth_lvl_id', $user_id);
 		$this->db->like('project.title', $search);
+		$this->db->or_like('office.office_name', $search);
+		$this->db->or_like('project.date_submitted', $search);
 		$query = $this->db->get();
-		print_r($this->db->last_query());
 		return $query->result();
 	}
 

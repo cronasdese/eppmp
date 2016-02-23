@@ -68,6 +68,7 @@ class Pages_controller extends CI_Controller{
 	public function home(){
 		$user_id = $this->session->userdata('user_id');
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$data['user_type_id'] = $this->session->userdata('user_type_id');
 		$this->load->view('NAV', $data);
 		$this->load->view('USER_HOME', $data);
 	}

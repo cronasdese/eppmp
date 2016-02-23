@@ -55,20 +55,26 @@
 		            	<br />
 			        </a>
 			    </div>
-			 	 <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/consolidate'); ?>">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-download-alt"></span></h1>
-			            <h3 class="text-center">Consolidate</h3>
-		            	<br />
-			        </a>
-			    </div>
-			     <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
-			        <a class="thumbnail theight" href="<?php echo base_url('Pages_controller/generateAPP'); ?>">
-			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-copy"></span></h1>
-			            <h3 class="text-center">Generate APP</h3>
-		            	<br />
-			        </a>
-			    </div> 
+			    <?php
+				    if($user_type_id[0] == 4){
+				    	echo '<div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+					        <a class="thumbnail theight" href="'. base_url('Pages_controller/consolidate') .'">
+					        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-download-alt"></span></h1>
+					            <h3 class="text-center">Consolidate</h3>
+				            	<br />
+					        </a>
+					    </div>';
+				    }
+				    else if($user_type_id == 2){
+				    	echo '<div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
+					        <a class="thumbnail theight" href="'. base_url('Pages_controller/generateAPP') .'">
+					        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-copy"></span></h1>
+					            <h3 class="text-center">Generate APP</h3>
+				            	<br />
+					        </a>
+					    </div>';
+				    }
+			    ?>
 			    <div class="col-lg-3 col-md-4 col-xs-6 thumb theight">
 			        <a class="thumbnail theight" href="#">
 			        	<h1 class="text-center" style="margin-top:40px"><span class="glyphicon glyphicon-bell"></span></h1>

@@ -6,7 +6,9 @@ class Admin_controller extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('admin_model');
+		$this->load->model('user_model');
 		$this->load->library('form_validation');
+		$this->load->library('session');
 	}
 
 	public function getAllUsers(){
@@ -73,10 +75,21 @@ class Admin_controller extends CI_Controller {
 	}
 
 	public function search(){
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
 		$search = $this->input->post('search');
 		$data['users'] = $this->admin_model->search($search);
-
+		$this->load->view('ADMIN_Nav', $data);
 		$this->load->view('ADMIN_Accounts', $data);
+	}
+
+	public function searchOffice(){
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$search = $this->input->post('search');
+		$data['offices'] = $this->admin_model->searchOffice($search);
+		$this->load->view('ADMIN_Nav', $data);
+		$this->load->view('ADMIN_Office', $data);
 	}
 
 	public function addCategory(){
