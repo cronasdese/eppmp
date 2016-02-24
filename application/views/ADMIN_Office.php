@@ -131,7 +131,11 @@
 					    	<tr>
 					      		<th rowspan="2">Office Code</th>
 					      		<th rowspan="2">Office/Unit</th>
+<<<<<<< HEAD
 					      		<th colspan="3" class="text-center">Approver</th>
+=======
+					      		<th colspan="3" class="text-center">1st Level Approver</th>
+>>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
 					      		<th rowspan="2">Status</th>
 					      		<th rowspan="2"><!--Edit--></th>
 					    	</tr>

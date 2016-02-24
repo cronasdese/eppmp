@@ -48,7 +48,7 @@
                                 if(is_array($projects) || is_object($projects)){
                                     $row = 1;
                                     foreach ($projects as $project_data) {
-                                        if((($project_data->first_lvl_id == $user_id) && ($project_data->first_lvl_status == '0')) || (($project_data->second_lvl_id == $user_id) && ($project_data->first_lvl_status == '1') && ($project_data->second_lvl_status == '0')) || (($project_data->third_lvl_id == $user_id) && ($project_data->second_lvl_status == '1') && ($project_data->third_lvl_status == '0')) || (($project_data->fourth_lvl_id == $user_id) && ($project_data->third_lvl_status == '1') && ($project_data->fourth_lvl_status == '0'))){
+                                        if((($project_data->first_lvl_id == $user_details[0]->user_id) && ($project_data->first_lvl_status == '0')) || (($project_data->second_lvl_id == $user_details[0]->user_id) && ($project_data->first_lvl_status == '1') && ($project_data->second_lvl_status == '0')) || (($project_data->third_lvl_id == $user_details[0]->user_id) && ($project_data->second_lvl_status == '1') && ($project_data->third_lvl_status == '0')) || (($project_data->fourth_lvl_id == $user_details[0]->user_id) && ($project_data->third_lvl_status == '1') && ($project_data->fourth_lvl_status == '0'))){
                                             echo '<form id="openForm" name="openForm" enctype="multipart/form-data" method="POST" action="'. base_url('PPMP_controller/viewPPMP').'" enctype="multipart/form-data">
                                                 <tr id="row'. $row .'"">
                                                 <td>

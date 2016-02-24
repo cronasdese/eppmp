@@ -38,35 +38,18 @@
 				        	<span class="icon-bar"></span>
 				      	</button>
 				      	<img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo" class="img-responsive" width="40" height="30" style="float:left; margin-top:5px; margin-right:10px"/> 
-				      	<div class="navbar-brand">E-PPMP</div>
+				      	<div class="navbar-brand">ADMIN | E-PPMP</div>
 				    </div>
 
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav">
 					        <li> &nbsp; &nbsp; &nbsp; </li>
-<<<<<<< HEAD
-					        <li class="dropdown">
-					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Home &nbsp;<b class="caret"></b></a>
-=======
-					        <li><a href="<?php echo base_url('Pages_controller/home'); ?>" class="bodyclass"> Home </a></li>
-					        <li class="dropdown">
-					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Menu &nbsp;<b class="caret"></b></a>
->>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
-					          	<ul class="dropdown-menu">
-						            <li><a href="#">Create Project</a></li>
-						            <li><a href="#">View Project</a></li>
-						            <li><a href="#">Consolidate</a></li>
-						            <li><a href="#">Generate APP</a></li>
-					          	</ul>
-					        </li>
-
+					        <li class="active"><a href="<?php echo base_url('Pages_controller/adminHome'); ?>">Home</a></li>			      
 					    </ul>
 			      		<ul class="nav navbar-nav navbar-right">
 					        <li class="dropdown">
 					          	<?php echo'<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">'. $user_details[0]->name .' &nbsp; <b class="caret"></b></a>'; ?>
 					         	<ul class="dropdown-menu">
-						            <li><a href="<?php echo base_url('Pages_controller/profile'); ?>" class="bodyclass">Profile</a></li>
-			            			<li class="divider"></li>
 			            			<li><a href="<?php echo base_url('Pages_controller/logout'); ?>" class="bodyclass">Log-out</a></li>
 			          			</ul>
 			        		</li>

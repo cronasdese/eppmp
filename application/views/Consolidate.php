@@ -7,7 +7,10 @@
             <link rel="stylesheet" href= "<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
             <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
             <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+<<<<<<< HEAD
             <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
+=======
+>>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
             <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap-datepicker.css'); ?>">
             <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
             <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
@@ -15,11 +18,78 @@
             <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
+<<<<<<< HEAD
                 
                 $('.input-daterange').datepicker({
                     todayBtn: "linked"
                 });
             
+=======
+                $('.input-daterange').datepicker({
+                    todayBtn: "linked",
+                    format: "yyyy-dd-mm"
+                });
+                
+                $.ajax({ 
+                    url: "<?php echo base_url('Supplies_controller/getCategory'); ?>",
+                    dataType: 'json',
+                    success: function(data) {
+                        $(data).each(function(){
+                            $("#filter_2").append($('<option>', {
+                                value: this.category,
+                                text: this.category,
+                            }));
+                        })
+                    },
+                    error: function(errorw) {
+                        alert("error");
+                    }
+                });
+
+                $('#filter_1').change(function(){
+                    var filter_1 = $('#filter_1').val();
+
+                    $('#filter_2 > option').remove();
+                    //alert(filter_1);
+                    if(filter_1 == 1){
+
+                        $.ajax({ 
+                            url: "<?php echo base_url('Supplies_controller/getCategory'); ?>",
+                            dataType: 'json',
+                            success: function(data) {
+                                $(data).each(function(){
+                                    $("#filter_2").append($('<option>', {
+                                        value: this.category,
+                                        text: this.category,
+                                    }));
+                                })
+                            },
+                            error: function(errorw) {
+                                alert("error");
+                            }
+                        });
+                    }
+                    else{
+                        var item_id = 1;
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo base_url('Supplies_controller/getSupplyDescriptionFromPPMP'); ?>",
+                            dataType: 'json',
+                            success: function(data) {
+                                $(data).each(function(){
+                                    $('#filter_2').append($('<option>', {
+                                        value: this.supply_description,
+                                        text: this.supply_description,
+                                    }));
+                                });
+                            },
+                            error: function(errorw) {
+                                alert("error");
+                            }
+                        });
+                    }
+                });
+>>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
             });
         </script>
 
@@ -33,6 +103,7 @@
                     <br />
                     <h4 class="text-center"><b>Consolidation</b></h4>
                     <hr />
+<<<<<<< HEAD
                     <div class="control-group" style="margin-left:100px">
                         <div class="controls col-md-2">
                             <select id="category_1" class="col-md-12">
@@ -54,64 +125,99 @@
                         <input type="text" class="input-xs col-xs-1 adding:0px" name="end" />
                     </div> 
                     <button type="submit" class="btn btn-default btn-sm col-sm-2" name="action" style="margin-left:15px; margin-top:-2px;">Consolidate</button>  
+=======
+>>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
                 </div>
-                <br />
-                <form enctype="multipart/form-data">
-                    <table class="table table-bordered" id="myTable">
-                        <thead>
-                            <tr>
-                                <th class="text-nowrap text-center" rowspan="2">ProjCode</th>
-                                <th class="text-nowrap text-center" rowspan="2">Program/Project</th>
-                                <th class="text-nowrap text-center" rowspan="2">Office/Unit</th>
-                                <th class="text-nowrap text-center" rowspan="2">General Description</th>
-                                <th class="text-nowrap text-center" rowspan="2">Methods</th>
-                                <th class="text-center" colspan="12">Schedule/Milestones of Activity</th>
-                                <th class="text-nowrap text-center" colspan="2">Source of funds</th>
-                                <th class="text-center" rowspan="2">Aproved Budget Ceiling(ABC)</th>
-                            </tr>
-                            <tr>
-                                <th class="th-size text-center">Jan</th>
-                                <th class="th-size text-center">Feb</th>
-                                <th class="th-size text-center">Mar</th>
-                                <th class="th-size text-center">Apr</th>
-                                <th class="th-size text-center">May</th>
-                                <th class="th-size text-center">Jun</th>
-                                <th class="th-size text-center">Jul</th>
-                                <th class="th-size text-center">Aug</th>
-                                <th class="th-size text-center">Sep</th>
-                                <th class="th-size text-center">Oct</th>
-                                <th class="th-size text-center">Nov</th>
-                                <th class="th-size text-center">Dec</th>
-                                <th class="thh-size text-center">F-000</th>
-                                <th class="thh-size text-center">F-000</th>
-                            </tr> 
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-nowrap">0</td>
-                                <td class="text-nowrap col-sm-6">Empty</td>
-                                <td class="text-nowrap text-center col-sm-1">Empty</td>
-                                <td class="text-nowrap text-center col-sm-2">Empty</td>
-                                <td class="text-nowrap text-center">Methods</td>
-                                <td class="text-nowrap th-size" id="jan_1">0</td>
-                                <td class="text-nowrap th-size" id="feb_1">0</td>
-                                <td class="text-nowrap th-size" id="mar_1">0</td>
-                                <td class="text-nowrap th-size" id="apr_1">0</td>
-                                <td class="text-nowrap th-size" id="may_1">0</td>
-                                <td class="text-nowrap th-size" id="jun_1">0</td>
-                                <td class="text-nowrap th-size" id="jul_1">0</td>
-                                <td class="text-nowrap th-size" id="aug_1">0</td>
-                                <td class="text-nowrap th-size" id="sep_1">0</td>
-                                <td class="text-nowrap th-size" id="oct_1">0</td>
-                                <td class="text-nowrap th-size" id="nov_1">0</td>
-                                <td class="text-nowrap th-size" id="dec_1">0</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center col-sm-1">0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap text-center" rowspan="2">ProjCode</th>
+                            <th class="text-nowrap text-center" rowspan="2">Program/Project</th>
+                            <th class="text-nowrap text-center" rowspan="2">Office/Unit</th>
+                            <th class="text-nowrap text-center" rowspan="2">General Description</th>
+                            <th class="text-nowrap text-center" rowspan="2">Methods</th>
+                            <th class="text-center" colspan="12">Schedule/Milestones of Activity</th>
+                            <th class="text-nowrap text-center" colspan="2">Source of funds</th>
+                            <th class="text-center" rowspan="2">Aproved Budget Ceiling(ABC)</th>
+                        </tr>
+                        <tr>
+                            <th class="th-size text-center">Jan</th>
+                            <th class="th-size text-center">Feb</th>
+                            <th class="th-size text-center">Mar</th>
+                            <th class="th-size text-center">Apr</th>
+                            <th class="th-size text-center">May</th>
+                            <th class="th-size text-center">Jun</th>
+                            <th class="th-size text-center">Jul</th>
+                            <th class="th-size text-center">Aug</th>
+                            <th class="th-size text-center">Sep</th>
+                            <th class="th-size text-center">Oct</th>
+                            <th class="th-size text-center">Nov</th>
+                            <th class="th-size text-center">Dec</th>
+                            <th class="thh-size text-center">F-000</th>
+                            <th class="thh-size text-center">F-000</th>
+                        </tr> 
+                    </thead>
+                    <tbody id="tablebody">
+                        <?php
+                            if(is_array($consolidate_details_category) || is_object($consolidate_details_category) && !is_null($consolidate_details_category)){
+                                foreach ($consolidate_details_category as $consolidate) {
+                                    echo '
+                                        <tr>
+                                            <td class="text-nowrap">'. $consolidate->project_id .'</td>
+                                            <td class="text-nowrap col-sm-6">'. $consolidate->project_title .'</td>
+                                            <td class="text-nowrap text-center col-sm-1">'. $consolidate->office_name .'</td>
+                                            <td class="text-nowrap text-center col-sm-2">'. $consolidate->category .'</td>
+                                            <td class="text-nowrap text-center">Methods</td>
+                                            <td class="text-nowrap th-size" id="jan_1">'. $consolidate->jan_qty .'</td>
+                                            <td class="text-nowrap th-size" id="feb_1">'. $consolidate->feb_qty .'</td>
+                                            <td class="text-nowrap th-size" id="mar_1">'. $consolidate->mar_qty .'</td>
+                                            <td class="text-nowrap th-size" id="apr_1">'. $consolidate->apr_qty .'</td>
+                                            <td class="text-nowrap th-size" id="may_1">'. $consolidate->may_qty .'</td>
+                                            <td class="text-nowrap th-size" id="jun_1">'. $consolidate->jun_qty .'</td>
+                                            <td class="text-nowrap th-size" id="jul_1">'. $consolidate->jul_qty .'</td>
+                                            <td class="text-nowrap th-size" id="aug_1">'. $consolidate->aug_qty .'</td>
+                                            <td class="text-nowrap th-size" id="sep_1">'. $consolidate->sep_qty .'</td>
+                                            <td class="text-nowrap th-size" id="oct_1">'. $consolidate->oct_qty .'</td>
+                                            <td class="text-nowrap th-size" id="nov_1">'. $consolidate->nov_qty .'</td>
+                                            <td class="text-nowrap th-size" id="dec_1">'. $consolidate->dec_qty .'</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center col-sm-1">'. $consolidate->sum .'</td>
+                                        </tr>
+                                    ';
+                                }
+                            }
+                            else{
+                                foreach ($consolidate_details_item as $consolidate) {
+                                    echo '
+                                        <tr>
+                                            <td class="text-nowrap">'. $consolidate->project_id .'</td>
+                                            <td class="text-nowrap col-sm-6">'. $consolidate->project_title .'</td>
+                                            <td class="text-nowrap text-center col-sm-1">'. $consolidate->office_name .'</td>
+                                            <td class="text-nowrap text-center col-sm-2">'. $consolidate->supply_description .'</td>
+                                            <td class="text-nowrap text-center">Methods</td>
+                                            <td class="text-nowrap th-size" id="jan_1">'. $consolidate->jan_qty .'</td>
+                                            <td class="text-nowrap th-size" id="feb_1">'. $consolidate->feb_qty .'</td>
+                                            <td class="text-nowrap th-size" id="mar_1">'. $consolidate->mar_qty .'</td>
+                                            <td class="text-nowrap th-size" id="apr_1">'. $consolidate->apr_qty .'</td>
+                                            <td class="text-nowrap th-size" id="may_1">'. $consolidate->may_qty .'</td>
+                                            <td class="text-nowrap th-size" id="jun_1">'. $consolidate->jun_qty .'</td>
+                                            <td class="text-nowrap th-size" id="jul_1">'. $consolidate->jul_qty .'</td>
+                                            <td class="text-nowrap th-size" id="aug_1">'. $consolidate->aug_qty .'</td>
+                                            <td class="text-nowrap th-size" id="sep_1">'. $consolidate->sep_qty .'</td>
+                                            <td class="text-nowrap th-size" id="oct_1">'. $consolidate->oct_qty .'</td>
+                                            <td class="text-nowrap th-size" id="nov_1">'. $consolidate->nov_qty .'</td>
+                                            <td class="text-nowrap th-size" id="dec_1">'. $consolidate->dec_qty .'</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center col-sm-1">'. $consolidate->sum .'</td>
+                                        </tr>
+                                    ';
+                                }
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
             <br />
              <div class="container-fluid">

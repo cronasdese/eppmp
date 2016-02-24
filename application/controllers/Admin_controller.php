@@ -6,23 +6,9 @@ class Admin_controller extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('admin_model');
+		$this->load->model('user_model');
 		$this->load->library('form_validation');
-	}
-
-	public function insertCategory(){
-		$category = $this->input->post('category');
-		$subcategory = $this->input->post('subcategory');
-
-		$this->form_validation->set_rules('category', 'Category', 'required');
-		$this->form_validation->set_rules('subcategory', 'Subcategory', 'required');
-
-		if($this->form_validation->run() == FALSE){
-			$this->load->view('ADMIN_ADDCategory');
-		}
-		else{
-			$category_id = $this->admin_model->insertCategory($category);
-      		$this->admin_model->insertSubcategory($category_id, $subcategory);
-      	}
+		$this->load->library('session');
 	}
 
 	public function getAllUsers(){
@@ -80,10 +66,57 @@ class Admin_controller extends CI_Controller {
 		echo json_encode($added_office);
 	}
 
+	public function editOffice(){
+		$office_name = $this->input->post('office_name');
+		$status = $this->input->post('status');
+		$office_id = $this->input->post('office_id');
+		$added_office = $this->admin_model->editOffice($office_id, $office_name, $status);
+		echo json_encode($added_office);
+	}
+
 	public function search(){
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
 		$search = $this->input->post('search');
 		$data['users'] = $this->admin_model->search($search);
-
+		$this->load->view('ADMIN_Nav', $data);
 		$this->load->view('ADMIN_Accounts', $data);
+	}
+
+	public function searchOffice(){
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$search = $this->input->post('search');
+		$data['offices'] = $this->admin_model->searchOffice($search);
+		$this->load->view('ADMIN_Nav', $data);
+		$this->load->view('ADMIN_Office', $data);
+	}
+
+	public function addCategory(){
+		$category = $this->input->post('category');
+		$this->admin_model->addCategory($category);
+	}
+
+	public function addSubCategory(){
+		$category_id = $this->input->post('category');
+		$subcategory = $this->input->post('subcategory');
+		$this->admin_model->addSubCategory($category_id, $subcategory);
+	}
+
+	public function addItems(){
+		$subcategory_id = $this->input->post('subcategory');
+		$item = $this->input->post('item');
+		$unit = $this->input->post('unit');
+		$price = $this->input->post('price');
+		$this->admin_model->addItem($subcategory_id, $item, $unit, $price);
+	}
+
+	public function addApprover(){
+		$office_id = $this->input->post('office_id');
+		$first_lvl_id = $this->input->post('first_lvl_id');
+		$second_lvl_id = $this->input->post('second_lvl_id');
+		$third_lvl_id = $this->input->post('third_lvl_id');
+		$fourth_lvl_id = $this->input->post('fourth_lvl_id');
+		$this->admin_model->addApprover($office_id, $first_lvl_id, $second_lvl_id, $third_lvl_id, $fourth_lvl_id);
 	}
 }

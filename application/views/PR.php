@@ -4,11 +4,11 @@
             <title>Purchase Request</title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href= "assets/css/bootstrap-responsive.css">
-            <link rel="stylesheet" href="'assets/css/bootstrap.min.css" >
-            <link rel="stylesheet" type="text/css" href="assets/css/mycss.css">
-            <script src ="assets/js/jquery-2.1.4.min.js"></script>
-            <script src ="assets/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-responsive.css'); ?>">
+            <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" >
+            <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/mycss.css'); ?>">
+            <script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
+            <script src ="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 
       </head>
       <body>
@@ -26,7 +26,7 @@
                         <ul class="list-inline">
                             <?php
                                 echo 
-                                '<li class="col-md-4"><label class="col-md-3">Department</label>'. $purchase_order[0][0]->office_name .'<p class="col-md-2"></p></li> 
+                                '<li class="col-md-4"><label class="col-md-3">Department</label>'. $user_details[0]->office_name .'<p class="col-md-2"></p></li> 
                                 <li class="col-md-4"><label class="col-md-2">PR No.:</label><p class="col-md-1">'. $purchase_order[1] .'</p></li>
                                 <li class="col-md-4"><label class="col-md-2">Date:</label><p class="col-md-1">'. date("Y-m-d") .'</p></li>';
                             ?>
