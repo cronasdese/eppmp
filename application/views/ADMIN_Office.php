@@ -19,11 +19,11 @@
 				<div class="col-md-8 col-md-offset-10 ">
 					<div class="btn-toolbar">
 				  	<div class="btn-group">
-					   	<a href="#" class="btn btn-default btn-sm col-sm-12" data-toggle="modal" data-target="#officeModal">
-					   		<span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:15px"> </span>	Add Office
+					   	<a href="#" class="btn btn-default btn-sm col-sm-9" data-toggle="modal" data-target="#addofficeModal" style="margin-right:15px;margin-left:-105px">
+					   		<span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px" > </span>	Add Office
 					   	</a>
-					   		<!-- Office Modal -->
-							<div class="modal fade" id="officeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					   		<!-- Add Office Modal -->
+							<div class="modal fade" id="addofficeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 								<div class="modal-dialog" role="document">
 								    <div class="modal-content">
 								      	<div class="modal-header">
@@ -37,7 +37,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3">Status: </label>
-											    <select style="margin-top:10px">
+											    <select style
 											    	<option>Select Status</option>
 											    	<option value="activate">Activate</option>
 											    	<option value="deactivate">Deactivate</option>
@@ -47,6 +47,53 @@
 								      	<div class="modal-footer">
 									        <div class="col-sm-offset-7">
 									        	<button type="button" class="btn btn-primary btn-md">Save changes</button>
+									       		<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+									    	</div> 
+								      	</div>
+								    </div>
+								</div>
+							</div>
+							<!--END OF ADD OFFICE MODAL-->
+					   	<a href="#" class="btn btn-default btn-sm col-sm-11" data-toggle="modal" data-target="#addapproverModal">
+					   		<span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right:5px"> </span>	Add Approver
+					   	</a>
+					   		<!-- Office Modal -->
+							<div class="modal fade" id="addapproverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        	<h4 class="modal-title" id="myModalLabel">Office Approver</h4>
+								      	</div>
+								      	<div class="modal-body">
+								        	<div class="form-group">
+												<label class="control-label col-md-3">Office: </label>
+											    <select>
+											    	<option>Select Office</option>
+											    </select>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">1st Level: </label>
+											    <select>
+											    	<option>Select User</option>
+											    </select>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">2nd Level: </label>
+											    <select>
+											    	<option>Select User</option>
+											    </select>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3">3rd Level: </label>
+											    <select>
+											    	<option>Select User</option>
+											    </select>
+											</div>			
+								      	</div>
+								      	<div class="modal-footer">
+									        <div class="col-sm-offset-7">
+									        	<button type="button" class="btn btn-primary btn-md">Add Now</button>
 									       		<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
 									    	</div> 
 								      	</div>
@@ -82,10 +129,16 @@
 			    	<table class="table table-striped table-hover ">
 					  	<thead>
 					    	<tr>
-					      		<th>Office Code</th>
-					      		<th>Office/Unit</th>
-					      		<th>Status</th>
-					      		<th><!--Edit--></th>
+					      		<th rowspan="2">Office Code</th>
+					      		<th rowspan="2">Office/Unit</th>
+					      		<th colspan="3" class="text-center">Approver</th>
+					      		<th rowspan="2">Status</th>
+					      		<th rowspan="2"><!--Edit--></th>
+					    	</tr>
+					    	<tr>
+					    		<th>1st Level</th>
+					    		<th>2nd Level</th>
+					    		<th>3rds Level</th>
 					    	</tr>
 					  	</thead>
 
@@ -93,6 +146,9 @@
 					    	<tr>
 					      		<td>Column content</td>	
 		         	  			<td>Column content</td>	      	
+					      		<td>Column content</td>
+					      		<td>Column content</td>
+					      		<td>Column content</td>
 					      		<td>Column content</td>
 					      		<td class="text-nowrap">
 									<a href="#" class="btn btn-default btn-sm col-sm-12" data-toggle="modal" data-target="#editModal">Edit</a>	
@@ -117,9 +173,27 @@
 									<label class="control-label col-md-4">Change Office Name: </label>
 									<input type="text" class="col-md-6" style="margin-top:10px">
 								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4">1st Level: </label>
+								    <select style="margin-top:10px">
+								    	<option>Select User</option>
+								    </select>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4">2nd Level: </label>
+								    <select>
+								    	<option>Select User</option>
+								    </select>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4">3rd Level: </label>
+								    <select>
+								    	<option>Select User</option>
+								    </select>
+								</div>			
 				            	<div class="form-group">
 									<label class="control-label col-md-4">Change Status: </label>
-								    <select style="margin-top:12px">
+								    <select style="margin-top:5px">
 								    	<option>Select Status</option>
 								    	<option value="activate">Activate</option>
 								    	<option value="deactivate">Deactivate</option>
