@@ -28,13 +28,15 @@
                     <h6 class="text-center">Ayala blvd., Ermita, Manila</h6>
                     <br />
                     <h4 class="text-center"><b>Annual Procurement Plan (APP)</b></h4>
-                    <div class="input-daterange" id="datepicker">
-                        <span class="add-on col-xs-1" style="vertical-align:top; height:27px">from</span>
-                        <input id="from_date" name="from_date" type="text" class="input-xs col-xs-1 padding:0px" required />
-                        <span class="add-on col-xs-1" style="vertical-align:top; height:27px">to</span>
-                        <input id="to_date" name="to_date" type="text" class="input-xs col-xs-1 padding:0px" required />
-                    </div> 
-                    <button type="submit" class="btn btn-default btn-sm col-sm-2" name="action" style="margin-left:15px; margin-top:-2px;">Consolidate</button>  
+                    <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('PPMP_controller/generateAPP'); ?>" enctype="multipart/form-data" data-parsley-validate>
+                        <div class="input-daterange" id="datepicker">
+                            <span class="add-on col-xs-1" style="vertical-align:top; height:27px">from</span>
+                            <input id="from_date" name="from_date" type="text" class="input-xs col-xs-1 padding:0px" required />
+                            <span class="add-on col-xs-1" style="vertical-align:top; height:27px">to</span>
+                            <input id="to_date" name="to_date" type="text" class="input-xs col-xs-1 padding:0px" required />
+                        </div> 
+                        <button type="submit" class="btn btn-default btn-sm col-sm-2" name="action" style="margin-left:15px; margin-top:-2px;">Consolidate</button>  
+                    </form>
                 </div>
                 <br />
                 <form enctype="multipart/form-data">
@@ -68,28 +70,36 @@
                             </tr> 
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-nowrap">0</td>
-                                <td class="text-nowrap col-sm-6">Empty</td>
-                                <td class="text-nowrap text-center col-sm-1">Empty</td>
-                                <td class="text-nowrap text-center col-sm-2">Empty</td>
-                                <td class="text-nowrap text-center">Methods</td>
-                                <td class="text-nowrap th-size" id="jan_1">0</td>
-                                <td class="text-nowrap th-size" id="feb_1">0</td>
-                                <td class="text-nowrap th-size" id="mar_1">0</td>
-                                <td class="text-nowrap th-size" id="apr_1">0</td>
-                                <td class="text-nowrap th-size" id="may_1">0</td>
-                                <td class="text-nowrap th-size" id="jun_1">0</td>
-                                <td class="text-nowrap th-size" id="jul_1">0</td>
-                                <td class="text-nowrap th-size" id="aug_1">0</td>
-                                <td class="text-nowrap th-size" id="sep_1">0</td>
-                                <td class="text-nowrap th-size" id="oct_1">0</td>
-                                <td class="text-nowrap th-size" id="nov_1">0</td>
-                                <td class="text-nowrap th-size" id="dec_1">0</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center col-sm-1">0</td>
-                            </tr>
+                            <?php
+                                if(is_array($app_details) || is_object($app_details)){
+                                    foreach ($app_details as $app) {
+                                        echo '
+                                            <tr>
+                                                <td class="text-nowrap">'. $app->project_id .'</td>
+                                                <td class="text-nowrap col-sm-6">'. $app->project_title .'</td>
+                                                <td class="text-nowrap text-center col-sm-1">'. $app->office_name .'</td>
+                                                <td class="text-nowrap text-center col-sm-2">'. $app->category .'</td>
+                                                <td class="text-nowrap text-center">Methods</td>
+                                                <td class="text-nowrap th-size" id="jan_1">'. $app->jan_qty .'</td>
+                                                <td class="text-nowrap th-size" id="feb_1">'. $app->feb_qty .'</td>
+                                                <td class="text-nowrap th-size" id="mar_1">'. $app->mar_qty .'</td>
+                                                <td class="text-nowrap th-size" id="apr_1">'. $app->apr_qty .'</td>
+                                                <td class="text-nowrap th-size" id="may_1">'. $app->may_qty .'</td>
+                                                <td class="text-nowrap th-size" id="jun_1">'. $app->jun_qty .'</td>
+                                                <td class="text-nowrap th-size" id="jul_1">'. $app->jul_qty .'</td>
+                                                <td class="text-nowrap th-size" id="aug_1">'. $app->aug_qty .'</td>
+                                                <td class="text-nowrap th-size" id="sep_1">'. $app->sep_qty .'</td>
+                                                <td class="text-nowrap th-size" id="oct_1">'. $app->oct_qty .'</td>
+                                                <td class="text-nowrap th-size" id="nov_1">'. $app->nov_qty .'</td>
+                                                <td class="text-nowrap th-size" id="dec_1">'. $app->dec_qty .'</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center col-sm-1">'. $app->sum .'</td>
+                                            </tr>
+                                        ';
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </form>
