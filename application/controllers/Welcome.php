@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('ADMIN_Nav');
+		$this->load->view('BUDGET_AddBudget');
+
 	}
 }

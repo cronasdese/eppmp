@@ -36,19 +36,21 @@
 	<body>
 	<br />
 	<br />
-		<div class="container">
+		<div class="container">		
 			<ul class="nav nav-tabs">
-			  	<li class="active"><a data-toggle="tab" href="#addcateg">Category</a></li>
-			  	<li><a data-toggle="tab" href="#addsubcateg">Subcategory</a></li>
-			  	<li><a data-toggle="tab" href="#additem">Items</a></li>
+			  	<li class="active"><a data-toggle="tab" href="#categ">Category</a></li>
+			  	<li><a data-toggle="tab" href="#subcateg">Subcategory</a></li>
+			  	<li><a data-toggle="tab" href="#item">Items</a></li>
+			  	<li class="nav nav-tabs navbar-right tabbg" style="margin:0px;padding:0px"><a style="margin:0px;" class="tabfont" data-toggle="tab" href="#additem">Add Items</a></li> 
+			  	<li class="nav nav-tabs navbar-right tabbg" style="margin:0px;padding:0px"><a style="margin:0px;" class="tabfont" data-toggle="tab" href="#additem">Add Subcategory</a></li>
+				<li class="nav nav-tabs navbar-right tabbg" style="margin:0px;padding:0px"><a style="margin:0px;" class="tabfont" data-toggle="tab" href="#addsubcateg">Add Category</a></li>
 			</ul>
-
 			<div class="tab-content">
 			<!--CATEGORY-->
-			  	<div id="addcateg" class="tab-pane fade in active">
+			  	<div id="categ" class="tab-pane fade in active">
 			    	<div class="container">
 			    		<br />
-						<h3 class="text-right">Category</h3>
+			    		<h3>Category</h3>
 						<hr />
 						<div class="container">	
 							<div class="row">	
@@ -98,7 +100,7 @@
 								     	</div>
 								      	<div class="modal-body">
 								        	<div class="form-group">
-												<label class="control-label col-md-4">SCategory Code: </label>
+												<label class="control-label col-md-4">Category Code: </label>
 												<input type="text" class="col-md-6" >
 											</div>
 								        	<div class="form-group">
@@ -128,10 +130,10 @@
 					</div>
 			  	</div>
 			  	<!--SUBCATEGORY-->
-			  	<div id="addsubcateg" class="tab-pane fade">
+			  	<div id="subcateg" class="tab-pane fade">
 			    	<div class="container">
 			    		<br />
-						<h3 class="text-right">Subcategory</h3>
+			    		<h3>Subcategory</h3>
 						<hr />
 						<div class="container">	
 							<div class="row">	
@@ -183,15 +185,15 @@
 								     	</div>
 								      	<div class="modal-body">
 								        	<div class="form-group">
-												<label class="control-label col-md-4">Subcategory Code: </label>
+												<label class="control-label col-md-5">Subcategory Code: </label>
 												<input type="text" class="col-md-6" >
 											</div>
 								        	<div class="form-group">
-												<label class="control-label col-md-4">Change Subcategory Name: </label>
+												<label class="control-label col-md-5">Change Subcategory Name: </label>
 												<input type="text" class="col-md-6" style="margin-top:10px">
 											</div>
 							            	<div class="form-group">
-												<label class="control-label col-md-4">Change Status: </label>
+												<label class="control-label col-md-5">Change Status: </label>
 											    <select style="margin-top:12px">
 											    	<option>Select Status</option>
 											    	<option value="activate">Activate</option>
@@ -213,10 +215,10 @@
 					</div>	
 			  	</div>
 			  	<!--ITEMS-->
-			  	<div id="additem" class="tab-pane fade">
+			  	<div id="item" class="tab-pane fade">
 			    	<div class="container">
 			    		<br />
-						<h3 class="text-right">Items</h3>
+			    		<h3>Items</h3>
 						<hr />
 						<div class="container">	
 							<div class="row">	
@@ -240,7 +242,8 @@
 								    	<tr>
 								      		<th>Item Code</th>
 								      		<th>Item</th>
-								      		<th>General Description</th>
+								      		<th>Category</th>
+								      		<th>Subcategory</th>
 								      		<th>Status</th>
 								      		<th><!--Edit--></th>
 								    	</tr>
@@ -249,6 +252,7 @@
 								  	<tbody>
 								    	<tr>
 								      		<td>Column content</td>	
+					         	  			<td>Column content</td>
 					         	  			<td>Column content</td>
 					         	  			<td>Column content</td>	      	
 								      		<td>Column content</td>
@@ -294,6 +298,130 @@
 								</div>
 							</div>
 							<!--END OF EDIT USER MODAL-->					
+						</div>	
+					</div>
+			  	</div>
+			  	<!--ADD CATEGORY-->
+			  	<div id="addcateg" class="tab-pane fade">
+			    	<div class="container">
+			    		<br />
+						<h3 class="text-right">Add Category</h3>
+						<hr />
+						<div class="container">	
+							<table>
+								<tr>
+									<td class="text-nowrap">
+										<label class="col-sm-5 control-label">New Category: </label>
+										<input type="text" class="col-sm-12" placeholder="Enter New Subcategory"/>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<br />	
+							<div class="row">
+							 	<button type="submit" class="btn btn-primary btn-sm col-sm-2" style="margin-right:10px">Add</button>
+							 	<button type="button" class="btn btn-sm col-sm-1">Cancel</button>
+							</div>				
+						</div>	
+					</div>
+			  	</div>
+			  	<!--ADD SUBCATEGORY-->
+			  	<div id="addsubcateg" class="tab-pane fade">
+			    	<div class="container">
+			    		<br />
+						<h3 class="text-right">Add Subcategory</h3>
+						<hr />
+						<div class="container">	
+							<table>
+								<tr>
+									<td class="text-nowrap">
+										<label class="col-sm-5 control-label">Category: </label>
+										<select name="category" id="category" class="col-sm-12">
+						                	<option>Select Category</option>
+						                </select>
+									</td>
+								</tr>
+								<tr>	
+									<td class="text-nowrap">
+										<label class="control-label col-sm-3">Add Subcategory:</label>	
+								    	<select name="subnum" id="subdropdown" class="col-md-12">
+								    		<option value="">Select number</option>
+								    		<option value="1">1</option>
+								    		<option value="2">2</option>
+								    		<option value="3">3</option>
+								    		<option value="4">4</option>
+								    		<option value="5">5</option>
+								    		<option value="6">6</option>
+								    		<option value="7">7</option>
+								    		<option value="8">8</option>
+								    		<option value="9">9</option>
+								    		<option value="10">10</option>
+								    	</select>
+								    </td>
+								</tr>
+								<tr id="subtextbox" class="inline" colspan="3">
+								</tr>
+							</table>
+							<br />
+							<br />	
+							<div class="row">
+							 	<button type="submit" class="btn btn-primary btn-sm col-sm-2" style="margin-right:10px">Add</button>
+							 	<button type="button" class="btn btn-sm col-sm-1">Cancel</button>
+							</div>				
+						</div>	
+					</div>	
+			  	</div>
+			  	<!--ADD ITEMS-->
+			  	<div id="additem" class="tab-pane fade">
+			    	<div class="container">
+			    		<br />
+						<h3 class="text-right">Add Items</h3>
+						<hr />
+						<div class="container">	
+							<table>
+								<tr>
+									<td class="text-nowrap">
+										<label class="col-sm-5 control-label">Category: </label>
+										<select name="category" id="category" class="col-sm-12">
+						                	<option>Select Category</option>
+						                </select>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-nowrap">
+										<label class="col-sm-5 control-label">Subcategory: </label>
+										<select name="category" id="category" class="col-sm-12">
+						                	<option>Select Subcategory</option>
+						                </select>
+									</td>
+								</tr>
+								<tr>	
+									<td class="text-nowrap">
+										<label class="control-label col-sm-3">Items: </label>	
+								    	<select name="subnum" id="itemdropdown" class="col-md-12">
+								    		<option value="">Select number</option>
+								    		<option value="1">1</option>
+								    		<option value="2">2</option>
+								    		<option value="3">3</option>
+								    		<option value="4">4</option>
+								    		<option value="5">5</option>
+								    		<option value="6">6</option>
+								    		<option value="7">7</option>
+								    		<option value="8">8</option>
+								    		<option value="9">9</option>
+								    		<option value="10">10</option>
+								    	</select>
+								    </td>
+								</tr>
+								<tr id="itemtextbox" class="inline" colspan="3">
+								</tr>
+							</table>
+							<br />
+							<br />	
+							<div class="row">
+							 	<button type="submit" class="btn btn-primary btn-sm col-sm-2" style="margin-right:10px">Add</button>
+							 	<button type="button" class="btn btn-sm col-sm-1">Cancel</button>
+							</div>				
 						</div>	
 					</div>
 			  	</div>
