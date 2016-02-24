@@ -103,7 +103,27 @@ class PPMP_controller extends CI_Controller{
 	}
 
 	public function consolidate(){
-		
+		//print_r($_POST);
+		$filter_1 = $this->input->post('filter_1');
+		$filter_2 = $this->input->post('filter_2');
+		$from_date = $this->input->post('from_date');
+		$to_date = $this->input->post('to_date');
+		$data['user_details'] = $this->user_model->getUserDetails($this->session->userdata('user_id'));
+		if($filter_1 == 1){
+			$data['consolidate_details_category'] = $this->PPMP_model->consolidateCategory($filter_2, $from_date, $to_date);
+		}
+		else{
+			$data['consolidate_details_category'] = null;
+			$data['consolidate_details_item'] = $this->PPMP_model->consolidateItems($filter_2, $from_date, $to_date);
+		}
+		//print_r($data);
+		$this->load->view('NAV', $data);
+		$this->load->view('Consolidate', $data);
+	}
+
+	public function generateAPP(){
+		$data['app_details'] = $this->PPMP_model->generateAPP();
+		$this->load->view('APP', $data);
 	}
 
 	public function generatePurchaseOrder(){

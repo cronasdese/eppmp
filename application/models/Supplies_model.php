@@ -52,4 +52,13 @@ class Supplies_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function getSupplyDescriptionFromPPMP(){
+		$this->db->distinct();
+		$this->db->select('supply_description');
+		$this->db->from('project_details');
+		$this->db->order_by('supply_description', 'ASC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

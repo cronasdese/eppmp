@@ -114,6 +114,7 @@ class PPMP_model extends CI_Model {
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.first_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
+		$this->db->where('approval.status', 1);
 		$this->db->order_by('approval.id', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -125,6 +126,7 @@ class PPMP_model extends CI_Model {
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.second_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
+		$this->db->where('approval.status', 1);
 		$this->db->order_by('approval.id', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -136,6 +138,7 @@ class PPMP_model extends CI_Model {
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.third_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
+		$this->db->where('approval.status', 1);
 		$this->db->order_by('approval.id', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -147,6 +150,7 @@ class PPMP_model extends CI_Model {
 		$this->db->from('approval');
 		$this->db->join('user', 'approval.fourth_lvl_id = user.id');
 		$this->db->where('approval.office_id', $office_id);
+		$this->db->where('approval.status', 1);
 		$this->db->order_by('approval.id', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get();
@@ -479,6 +483,104 @@ class PPMP_model extends CI_Model {
 		$this->db->or_where('second_lvl_status', 2);
 		$this->db->or_where('third_lvl_status', 2);
 		$this->db->or_where('fourth_lvl_status', 2);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function consolidateCategory($filter_2, $from_date, $to_date){
+		// 	SELECT DISTINCT project.id project_id, project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty
+		// FROM project
+		// JOIN project_details
+		// ON project.id = project_details.project_id
+		// JOIN category
+		// ON project_details.category_id = category.id
+		// JOIN user
+		// ON project.user_id = user.id
+		// JOIN office
+		// ON user.office_id = office.id
+		// WHERE project.first_lvl_status = 1 AND project.second_lvl_status = 1 AND project.third_lvl_status = 1 AND project.fourth_lvl_status = 1 AND category.category = "Supplies and Material" AND project.date_submitted BETWEEN '2016-02-15' AND '2016-02-20'
+		// GROUP BY project.id ASC
+		$this->db->distinct();
+		$this->db->select('project.id project_id, project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty');
+		$this->db->from('project');
+		$this->db->join('project_details', 'project.id = project_details.project_id');
+		$this->db->join('category', 'project_details.category_id = category.id');
+		$this->db->join('user', 'project.user_id = user.id');
+		$this->db->join('office', 'user.office_id = office.id');
+		$this->db->where('project.first_lvl_status', 1);
+		$this->db->where('project.second_lvl_status', 1);
+		$this->db->where('project.third_lvl_status', 1);
+		$this->db->where('project.fourth_lvl_status', 1);
+		$this->db->where('category.category', $filter_2);
+		$this->db->where('project.date_submitted >', $from_date);
+		$this->db->where('project.date_submitted <', $to_date);
+		$this->db->group_by('project_id');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function consolidateItems($filter_2, $from_date, $to_date){
+		// 	SELECT DISTINCT project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty
+		// FROM project
+		// JOIN project_details
+		// ON project.id = project_details.project_id
+		// JOIN category
+		// ON project_details.category_id = category.id
+		// JOIN user
+		// ON project.user_id = user.id
+		// JOIN office
+		// ON user.office_id = office.id
+		// WHERE project.first_lvl_status = 1 AND project.second_lvl_status = 1 AND project.third_lvl_status = 1 AND project.fourth_lvl_status = 1 AND project_details.supply_description = "FURNITURE CLEANER, aerosol, 300ml min./can" AND project.date_submitted BETWEEN '2016-02-21' AND '2016-02-29'
+		// GROUP BY project.id ASC
+		$this->db->distinct();
+		$this->db->select('project.id project_id,project.title project_title, project_details.supply_description, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty');
+		$this->db->from('project');
+		$this->db->join('project_details', 'project.id = project_details.project_id');
+		$this->db->join('category', 'project_details.category_id = category.id');
+		$this->db->join('user', 'project.user_id = user.id');
+		$this->db->join('office', 'user.office_id = office.id');
+		$this->db->where('project.first_lvl_status', 1);
+		$this->db->where('project.second_lvl_status', 1);
+		$this->db->where('project.third_lvl_status', 1);
+		$this->db->where('project.fourth_lvl_status', 1);
+		$this->db->where('project_details.supply_description', $filter_2);
+		$this->db->where('project.date_submitted >', $from_date);
+		$this->db->where('project.date_submitted <', $to_date);
+		$this->db->group_by('project_id');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function generateAPP(){
+		// 	SELECT DISTINCT project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty
+		// FROM project
+		// JOIN project_details
+		// ON project.id = project_details.project_id
+		// JOIN category
+		// ON project_details.category_id = category.id
+		// JOIN user
+		// ON project.user_id = user.id
+		// JOIN office
+		// ON user.office_id = office.id
+		// WHERE project.first_lvl_status = 1 AND project.second_lvl_status = 1 AND project.third_lvl_status = 1 AND project.fourth_lvl_status = 1 AND project.date_submitted BETWEEN '2016-02-01' AND '2016-02-29'
+		// GROUP BY project.id 
+		// ORDER BY category.id ASC
+		$this->db->distinct();
+		$this->db->select('project.id project_id, project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty');
+		$this->db->from('project');
+		$this->db->join('project_details', 'project.id = project_details.project_id');
+		$this->db->join('category', 'project_details.category_id = category.id');
+		$this->db->join('user', 'project.user_id = user.id');
+		$this->db->join('office', 'user.office_id = office.id');
+		$this->db->where('project.first_lvl_status', 1);
+		$this->db->where('project.second_lvl_status', 1);
+		$this->db->where('project.third_lvl_status', 1);
+		$this->db->where('project.fourth_lvl_status', 1);
+		$this->db->where('project_details.supply_description', $filter_2);
+		$this->db->where('project.date_submitted <', $from_date);
+		$this->db->where('project.date_submitted >', $to_date);
+		$this->db->group_by('project_id');
+		$this->db->order_by('category.id', 'ASC');
 		$query = $this->db->get();
 		return $query->result();
 	}

@@ -44,9 +44,19 @@
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav">
 					        <li> &nbsp; &nbsp; &nbsp; </li>
+					        <li><a href="<?php echo base_url('Pages_controller/home'); ?>" class="bodyclass"> Home </a></li>
+					        <li class="dropdown">
+					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Menu &nbsp;<b class="caret"></b></a>
+					          	<ul class="dropdown-menu">
+						            <li><a href="#">Create Project</a></li>
+						            <li><a href="#">View Project</a></li>
+						            <li><a href="#">Consolidate</a></li>
+						            <li><a href="#">Generate APP</a></li>
+					          	</ul>
+					        </li>
+
 					    </ul>
 			      		<ul class="nav navbar-nav navbar-right">
-			       		 	<li class="active"><a href="<?php echo base_url('Pages_controller/home'); ?>">Home &nbsp;</a></li>	
 					        <li class="dropdown">
 					          	<?php echo'<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">'. $user_details[0]->name .' &nbsp; <b class="caret"></b></a>'; ?>
 					         	<ul class="dropdown-menu">

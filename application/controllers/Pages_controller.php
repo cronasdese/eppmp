@@ -77,14 +77,14 @@ class Pages_controller extends CI_Controller{
 		$user_id = $this->session->userdata('user_id');
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
 		$this->load->view('NAV', $data);
-		$this->load->view('Consolidate');
+		$this->load->view('before_consolidate');
 	}
 
 	public function generateAPP(){
 		$user_id = $this->session->userdata('user_id');
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
 		$this->load->view('NAV', $data);
-		$this->load->view('Consolidate');
+		$this->load->view('APP');
 	}
 
 	public function profile(){

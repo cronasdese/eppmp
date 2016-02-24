@@ -95,6 +95,28 @@ class Admin_controller extends CI_Controller {
 	public function addCategory(){
 		$category = $this->input->post('category');
 		$this->admin_model->addCategory($category);
-		//$this-
+	}
+
+	public function addSubCategory(){
+		$category_id = $this->input->post('category');
+		$subcategory = $this->input->post('subcategory');
+		$this->admin_model->addSubCategory($category_id, $subcategory);
+	}
+
+	public function addItems(){
+		$subcategory_id = $this->input->post('subcategory');
+		$item = $this->input->post('item');
+		$unit = $this->input->post('unit');
+		$price = $this->input->post('price');
+		$this->admin_model->addItem($subcategory_id, $item, $unit, $price);
+	}
+
+	public function addApprover(){
+		$office_id = $this->input->post('office_id');
+		$first_lvl_id = $this->input->post('first_lvl_id');
+		$second_lvl_id = $this->input->post('second_lvl_id');
+		$third_lvl_id = $this->input->post('third_lvl_id');
+		$fourth_lvl_id = $this->input->post('fourth_lvl_id');
+		$this->admin_model->addApprover($office_id, $first_lvl_id, $second_lvl_id, $third_lvl_id, $fourth_lvl_id);
 	}
 }

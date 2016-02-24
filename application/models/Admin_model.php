@@ -6,24 +6,32 @@ class Admin_model extends CI_Model {
 		parent::__construct();
 	}
 
-	function insertCategory($category){
+	function addCategory($category){
 		$data = array(
 			'category' => $category,
 			'status' => 1
 		);
 		$this->db->insert('category', $data);
-
-		$id = $this->db->insert_id(); //assign the last inserted id to variable $id
-    	return $id;
 	}
 
-	function insertSubcategory($category_id, $subcategory){
+	function addSubcategory($category_id, $subcategory){
 		$data = array(
 			'category_id' => $category_id,
 			'subcategory' => $subcategory,
 			'status' => 1
 		);
 		$this->db->insert('subcategory', $data);
+	}
+
+	function addItem($subcategory_id, $item, $unit, $price){
+		$data = array(
+			'subcategory_id' => $subcategory_id,
+			'suppl_description' => $suppl_description,
+			'unit' => $unit,
+			'price' => $price,
+			'status' => 1
+		);
+		$this->db->insert('supply', $data);
 	}
 
 	function getSupply($subcategory_id){
@@ -174,5 +182,25 @@ class Admin_model extends CI_Model {
 		$this->db->order_by('office.status', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	function addApprover($office_id, $first_lvl_id, $second_lvl_id, $third_lvl_id, $fourth_lvl_id){
+		$data = array(
+			'office_id' => $office_id,
+			'first_lvl_id' => $first_lvl_id,
+			'second_lvl_id' => $second_lvl_id,
+			'third_lvl_id' => $third_lvl_id,
+			'fourth_lvl_id' => $fourth_lvl_id,
+			'status' => 1
+		);
+		$this->db->insert('approval', $data);
+		$last_id = $this->db->insert_id();
+
+		$data = array(
+			'status' => 0
+		);
+		$this->db->where('office_id', $office_id);
+		$this->db->where('id !=', $last_id);
+		$this->db->update('approval', $data);
 	}
 }
