@@ -131,18 +131,15 @@
 					    	<tr>
 					      		<th rowspan="2">Office Code</th>
 					      		<th rowspan="2">Office/Unit</th>
-<<<<<<< HEAD
-					      		<th colspan="3" class="text-center">Approver</th>
-=======
-					      		<th colspan="3" class="text-center">1st Level Approver</th>
->>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
+					      		<th colspan="4" class="text-center">Approver</th>
 					      		<th rowspan="2">Status</th>
 					      		<th rowspan="2"><!--Edit--></th>
 					    	</tr>
 					    	<tr>
 					    		<th>1st Level</th>
 					    		<th>2nd Level</th>
-					    		<th>3rds Level</th>
+					    		<th>3rd Level</th>
+					    		<th>4th Level</th>
 					    	</tr>
 					  	</thead>
 
@@ -150,6 +147,7 @@
 					    	<tr>
 					      		<td>Column content</td>	
 		         	  			<td>Column content</td>	      	
+					      		<td>Column content</td>
 					      		<td>Column content</td>
 					      		<td>Column content</td>
 					      		<td>Column content</td>

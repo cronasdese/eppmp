@@ -44,14 +44,9 @@
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav">
 					        <li> &nbsp; &nbsp; &nbsp; </li>
-<<<<<<< HEAD
-					        <li class="dropdown">
-					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Home &nbsp;<b class="caret"></b></a>
-=======
 					        <li><a href="<?php echo base_url('Pages_controller/home'); ?>" class="bodyclass"> Home </a></li>
 					        <li class="dropdown">
 					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Menu &nbsp;<b class="caret"></b></a>
->>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
 					          	<ul class="dropdown-menu">
 						            <li><a href="<?php echo base_url('Pages_controller/createPPMP'); ?>">Create Project</a></li>
 						            <li><a href="<?php echo base_url('Pages_controller/viewProjects'); ?>">View Project</a></li>

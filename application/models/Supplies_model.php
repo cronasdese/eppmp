@@ -19,6 +19,7 @@ class Supplies_model extends CI_Model {
 		$this->db->select('id, subcategory');
 		$this->db->from('subcategory');
 		$this->db->where('category_id', $category_id);
+		$this->db->where('status', 1);
 		$this->db->order_by('subcategory', 'asc');
 		$query = $this->db->get();
 		return $query->result();
@@ -58,6 +59,15 @@ class Supplies_model extends CI_Model {
 		$this->db->select('supply_description');
 		$this->db->from('project_details');
 		$this->db->order_by('supply_description', 'ASC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function getCategoryWithSubcategory(){
+		$this->db->distinct();
+		$this->db->select('category.id, category.category');
+		$this->db->from('subcategory');
+		$this->db->join('category', 'subcategory.category_id = category.id');
 		$query = $this->db->get();
 		return $query->result();
 	}

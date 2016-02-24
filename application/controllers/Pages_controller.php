@@ -100,8 +100,11 @@ class Pages_controller extends CI_Controller{
 	public function adminAdd(){
 		$user_id = $this->session->userdata('user_id');
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$data['category'] = $this->admin_model->getCategory();
+		$data['subcategory'] = $this->admin_model->getSubcategory();
+		$data['items'] = $this->admin_model->getItems();
 		$this->load->view('ADMIN_Nav', $data);
-		$this->load->view('ADMIN_Add');
+		$this->load->view('ADMIN_ViewItem', $data);
 	}
 
 	public function adminAccounts(){

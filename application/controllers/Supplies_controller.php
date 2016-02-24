@@ -41,4 +41,9 @@ class Supplies_controller extends CI_Controller {
 		$supply_description = $this->supplies_model->getSupplyDescriptionFromPPMP();
 		echo json_encode($supply_description);
 	}
+
+	public function getCategoryWithSubcategory(){
+		$categories = $this->supplies_model->getCategoryWithSubcategory();
+		echo json_encode($categories);
+	}
 }

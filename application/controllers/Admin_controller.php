@@ -95,20 +95,71 @@ class Admin_controller extends CI_Controller {
 	public function addCategory(){
 		$category = $this->input->post('category');
 		$this->admin_model->addCategory($category);
+
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$data['category'] = $this->admin_model->getCategory();
+		$data['subcategory'] = $this->admin_model->getSubcategory();
+		$data['items'] = $this->admin_model->getItems();
+		$this->load->view('ADMIN_Nav', $data);
+		$this->load->view('ADMIN_ViewItem', $data);
+	}
+
+	public function editCategory(){
+		$category_id = $this->input->post('category_id');
+		$category = $this->input->post('category');
+		$status = $this->input->post('status');
+		$category_details = $this->admin_model->editCategory($category_id, $category, $status);
+		echo json_encode($category_details);
 	}
 
 	public function addSubCategory(){
-		$category_id = $this->input->post('category');
+		//print_r($_POST['subcategory']);
+		$category_id = $this->input->post('subcategory_category');
+		foreach ($_POST['subcategory'] as $subcategory) {
+			$this->admin_model->addSubCategory($category_id, $subcategory);
+		}
+		
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$data['category'] = $this->admin_model->getCategory();
+		$data['subcategory'] = $this->admin_model->getSubcategory();
+		$data['items'] = $this->admin_model->getItems();
+		$this->load->view('ADMIN_Nav', $data);
+		$this->load->view('ADMIN_ViewItem', $data);
+	}
+
+	public function editSubcategory(){
+		$subcategory_id = $this->input->post('subcategory_id');
 		$subcategory = $this->input->post('subcategory');
-		$this->admin_model->addSubCategory($category_id, $subcategory);
+		$status = $this->input->post('status');
+		$subcategory_details = $this->admin_model->editSubcategory($subcategory_id, $subcategory, $status);
+		echo json_encode($subcategory_details);
 	}
 
 	public function addItems(){
-		$subcategory_id = $this->input->post('subcategory');
-		$item = $this->input->post('item');
+		$subcategory_id = $this->input->post('item_subcategory');
+		foreach ($_POST['item'] as $item) {
+			$this->admin_model->addItem($subcategory_id, $item);
+		}
+
+		$user_id = $this->session->userdata('user_id');
+		$data['user_details'] = $this->user_model->getUserDetails($user_id);
+		$data['category'] = $this->admin_model->getCategory();
+		$data['subcategory'] = $this->admin_model->getSubcategory();
+		$data['items'] = $this->admin_model->getItems();
+		$this->load->view('ADMIN_Nav', $data);
+		$this->load->view('ADMIN_ViewItem', $data);
+	}
+
+	public function editItem(){
+		$item_id = $this->input->post('item_id');
+		$supply_description = $this->input->post('supply_description');
 		$unit = $this->input->post('unit');
 		$price = $this->input->post('price');
-		$this->admin_model->addItem($subcategory_id, $item, $unit, $price);
+		$status = $this->input->post('status');
+		$item_details = $this->admin_model->editItem($item_id, $supply_description, $unit, $price, $status);
+		echo json_encode($item_details);
 	}
 
 	public function addApprover(){

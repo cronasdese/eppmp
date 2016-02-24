@@ -482,7 +482,7 @@
                                     <select name="items[1][items]" id="items_1" class="col-sm-11">
                                         <option value="0">Select Item</option>
                                     </select>
-                                    <input type="text" name="items[1][iteminput]" id="iteminput_1" class="col-sm-11" placeholder="Enter item description"/>
+                                    <input type="text" name="items[1][iteminput]" id="iteminput_1" class="col-sm-11" placeholder="Enter item description" required />
                                 </div>
                             </div>
                         </td>
@@ -491,43 +491,43 @@
                         </td>
                         <td class="text-nowrap text-center" id="unit_1"></td>   
                         <td class="text-center milestone-table"> 
-                            <input type="text" name="items[1][unitprice]" id="unitprice_1" value="0"/>
+                            <input type="text" name="items[1][unitprice]" id="unitprice_1" value="0" required pattern="^[0-9]*\.[0-9]{2}$" />
                         </td>                     
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][jan]" id="jan_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][jan]" id="jan_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][feb]" id="feb_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][feb]" id="feb_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][mar]" id="mar_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][mar]" id="mar_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][apr]" id="apr_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][apr]" id="apr_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][may]" id="may_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][may]" id="may_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][jun]" id="jun_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][jun]" id="jun_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][jul]" id="jul_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][jul]" id="jul_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][aug]" id="aug_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][aug]" id="aug_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][sep]" id="sep_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][sep]" id="sep_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table">    
-                            <input type="number" name="items[1][oct]" id="oct_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][oct]" id="oct_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="milestone-table milestone-table">    
-                            <input type="number" name="items[1][nov]" id="nov_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][nov]" id="nov_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="milestone-table milestone-table">    
-                            <input type="number" name="items[1][dec]" id="dec_1" placeholder="0" min="0" value="0" class="td-width" />
+                            <input type="number" name="items[1][dec]" id="dec_1" placeholder="0" min="0" value="0" class="td-width" required />
                         </td>
                         <td class="text-center milestone-table" name="subtotal_1" id="subtotal_1"> </td>
                         <td>

@@ -14,24 +14,77 @@ class Admin_model extends CI_Model {
 		$this->db->insert('category', $data);
 	}
 
+	function getCategory(){
+		$this->db->select('category.*');
+		$this->db->from('category');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function editCategory($category_id, $category, $status){
+		$data = array(
+			'category' => $category,
+			'status' => $status
+		);
+		$this->db->where('id', $category_id);
+		$this->db->update('category', $data);
+	}
+
 	function addSubcategory($category_id, $subcategory){
 		$data = array(
 			'category_id' => $category_id,
-			'subcategory' => $subcategory,
+			'subcategory' => $subcategory['subcategory'],
 			'status' => 1
 		);
 		$this->db->insert('subcategory', $data);
 	}
 
-	function addItem($subcategory_id, $item, $unit, $price){
+	function getSubcategory(){
+		$this->db->select('subcategory.*, category.category');
+		$this->db->from('subcategory');
+		$this->db->join('category', 'subcategory.category_id = category.id');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function editSubcategory($subcategory_id, $subcategory, $status){
+		$data = array(
+			'subcategory' => $subcategory,
+			'status' => $status
+		);
+		$this->db->where('id', $subcategory_id);
+		$this->db->update('subcategory', $data);
+	}
+
+	function addItem($subcategory_id, $item){
 		$data = array(
 			'subcategory_id' => $subcategory_id,
-			'suppl_description' => $suppl_description,
-			'unit' => $unit,
-			'price' => $price,
+			'supply_description' => $item['item'],
+			'unit' => $item['unit'],
+			'price' => $item['price'],
 			'status' => 1
 		);
 		$this->db->insert('supply', $data);
+	}
+
+	function editItem($item_id, $supply_description, $unit, $price, $status){
+		$data = array(
+			'supply_description' => $supply_description,
+			'unit' => $unit,
+			'price' => $price,
+			'status' => $status
+		);
+		$this->db->where('id', $item_id);
+		$this->db->update('supply', $data);
+	}
+
+	function getItems(){
+		$this->db->select('supply.*, category.category, subcategory.subcategory');
+		$this->db->from('supply');
+		$this->db->join('subcategory', 'supply.subcategory_id = subcategory.id');
+		$this->db->join('category', 'subcategory.category_id = category.id');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	function getSupply($subcategory_id){
