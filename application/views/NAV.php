@@ -44,6 +44,8 @@
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav">
 					        <li> &nbsp; &nbsp; &nbsp; </li>
+					        <li class="dropdown">
+					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Home &nbsp;<b class="caret"></b></a>
 					        <li><a href="<?php echo base_url('Pages_controller/home'); ?>" class="bodyclass"> Home </a></li>
 					        <li class="dropdown">
 					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Menu &nbsp;<b class="caret"></b></a>
@@ -73,6 +75,6 @@
 			    	</div><!-- /.navbar-collapse -->
 				</div>	 	  
 			</nav>	
-		</div>   
+		</div>  
 	</body>
 </html>

@@ -81,15 +81,15 @@
 								  	</div>
 								 	<div class="panel-body">
 								 		<div class="form-group">	
-											<label class="control-label col-md-4">Office/Unit: </label>
+											<label class="control-label col-md-5">Office/Unit: </label>
 											<?php echo '<p id="office">'. $user_details[0]->office_name .'</p>'; ?>
 									    </div>
 									    <div class="form-group">
-											<label class="control-label col-md-4">Position/Designation</label>
+											<label class="control-label col-md-5">Position/Designation</label>
 											<?php echo '<p id="position">'. $user_details[0]->position .'</p>'; ?>
 									    </div>
 									    <div class="form-group">
-											<label class="control-label col-md-4">Password: </label>
+											<label class="control-label col-md-5">Password: </label>
 											<p> ********** </p>
 									    </div>
 								  	</div>

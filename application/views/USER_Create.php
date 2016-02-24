@@ -531,7 +531,7 @@
                         </td>
                         <td class="text-center milestone-table" name="subtotal_1" id="subtotal_1"> </td>
                         <td>
-                            <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove" ></span></a>
+                            <a id="table-remove"><span class="table-remove glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </tbody>
