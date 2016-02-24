@@ -26,6 +26,17 @@
 </head>
 <body>
 <div class="container">
+    <br/>
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Note!!!</h3>
+        </div>
+        <div class="panel-body">
+            Inside note here
+        </div>
+    </div>              
+</div>
+<div class="container">
     <?php
         if($project[0]->first_lvl_status == 1 && $project[0]->second_lvl_status == 1 && $project[0]->third_lvl_status == 1 && $project[0]->fourth_lvl_status == 1){
             echo '

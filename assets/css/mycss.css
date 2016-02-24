@@ -9495,36 +9495,7 @@ font-size: 20px;
   margin-right: 20px;
 }
 
-
-/*ADMIN - AddITEMS*/
-
-.
-
-
-
-
-
-le-edi
-
-
-
-
-
-le {
-  position: relative;
-  
-.glyphicon {
-    font-size: 0px;
-  }
-}  
-
-.
-
-
-
-
-
-le-remove {
+.table-remove {
   color: #700;
   cursor: pointer;
   
@@ -9533,13 +9504,7 @@ le-remove {
   }
 }
 
-.
-
-
-
-
-
-le-add {
+.table-add {
   color: #070;
   cursor: pointer;
   right: 0;
@@ -9549,13 +9514,7 @@ le-add {
   }
 }
 
-.
-
-
-
-
-
-lesize{
+.tablesize{
   width: 75%;
 }
 
@@ -9729,48 +9688,7 @@ lesize{
   padding: 50px;
 }
 
-/*Consolidat page*/
 
-/*.milestone-
-
-
-
-
-
-le {
-  
-
-
-
-
-
-  le-layout: fixed;
-  width: 421px;
-  margin-left: -9px;
-}
-.milestone-
-
-
-
-
-
-le th {
-  width: 35px;
-  display: inline-block;
-}
-
-.milestone-
-
-
-
-
-
-le td {
-  width: 30px;
-  display: inline-block;
-  margin: 0px;
-  margin-top: 0px;
-}
 
 /*Create*/
 /*.td-width{
@@ -9784,13 +9702,7 @@ le td {
 }*/
 
 
-.milestone-
-
-
-
-
-
-le td{
+.milestone td{
   width: 30px;
   white-space: nowrap;
   margin: 0px;
