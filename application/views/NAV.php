@@ -53,10 +53,14 @@
 					        	<a href="#" class="dropdown-toggle bodyclass" data-toggle="dropdown">Menu &nbsp;<b class="caret"></b></a>
 >>>>>>> 42647bb82b1c84c4126f2ae56223def2c8bb791d
 					          	<ul class="dropdown-menu">
-						            <li><a href="#">Create Project</a></li>
-						            <li><a href="#">View Project</a></li>
-						            <li><a href="#">Consolidate</a></li>
-						            <li><a href="#">Generate APP</a></li>
+						            <li><a href="<?php echo base_url('Pages_controller/createPPMP'); ?>">Create Project</a></li>
+						            <li><a href="<?php echo base_url('Pages_controller/viewProjects'); ?>">View Project</a></li>
+						            <?php
+						            	if($user_details[0]->user_type_id == 2){
+						            		echo '<li><a href="'. base_url('Pages_controller/consolidate') .'">Consolidate</a></li>
+						            			<li><a href="'. base_url('Pages_controller/generateAPP') .'">Generate APP</a></li>';
+						            	}
+						            ?>
 					          	</ul>
 					        </li>
 

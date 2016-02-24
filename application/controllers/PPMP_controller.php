@@ -122,7 +122,11 @@ class PPMP_controller extends CI_Controller{
 	}
 
 	public function generateAPP(){
-		$data['app_details'] = $this->PPMP_model->generateAPP();
+		$from_date = $this->input->post('from_date');
+		$to_date = $this->input->post('to_date');
+		$data['user_details'] = $this->user_model->getUserDetails($this->session->userdata('user_id'));
+		$data['app_details'] = $this->PPMP_model->generateAPP($from_date, $to_date);
+		$this->load->view('NAV', $data);
 		$this->load->view('APP', $data);
 	}
 

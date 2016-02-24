@@ -159,8 +159,8 @@
                     </thead>
                     <tbody id="tablebody">
                         <?php
-                            if(is_array($consolidate_details_category) || is_object($consolidate_details_category) && !is_null($consolidate_details_category)){
-                                foreach ($consolidate_details_category as $consolidate) {
+                            if(is_array($app_details) || is_object($app_details)){
+                                foreach ($app_details as $app) {
                                     echo '
                                         <tr>
                                             <td class="text-nowrap">'. $consolidate->project_id .'</td>

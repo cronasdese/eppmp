@@ -551,7 +551,7 @@ class PPMP_model extends CI_Model {
 		return $query->result();
 	}
 
-	function generateAPP(){
+	function generateAPP($from_date, $to_date){
 		// 	SELECT DISTINCT project.title project_title, category.category, SUM(project_details.price*project_details.quantity) sum, office.office_name, SUM(project_details.jan_qty) jan_qty, SUM(project_details.feb_qty) feb_qty, SUM(project_details.mar_qty) mar_qty, SUM(project_details.apr_qty) apr_qty, SUM(project_details.may_qty) may_qty, SUM(project_details.jun_qty) jun_qty, SUM(project_details.jul_qty) jul_qty, SUM(project_details.aug_qty) aug_qty, SUM(project_details.sep_qty) sep_qty, SUM(project_details.oct_qty) oct_qty, SUM(project_details.nov_qty) nov_qty, SUM(project_details.dec_qty) dec_qty
 		// FROM project
 		// JOIN project_details
@@ -576,11 +576,10 @@ class PPMP_model extends CI_Model {
 		$this->db->where('project.second_lvl_status', 1);
 		$this->db->where('project.third_lvl_status', 1);
 		$this->db->where('project.fourth_lvl_status', 1);
-		$this->db->where('project_details.supply_description', $filter_2);
-		$this->db->where('project.date_submitted <', $from_date);
-		$this->db->where('project.date_submitted >', $to_date);
+		$this->db->where('project.date_submitted >', $from_date);
+		$this->db->where('project.date_submitted <', $to_date);
 		$this->db->group_by('project_id');
-		$this->db->order_by('category.id', 'ASC');
+		$this->db->order_by('office.office_name', 'ASC');
 		$query = $this->db->get();
 		return $query->result();
 	}

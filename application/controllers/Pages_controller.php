@@ -84,7 +84,7 @@ class Pages_controller extends CI_Controller{
 		$user_id = $this->session->userdata('user_id');
 		$data['user_details'] = $this->user_model->getUserDetails($user_id);
 		$this->load->view('NAV', $data);
-		$this->load->view('APP');
+		$this->load->view('before_APP');
 	}
 
 	public function profile(){
